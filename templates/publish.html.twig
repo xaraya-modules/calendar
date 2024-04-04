@@ -1,0 +1,15 @@
+{# @calendar/publish.html.twig #}
+
+{% extends '@calendar/base.html.twig' %}
+
+{% block modulespace %}
+{% if calendars %}
+        <ul>
+        {% for calendar in calendars %}
+            <li> <a href="{{ xar_moduleurl('calendar','user','publish',{'calid': calendar['cid'], 'calname': calendar['cname']}) }}">{{ calendar['cname'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        No calendars available
+    {% endif %}
+{% endblock %}

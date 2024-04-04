@@ -1,0 +1,21 @@
+{# @calendar/includes/listing_header.html.twig #}
+
+{% block listing_header %}
+<tr>
+        {{ include('@' ~ module ~ '/includes/listing_headerprefix.html.twig') }}
+        {% for column, field in fields %}
+            {% if ((column == primaryalias) and not show_primary) or strpos(column,'return_link') %}
+                <xar:continue />
+            {% endif %}
+            <th>
+                {% set url = xar_currenturl({'letter': letter, 'order': column, 'op': 'column'}) %}
+                <a href="{{ url }}" alt="Click to order by this field" title="Order by {{ field }}">
+                    {{ field }}
+                </a>
+                {% set subdata = array_merge(params,{'column': column}) %}
+                {{ include('@' ~ module ~ '/includes/sortarrows.html.twig', subdata) }}
+            </th>
+        {% endfor %}
+        {{ include('@' ~ module ~ '/includes/listing_headersuffix.html.twig') }}
+    </tr>
+{% endblock %}

@@ -1,0 +1,41 @@
+{# @calendar/objects/showview.html.twig #}
+
+{% block showview %}
+{# <!--
+    This is a generic admin list template for any DD object. You can use a specific template
+    for one particular object in this directory as showlist-[objectname].xd, and/or
+    use templates in your own [module]/xartemplates/objects directory by specifying the
+    tplmodule="..." argument in the xar:data-list BL tag or showList() method call.
+--> #}
+{{ xar_style({scope: "module", module: "dynamicdata", file: "dd"}) }}
+{% if isprimary and xar_coremethod('xarModHooks', 'isHooked', ['categories',modname,itemtype]) %}
+    {{ include('@calendar/includes/catnavigation.html.twig') }}
+{% endif %}
+
+{% if not layout %}
+    {% set layout = 'default' %}
+{% endif %}
+
+{# <!-- Use the subtemplate for the layout specified --> #}
+{{ include('@calendar/includes/objectlist-' ~ layout ~ '.html.twig') }}
+
+{# <!-- Conditionally add pager stuff --> #}
+{% if prevurl or nexturl %}
+    <p>
+        {% if prevurl %}
+            <a href="{{ prevurl }}">
+                &#60;&#60;
+            </a>
+            {% else %}
+            ---
+        {% endif %}
+        {% if nexturl %}
+            <a href="{{ nexturl }}">
+                &#62;&#62;
+            </a>
+            {% else %}
+            ---
+        {% endif %}
+    </p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,95 @@
+{# @calendar/properties/showinput-calendardisplay_week.html.twig #}
+
+{% block showinput_calendardisplay_week %}
+{{ xar_style({scope: "module", module: "calendar", file: "user-month"}) }}
+    {# <!-- we want to add the textual decorator to the month class so we have day names and such --> #}
+
+    {{ include('@calendar/includes/navheader.html.twig') }}
+    {# <!--
+        Define our navigation elements.
+        TODO: Make a nice API Function for creating the valid URLS
+    --> #}
+    <xar:calendar-decorator object="$Week" decorator="Xaraya" name="WeekURI"/>
+
+    {% set prevYearURL = WeekURI.prev('year') %}
+    {% set prevWeekURL = WeekURI.prev('week') %}
+    {% set nextWeekURL = WeekURI.next('week') %}
+    {% set nextYearURL = WeekURI.next('year') %}
+
+    {% set startts = Week.children[1].getTimeStamp() %}
+    {% set endts = Week.children[7].getTimeStamp() %}
+    <table id="cal-calendar">
+        <tr>
+            <th class="cal-navigation" colspan="7">
+                {% set label = 'Previous Year' %}
+                {{- xar_button({type: "link", target: prevYearURL, label: label}) -}}
+                {% set label = 'Previous Week' %}
+                {{- xar_button({type: "link", target: prevWeekURL, label: label}) -}}
+                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %d %Y',startts]) }} -
+                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %d %Y',endts]) }}
+                {% set label = 'Next Week' %}
+                {{- xar_button({type: "link", target: nextWeekURL, label: label}) -}}
+                {% set label = 'Next Year' %}
+                {{- xar_button({type: "link", target: nextYearURL, label: label}) -}}
+            </th>
+        </tr>
+        <tr>
+            <xar:while condition="true">
+                {% set Day = Week.fetch() %}
+                {% if Day %}
+                    {# <!-- we want to create a new Day object with Xaraya specifics --> #}
+                    <xar:calendar-decorator object="$Day" decorator="Xaraya" name="DayURI"/>
+
+                    {% if Day.isFirst() %}
+                        <td>&#160;{# <!-- week info goes here --> #}</td>
+                    {% endif %}
+                    {# <!-- populate the day --> #}
+                    {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d']) %}
+                    {% set thisday = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}                    
+                    {% if today == thisday %}
+                        {% set accentclass = 'xar-accent' %}
+                    {% else %}
+                        {% set accentclass = '' %}
+                    {% endif %}
+                    <td class="{{ accentclass }} cal-day" style="width: 14%">
+                        {% if not Day.isEmpty() %}
+                            {# <!-- Display the date for this day --> #}
+                            <a href="{{ DayURI.current('day') }}">{{ Day.thisDay() }}</a>
+                            {% set entries = Day.getEntries() %}
+                            {# <!--
+                            <ul style="margin: 2px 2px 2px 2px">
+                                {% for entry in entries %}
+                                    <li>{{ entry['name'] }}</li>
+                                {% endfor %}
+                            </ul>
+                            --> #}
+                            <table style="border: none; width: 100%">
+                                {% for entry in entries %}
+                                    <tr>
+                                        <td style="line-height: 12px;text-align: left">
+                                            {% if not entry['return_link'] %}
+                                                <a href="{{ xar_moduleurl('calendar','user','display',{'itemid': entry['id'], 'name': 'calendar_event'}) }}">
+                                                    {{ entry['name'] }}
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ entry['return_link'] }}">
+                                                    {{ entry['name'] }}
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td style="line-height: 10px;text-align: right">{{ xar_data_output({type: "time", value: entry['start_time']}) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% else %}
+                            {# <!-- Hide this day because it's not part of the month we are viewing --> #}
+                            &#160;
+                        {% endif %}
+                    </td>
+                {% else %}
+                    <xar:break />
+                {% endif %}
+            </xar:while>
+        </tr>
+    </table>
+{% endblock %}

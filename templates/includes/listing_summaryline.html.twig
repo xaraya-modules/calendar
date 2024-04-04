@@ -1,0 +1,18 @@
+{# @calendar/includes/listing_summaryline.html.twig #}
+
+{% block listing_summaryline %}
+{% set thispageno = items|length; %}
+    <div class="xar-clearleft xar-floatleft xar-padding-thick xar-halfwidth" style="float: left; padding-top:1em;">
+        {% if total > items_per_page %}
+          {{ xar_translate('Displaying #(1) of #(2) selected', thispageno, total) }}
+        {% else %}
+          {{ xar_translate('Total selected: ##(1)', total) }}           
+        {% endif %}
+    </div>
+    <div class="xar-floatright xar-padding-thick xar-halfwidth xar-align-right" style="padding-top:1em;">
+        {% if xar_security_check('AddCalendar') %}
+            {% set returnurl = xar_moduleurl('calendar','user','view') %}
+            <a style="font-weight:bold;" href ="{{ xar_moduleurl('calendar','user','new',{'name': objectname, 'tplmodule': module}) }}">Add A New Event</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{# @calendar/properties/showinput-listing.html.twig #}
+
+{% block showinput_listing %}
+{% set url = xar_currenturl(params) %}
+    {% set search = search is not null?search.''; %}
+    {% set showsearch = showsearch is not null?showsearch.xar_coremethod('xarModItemVars', 'get', ['listings','showsearch',regid]); %}
+
+    <br />
+    {{ include('@' ~ module ~ '/includes/listing_searchboxline.html.twig') }}
+    {{ include('@' ~ module ~ '/includes/listing_summaryline.html.twig') }}
+    {{ include('@' ~ module ~ '/includes/listing_pagerline.html.twig') }}
+    <table style="clear:both; width: 100%" border="0">
+        {{ include('@' ~ module ~ '/includes/listing_header.html.twig') }}
+        {{ include('@' ~ module ~ '/includes/listing_body.html.twig') }}
+    </table>
+    {% if not total %}
+              <p class="xar-align-center">There are no listings selected</p>
+    {% endif %}
+    <form  action="{{ xar_moduleurl('listings','admin','multiops') }}" method="post" onsubmit = "listings_getchecked('idlist');document.getElementById('redirecttarget').value = this.value;" style="clear: both">
+        {{ include('@' ~ module ~ '/includes/listing_footerline.html.twig') }}
+        <input type="hidden" name="returnurl" id="returnurl" value="{{ xar_currenturl() }}"/>
+        <input type="hidden" name="object" id="object" value="{{ objectname }}"/>
+        <input type="hidden" name="module" id="module" value="{{ module }}"/>
+    </form>
+{% endblock %}

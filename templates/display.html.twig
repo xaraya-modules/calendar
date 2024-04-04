@@ -1,0 +1,30 @@
+{# @calendar/display.html.twig #}
+
+{% extends '@calendar/base.html.twig' %}
+
+{% block modulespace %}
+<div class="xar-mod-head">
+        <span class="xar-mod-title">
+            {% if xar_modulevar('calendar', 'useModuleAlias') %}
+                {{ xar_var({scope: "module", module: "calendar", name: "aliasname"}) }}
+            {% else %}
+                Display Event
+            {% endif %}
+        </span>
+    </div>
+    <div class="xar-mod-body">
+        <h2>
+            Display Event
+        </h2>
+          <fieldset>
+            <legend>Event details</legend>
+            {{ xar_data_display({object: object, fieldlist: "name,description,start_time,end_time,duration,recurring_code,recurring_span,start_location,end_location"}) }}
+          </fieldset>
+          <fieldset>
+            <div class="xar-align-center">
+              <input type="hidden" name="authid" id="authid" value="{{ authid }}"/>
+              <input type="button" value="{{ xar_translate('Back') }}" class="xar-margin-thickleft"  onClick="history.go(-1)"/>
+            </div>
+          </fieldset>
+    </div>
+{% endblock %}

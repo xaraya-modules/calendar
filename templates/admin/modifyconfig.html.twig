@@ -1,0 +1,208 @@
+{# @calendar/admin/modifyconfig.html.twig #}
+
+{% block modifyconfig %}
+{{ include('@calendar/includes/admin-mod-head.html.twig') }}
+    <div class="xar-mod-body">
+        <h2>            
+            Modify Configuration            
+        </h2>
+
+        <form method="post" action="{{ xar_currenturl() }}" enctype="application/x-www-form-urlencoded">
+            {% if tab == 'general' %}
+                <fieldset>
+                    <legend>
+                        General Settings                
+                    </legend>
+                    {{ xar_data_form({object: module_settings}) }}
+                </fieldset>
+            {% else %}
+
+            {% endif %}
+            <fieldset>
+                <legend>
+                    Display Settings
+                </legend>
+                {{ include('@calendar/includes/display.html.twig') }}
+            </fieldset>
+            {{ include('@base/includes/update-button.html.twig') }}
+        </form>
+    </div>
+
+    {# <!-- common admin menu for this module - remove link to the current function --> #}
+    {# <!-- the variables used in this menu come from example_admin_menu() --> #}
+    <div class="xar-mod-head"><span class="xar-mod-title">Calendar Administration</span></div>
+    <div class="xar-mod-body"><h2>{{ menutitle }}</h2><br />
+    <div style="margin: auto;">
+
+    {# <!-- the specific template for the current admin function comes here --> #}
+
+    <table width="100%" border="0" cellspacing="1" cellpadding="8">
+    {# <!--
+        // Start form - note the use of xarController::URL() to create the recipient URL of
+        // this form.  All URLs should be generated through xarController::URL() to ensure
+        // compatibility with future versions of Xaraya
+    --> #}
+    <form method="post" action="{{ xar_moduleurl('calendar', 'admin', 'updateconfig') }}">
+    {# <!--
+        // Add an authorisation ID - this adds a hidden field in the form that
+        // contains an authorisation ID.  The authorisation ID is very important in
+        // preventing certain attacks on the website
+    --> #}
+        <input type="hidden" name="authid" id="authid" value="{{ authid }}"/>
+
+
+        <tr>
+            <td colspan="2" style="text-align: center; font-weight: 600; font-size: 120%"> OPTIONS THAT MAY NOT WORK (BUT CAN BE SET) </td>
+        </tr>
+        <tr>
+          <td><label for="default_cal">Default calendar ics file(s)</label>
+              (NOTE: put your ics files in var/calendar)
+              <br /><b>NOTE TO DEVS: default filenames are stored in array xarModVars::get('calendar', 'default_cal'); the directory is
+              sys::varpath() . '/calendar'</b>
+          </td>
+          <td>
+            {% if thereAreIcs == 0 %}
+              No calendars found in var/calendar
+            {% else %}
+              <select multiple="multiple" size="3" name="default_cal[]" id="default_cal">
+                {% for filenumber, filename in icsfiles %}
+                  {% if filename in default_cal %}
+                    <option value= "{{ filename }}" selected="selected">{{ filename }}</option>
+                  {% else %}
+                    <option value= "{{ filename }}">{{ filename }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+            <td><label for="minical_view"></label></td>
+            <td>
+    <div class="xar-row">
+        <div class="xar-col">
+            <label for="cal_sdow" title="{{ xar_translate('Where do the mini-calendars go when clicked?') }}">
+                Minical view       
+            </label>
+        </div>
+        <div class="xar-col">
+            {% set value = xar_modulevar('calendar', 'cal_sdow') %}
+            {% set options = [
+                    {'id': 0, 'name': xar_translate('Sunday')},
+                    {'id': 1, 'name': xar_translate('Monday')},
+                    {'id': 2, 'name': xar_translate('Tuesday')},
+                    {'id': 3, 'name': xar_translate('Wednesday')},
+                    {'id': 4, 'name': xar_translate('Thursday')},
+                    {'id': 5, 'name': xar_translate('Friday')},
+                    {'id': 6, 'name': xar_translate('Saturday')},
+                ] %}
+            {{ xar_data_input({type: "dropdown", name: "minical_view", id: "minical_view", options: options, value: value}) }}
+        </div>
+    </div>
+            </td>
+        </tr>
+        <tr>
+                <td><label for="day_start">Start time for day grid</label></td>
+                <td><input name="day_start" id="day_start" value="{{ day_start }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="day_end">End time for day grid</label></td>
+                <td><input name="day_end" id="day_end" value="{{ day_end }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="gridLength">Grid distance in minutes for day view, multiples of 15 preferred</label></td>
+                <td><input name="gridLength" id="gridLength" value="{{ gridLength }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="num_years">Number of years to display in 'Jump to'</label></td>
+                <td><input name="num_years" id="num_years" value="{{ num_years }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="month_event_lines">Number of lines to wrap each event title in month view, 0 means display all lines.</label></td>
+                <td><input name="month_event_lines" id="month_event_lines" value="{{ month_event_lines }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="tomorrows_event_lines">Number of lines to wrap each event title in the 'Tommorrow's events' box, 0 means display all lines.</label></td>
+                <td><input name="tomorrows_event_lines" id="tomorrows_event_lines" value="{{ tomorrows_events_lines }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="allday_week_lines">Number of lines to wrap each event title in all-day events in week view, 0 means display all lines.</label></td>
+                <td><input name="allday_week_lines" id="allday_week_lines" value="{{ allday_week_lines }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="week_events_lines">Number of lines to wrap each event title in week view</label></td>
+                <td><input name="week_events_lines" id="week_events_lines" value="{{ week_events_lines }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="second_offset">The time in seconds between your time and your server's time.</label></td>
+                <td><input name="second_offset" id="second_offset" value="{{ second_offset }}"/>
+                </td>
+        </tr>
+        <tr>
+                <td><label for="bleed_time">This allows events past midnight to just be displayed on the starting date, only good up to 24 hours. Range from '0000' to '2359'. Is automatically set to $day_start if left blank.</label></td>
+                <td><input name="bleed_time" id="bleed_time" value="{{ bleed_time }}"/>
+                </td>
+        </tr>
+        <tr><td><label for="display_custom_goto">In the 'Jump To' box, display the custom 'go to day' box</label></td>
+        <td><input type="checkbox" name="display_custom_goto" id="display_custom_goto" value="1" checked="{{ display_custom_gotochecked }}"/></td></tr>
+        <tr><td><label for="display_ical_list">In the 'Jump To' box, display the pop-up menu with the list of all calendars in the $calendar_path directory</label></td>
+        <td><input type="checkbox" name="display_ical_list" id="display_ical_list" value="1" checked="{{ display_ical_listchecked }}"/></td></tr>
+        <tr><td><label for="allow_webcals">Allow http:// and webcal:// prefixed URLs to be used as the $cal for remote viewing of "subscribe-able" calendars. This does not have to be enabled to allow specific ones below</label></td>
+        <td><input type="checkbox" name="allow_webcals" id="allow_webcals" value="1" checked="{{ allow_webcalschecked }}"/></td></tr>
+        <tr><td><label for="this_months_events">Display "This month's events" at the bottom off the month page</label></td>
+        <td><input type="checkbox" name="this_months_events" id="this_months_events" value="1" checked="{{ this_months_eventschecked }}"/></td></tr>
+        <tr><td><label for="use_color_cals">Display each calendar in the pop-up as a different color</label></td>
+        <td><input type="checkbox" name="use_color_cals" id="use_color_cals" value="1" checked="{{ use_color_calschecked }}"/></td></tr>
+        <tr><td><label for="daysofweek_dayview">Display the days of the week in day.php view</label></td>
+        <td><input type="checkbox" name="daysofweek_dayview" id="daysofweek_dayview" value="1" checked="{{ daysofweek_dayviewchecked }}"/></td></tr>
+        <tr><td><label for="enable_rss">Enable RSS access to your calendars (good thing)</label></td>
+        <td><input type="checkbox" name="enable_rss" id="enable_rss" value="1" checked="{{ enable_rsschecked }}"/></td></tr>
+        <tr><td><label for="show_search">Show the search box in the sidebar</label></td>
+        <td><input type="checkbox" name="show_search" id="show_search" value="1" checked="{{ show_searchchecked }}"/></td></tr>
+        <tr><td><label for="allow_preferences">Allow visitors to change various preferences via cookies</label></td>
+        <td><input type="checkbox" name="allow_preferences" id="allow_preferences" value="1" checked="{{ allow_preferenceschecked }}"/></td></tr>
+        <tr><td><label for="printview_default">Set print view as the default view. day, week, and month only supported views for $default_view (listed well above)</label></td>
+        <td><input type="checkbox" name="printview_default" id="printview_default" value="1" checked="{{ printview_defaultchecked }}"/></td></tr>
+        <tr><td><label for="show_todos">Show your todo list on the side of day and week view</label></td>
+        <td><input type="checkbox" name="show_todos" id="show_todos" value="1" checked="{{ show_todoschecked }}"/></td></tr>
+        <tr><td><label for="show_completed">Show completed todos on your todo list</label></td>
+        <td><input type="checkbox" name="show_completed" id="show_completed" value="1" checked="{{ show_completedchecked }}"/></td></tr>
+        <tr><td><label for="allow_login"> Check to prompt for login to unlock calendars.</label></td>
+        <td><input type="checkbox" name="allow_login" id="allow_login" value="1" checked="{{ allow_loginchecked }}"/></td></tr>
+        <tr><td><label for="shorturls">{{ shorturlslabel }}</label></td>
+        <td><input type="checkbox" name="shorturls" id="shorturls" value="1" checked="{{ shorturlschecked }}"/></td></tr>
+
+    {# <!--
+
+
+    <tr><td><label for="bold">{{ boldlabel }}</label></td>
+    <td><input type="checkbox" name="bold" id="bold" value="1" {{ boldchecked }} /></td></tr>
+
+    <tr><td><label for="items_per_page">{{ itemslabel }}</label></td>
+    <td><input type="text" name="items_per_page" id="items_per_page" size="3" maxlength="3" value="{{ itemsvalue }}"/></td></tr>
+
+
+    <tr><td colspan="2">
+    {{ hooks }}
+    </td></tr>
+
+    --> #}
+
+    <tr><td colspan="2" align="center">
+        <input type="submit" value="{{ updatebutton }}"/></td></tr>
+    </form>
+
+    </table>
+    <br />
+    </div>
+    </div>
+{% endblock %}

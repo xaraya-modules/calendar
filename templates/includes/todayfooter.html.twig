@@ -1,0 +1,11 @@
+{# @calendar/includes/todayfooter.html.twig #}
+
+{% block todayfooter %}
+<div class="xar-sub">
+        {% set current_view = xar_apifunc('calendar','user','currentView') %}
+        {# @todo check expected args for api function #}
+        <a href="{{ xar_apifunc('calendar','user','current',current_view,'URL') }}">
+            <span>Today is</span> &#160;{{ xar_coremethod('xarLocale', 'formatDate', ['%c %z',now[0]]) }}
+        </a>
+    </div>
+{% endblock %}

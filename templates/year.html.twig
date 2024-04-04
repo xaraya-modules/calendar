@@ -1,0 +1,10 @@
+{# @calendar/year.html.twig #}
+
+{% extends '@calendar/base.html.twig' %}
+
+{% block modulespace %}
+{{ include('@calendar/includes/navheader.html.twig') }}
+    {{ xar_data_input({type: "calendardisplay", timeframe: "year"}) }}
+
+    {{ include('@calendar/includes/todayfooter.html.twig') }}
+{% endblock %}

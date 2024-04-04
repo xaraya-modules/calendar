@@ -1,0 +1,14 @@
+{# @calendar/month.html.twig #}
+
+{% extends '@calendar/base.html.twig' %}
+
+{% block modulespace %}
+{{ include('@calendar/includes/navheader.html.twig') }}
+    {{ xar_data_input({type: "calendardisplay", timeframe: "month"}) }}
+
+    {% set page = 'month' %}
+    {{ xar_data_input({type: "listing", conditions: conditions, objectname: "calendar_event", fields: "id,name,start_time,end_time,return_link", tplmodule: "calendar", page: page}) }}
+
+    {# <!-- include the calendar footer --> #}
+    {{ include('@calendar/includes/todayfooter.html.twig') }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{# @calendar/new.html.twig #}
+
+{% extends '@calendar/base.html.twig' %}
+
+{% block modulespace %}
+<div class="xar-mod-head">
+        <span class="xar-mod-title">
+            {% if xar_modulevar('calendar', 'useModuleAlias') %}
+                {{ xar_var({scope: "module", module: "calendar", name: "aliasname"}) }}
+            {% else %}
+                Create Event
+            {% endif %}
+        </span>
+    </div>
+    <div class="xar-mod-body">
+        <h2>
+            Create New Event
+        </h2>
+        <form method="post" action="{{ xar_moduleurl('calendar', 'admin', 'create') }}">
+          <fieldset>
+            <legend>Event details</legend>
+            {{ xar_data_form({object: object, fieldlist: "name,description,start_time,end_time,duration,recurring_code,recurring_span,start_location,end_location"}) }}
+          </fieldset>
+          <fieldset>
+            <div class="xar-align-center">
+                <input type="hidden" name="authid" id="authid" value="{{ authid }}"/>
+                <input type="hidden" name="objectid" id="objectid" value="{{ object.objectid }}"/>
+                <input type="hidden" name="itemid" id="itemid" value="{{ object.itemid }}"/>
+                <input type="hidden" name="tplmodule" id="tplmodule" value="{{ tplmodule }}"/>
+                {% set properties = object.getProperties() %}
+                {{ xar_data_input({property: properties['id'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['object_id'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['module_id'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['itemtype'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['item_id'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['owner'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['return_link'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['state'], hidden: "hidden"}) }}
+                {{ xar_data_input({property: properties['timestamp'], hidden: "hidden"}) }}
+                <input type="hidden" name="return_url" id="return_url_standard" value="{{ xar_moduleurl('calendar','user',page,{'page': page}) }}"/>
+                {% set var = 'Create Event' %}
+                <input type="submit" value="{{ var }}" class="xar-margin-thickleft"/>
+            </div>
+          </fieldset>
+        </form>
+    </div>
+{% endblock %}

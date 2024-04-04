@@ -1,0 +1,39 @@
+{# @calendar/includes/navheader.html.twig #}
+
+{% block navheader %}
+{# <!--
+
+{% set navDayUrl = xar_moduleurl('calendar','user','day',{'cal_date': cal_date, 'cal_sdow': cal_sdow}) %}
+{% set navWeekUrl = xar_moduleurl('calendar','user','week',{'cal_date': cal_date, 'cal_sdow': cal_sdow}) %}
+{% set navMonthUrl = xar_moduleurl('calendar','user','month',{'cal_date': cal_date, 'cal_sdow': cal_sdow}) %}
+{% set navYearUrl = xar_moduleurl('calendar','user','year',{'cal_date': cal_date, 'cal_sdow': cal_sdow}) %}
+{% set navSubmitUrl = xar_moduleurl('calendar','user','submit',{'cal_date': cal_date, 'cal_sdow': cal_sdow}) %}
+
+{% set null = xar_coremethod('xarVar', 'fetch', ['func','str.1.',whatFunc]) %}
+<ul>
+    {% if whatFunc == 'day' %}
+        <li><a class="active" href="{{ navDayUrl }}">Day</a></li>
+    {% else %}
+        <li><a href="{{ navDayUrl }}">Day</a></li>
+    {% endif %}
+
+    {% if whatFunc == 'week' %}
+        <li><a class="active" href="{{ navWeekUrl }}">Week</a></li>
+    {% else %}
+        <li><a href="{{ navWeekUrl }}">Week</a></li>
+    {% endif %}
+
+    {% if whatFunc == 'month' %}
+        <li><a class="active" href="{{ navMonthUrl }}">Month</a></li>
+    {% else %}
+        <li><a href="{{ navMonthUrl }}">Month</a></li>
+    {% endif %}
+
+    {% if whatFunc == 'year' %}
+        <li><a class="active" href="{{ navYearUrl }}">Year</a></li>
+    {% else %}
+        <li><a href="{{ navYearUrl }}">Year</a></li>
+    {% endif %}
+</ul>
+--> #}
+{% endblock %}

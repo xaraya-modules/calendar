@@ -1,0 +1,103 @@
+{# @calendar/day.html.twig #}
+
+{% extends '@calendar/base.html.twig' %}
+
+{% block modulespace %}
+{{ include('@calendar/includes/navheader.html.twig') }}
+    {{ xar_style({scope: "module", module: "calendar", file: "user-month"}) }}
+    {{ xar_style({scope: "module", module: "calendar", file: "default"}) }}
+    {# <!--
+        Define our navigation elements.
+        TODO: Make a nice API Function for creating the valid URLS
+        {% set prevYearURL = xar_moduleurl('calendar','user','day',{'cal_sdow': cal_sdow, 'cal_date': prevYear}) %}
+    --> #}
+    <xar:calendar-decorator object="$Day" decorator="Xaraya" name="DayURI"/>
+
+    {% set prevYearURL = DayURI.prev('year') %}
+    {% set prevMonthURL = DayURI.prev('month') %}
+    {% set prevDayURL = DayURI.prev('day') %}
+    {% set nextDayURL = DayURI.next('day') %}
+    {% set nextMonthURL = DayURI.next('month') %}
+    {% set nextYearURL = DayURI.next('year') %}
+
+    {# <!--
+        Set some dimensions for the display.in pixels
+    --> #}
+    {% set windowwidth = xar_modulevar('calendar', 'windowwidth') %}
+    {% set hourcolwidth = 98 %}
+    {% set displaywidth = windowwidth-hourcolwidth-4 %}
+    {% set unitheight = xar_modulevar('calendar', 'unitheight') %}
+    {% set titlewidth = windowwidth+2 %}
+    {% set minutesperunit = xar_modulevar('calendar', 'minutesperunit') %}
+    {% set unitsperhour = 60/minutesperunit %}
+    {% set day_start = (xar_modulevar('calendar', 'day_start')/3600)|round %}
+    {% set day_end = (xar_modulevar('calendar', 'day_end')/3600)|round %}
+
+    <table id="cal-calendar" style="width: {{ titlewidth }}px">
+        <tr>
+            <th colspan="3" class="cal-navigation">
+                {% set label = 'Previous Year' %}
+                {{- xar_button({type: "link", target: prevYearURL, label: label}) -}}
+                {% set label = 'Previous Month' %}
+                {{- xar_button({type: "link", target: prevMonthURL, label: label}) -}}
+                {% set label = 'Previous Day' %}
+                {{- xar_button({type: "link", target: prevDayURL, label: label}) -}}
+                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %d %Y',Day.getTimeStamp()]) }}
+                {% set label = 'Next Day' %}
+                {{- xar_button({type: "link", target: nextDayURL, label: label}) -}}
+                {% set label = 'Next Month' %}
+                {{- xar_button({type: "link", target: nextMonthURL, label: label}) -}}
+                {% set label = 'Next Year' %}
+                {{- xar_button({type: "link", target: nextYearURL, label: label}) -}}
+            </th>
+        </tr>
+    </table>
+
+    <div style="border: 1px solid #A1A5A9; width:{{ windowwidth }}px">
+        {% set Hour = Day.fetch() %}
+
+        <xar:while condition="Hour">
+            {% if (Hour.thisHour() >= day_start) and (Hour.thisHour() <= day_end) %}
+                <div style="border-bottom: 1px solid #A1A5A9;">
+                    <div style="width: {{ hourcolwidth }}px; float: left; text-align: center">
+                            {{ Hour.thisHour() }}:{{ Hour.thisMinute() }}
+                    </div>
+                    <div style="position: relative; width: {{ displaywidth }}px; float: left; ">
+                        <div style="height:{{ unitheight }}px; border-top: 1px dashed #ccc; border-left: 2px solid #A1A5A9; border-top: 1px solid #A1A5A9;">
+                        </div>
+                        <xar:for start="i = 0" test="i lt unitsperhour-1" iter="i++">
+                            <div style="height:{{ unitheight }}px; border-top: 1px dashed #ccc; border-left: 2px solid #A1A5A9;">
+                            </div>
+                        </xar:for>
+                        {% if Hour.isSelected() %}
+                            {% set entries = Hour.getEntries() %}
+                            {% for entry in entries %}
+    {# <!--
+    {% set foo = var_dump(entry) %}
+    --> #}
+                                {% set width = displaywidth/entry['neighbors'] %}
+                                {% set thisslot = entry['place'] %}
+                                {% set widthoffset = thisslot*width+2 %}
+                                {% set heightoffset = (entry['start_time']-Hour.getTimestamp())/60/minutesperunit*(unitheight+1) %}
+                                {% set height = (entry['end_time'] - entry['start_time'])/60/minutesperunit*(unitheight+1)-2 %}
+                                <div style="z-index: 1000; padding: 1px; color: white; position: absolute; left:{{ widthoffset }}px; top:{{ heightoffset }}px; width:{{ width }}px; height:{{ height }}px; background-color: #ACCDAC">
+                                    &#160;
+                                    {% if entry.recurring_code %}
+                                        <img src="{{ xar_imageurl('recurring.gif') }}"/>
+                                        &#160;
+                                    {% endif %}
+                                    {{ entry.name }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            {% endif %}
+            {% set Hour = Day.fetch() %}
+        </xar:while>
+    </div>
+
+    {# <!-- include the calendar footer --> #}
+    {{ include('@calendar/includes/todayfooter.html.twig') }}
+{% endblock %}

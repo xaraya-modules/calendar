@@ -1,0 +1,17 @@
+{# @calendar/admin/view.html.twig #}
+
+{% block view %}
+{{ include('@calendar/includes/admin-mod-head.html.twig') }}
+
+    <div class="xar-mod-body">
+        <p style="text-align: right; margin: 15px 0 0 0;">
+            {% if xar_coremethod('xarMod', 'isAvailable', 'export') %}
+                <a href="{{ xar_moduleurl('calendar','user','export') }}"><b>Download Items</b></a>
+            {% endif %}
+        </p>
+        <form method="post" action="{{ xar_currenturl() }}" style="margin-top: 10px; margin-bottom: 10px;">
+            Choose an object:&#160;{{ xar_data_input({type: "dropdown", name: "objectname", value: objectname, options: options, onchange: "javascript:submit()"}) }}
+        </form>
+        {{ xar_data_input({type: "listing", objectname: objectname}) }}
+    </div>
+{% endblock %}

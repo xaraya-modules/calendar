@@ -1,0 +1,90 @@
+{# @calendar/properties/showinput-calendardisplay_month.html.twig #}
+
+{% block showinput_calendardisplay_month %}
+{{ xar_style({scope: "module", module: "calendar", file: "user-month"}) }}
+
+    <xar:calendar-decorator object="$Month" decorator="Xaraya" name="MonthURI"/>
+    {% set prevYearURL = MonthURI.prev('year') %}
+    {% set prevMonthURL = MonthURI.prev('month') %}
+    {% set nextMonthURL = MonthURI.next('month') %}
+    {% set nextYearURL = MonthURI.next('year') %}
+
+    <table id="cal-calendar">
+        <tr>
+            <th class="cal-navigation" colspan="8">
+                {% set label = 'Previous Year' %}
+                {{- xar_button({type: "link", target: prevYearURL, label: label}) -}}
+                {% set label = 'Previous Month' %}
+                {{- xar_button({type: "link", target: prevMonthURL, label: label}) -}}
+                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %Y',Month.getTimeStamp()]) }}
+                {% set label = 'Next Month' %}
+                {{- xar_button({type: "link", target: nextMonthURL, label: label}) -}}
+                {% set label = 'Next Year' %}
+                {{- xar_button({type: "link", target: nextYearURL, label: label}) -}}
+            </th>
+        </tr>
+
+    {# <!-- we want to add the textual decorator to the month class so we have day names and such --> #}
+    <xar:calendar-decorator object="$Month" decorator="Textual" name="MonthText"/>
+
+        <tr>
+            <th class="cal-week-title">wk</th>
+            {% set weekdays = MonthText.orderedWeekdays('one') %}
+            {% for dayName in weekdays %}
+            <th class="cal-day-title">{{ dayName }}</th>
+            {% endfor %}
+        </tr>
+        {% set Day = Month.fetch() %}
+        <xar:while condition="$Day">
+            {# <!-- we want to create a new Day object with Xaraya specifics --> #}
+            <xar:calendar-decorator object="$Day" decorator="Xaraya" name="DayURI"/>
+
+            {% if Day.isFirst() %}
+                {# <!-- Start a new row --> #}
+
+                {# <!--
+                    Week URLs are more difficult to set up than regular URLs for the Calendar.
+                    Below is currently the best way to set up a Week URL for the Calendar
+                --> #}
+                {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                {% set WeekUrl = xar_moduleurl('calendar','user','week',{'cal_date': WeekDate}) %}
+                {% set WeekNum = xar_apifunc('calendar','user','getWeekNumber',{'cal_date': WeekDate}) %}
+                <tr>
+                    <th class="cal-week">
+                        <a href="{{ WeekUrl }}">{{ xar_coremethod('xarLocale', 'formatDate', ['%U',Day.getTimeStamp()]) }}</a>
+                    </th>
+                    <xar:while condition="1">                        
+                        {# <!-- populate the day --> #}
+                        {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d']) %}
+                        {% set thisday = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                        {% if today == thisday %}
+                            {% set accentclass = 'xar-accent' %}
+                        {% else %}
+                            {% set accentclass = '' %}
+                        {% endif %}
+                        <td class="$accentclass cal-day">
+                            {% if not Day.isEmpty() %}
+                                {# <!-- Display the date for this day --> #}
+                                <a class="xar-accent" href="{{ DayURI.current('day') }}">{{ Day.thisDay() }}</a>
+                                {% set entries = Day.getEntries() %}
+                                <ul style="margin: 2px 2px 2px 2px">
+                                    {% for entry in entries %}
+                                        <li>{{ entry['name'] }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                &#160;
+                            {% endif %}
+                        </td>
+                        {% if Day.isLast() %}
+                            {# <!-- close out the row --> #}
+                            <xar:break />
+                        {% endif %}
+                        {% set Day = Month.fetch() %}
+                    </xar:while>
+                </tr>
+            {% endif %}
+            {% set Day = Month.fetch() %}
+        </xar:while>
+    </table>
+{% endblock %}

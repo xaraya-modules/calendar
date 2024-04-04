@@ -1,0 +1,58 @@
+{# @calendar/admin/add_calendars.html.twig #}
+
+{% block add_calendars %}
+{{ include('@calendar/includes/admin-mod-head.html.twig') }}
+    <div style="margin: auto;">
+    {% if calid >= 1 %}
+      <h2>{{ message }}</h2>
+    {% endif %}
+    <h2>Add a calendar to the database</h2>
+    <form method="post" action="{{ xar_moduleurl('calendar','admin','create_calendars') }}">
+      <input type="hidden" name="authid" id="authid" value="{{ authid }}"/>
+      <table>
+        <tr>
+          <td>Calendar name</td>
+          <td>
+              <input type="text" name="calname" value="Calendar name"/>
+          </td>
+        </tr>
+        <tr><td colspan="2">Please specify a file or an URI:</td></tr>
+        <tr>
+          <td>Database calendar<input type="radio" name="addtype" value="db" checked="checked"/></td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>File<input type="radio" name="addtype" value="file"/></td>
+          <td>
+            {% if thereAreIcs == 0 %}
+              No new calendars found in var/calendar
+            {% else %}
+              New filenames found in var/config:
+              <select name="location" id="default_cal">
+                {% for filenumber, filename in icsfiles %}
+                  {% if filename in default_cal %}
+                    <option value= "{{ filename }}" selected="selected">{{ filename }}</option>
+                  {% else %}
+                    <option value= "{{ filename }}">{{ filename }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>Url<input type="radio" name="addtype" value="uri"/></td>
+          <td>
+              <input type="text" name="uri" size="50" maxlength="255" value="webcal://"/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" name="add_calendar" value="{{ addbutton }}"/>
+          </td>
+        </tr>
+      </table>
+    </form>
+    </div>
+{% endblock %}

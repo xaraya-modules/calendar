@@ -1,0 +1,67 @@
+{# @calendar/blocks/month.html.twig #}
+
+{% block month %}
+<xar:calendar-decorator object="$MonthCal" decorator="Xaraya" name="MonthURI"/>
+    <xar:calendar-decorator object="$MonthCal" decorator="Textual" name="MonthText"/>
+    {% set monthtitle = MonthText.thisMonthName('long') %}
+    {% set prevMonthTitle = ''Previous Month'' %}
+    {% set prevMonthURL = MonthURI.prev('month') %}
+    {% set nextMonthTitle = ''Next Month'' %}
+    {% set nextMonthURL = MonthURI.next('month') %}
+    <table width="170" border="0" cellpadding="3" cellspacing="0" class="calborder">
+        <tr>
+            <td  style="text-align: left" class="sideback"><div style="height:16px;"><b><a style="text-decoration: none;" href="{{ prevMonthURL }}" title="{{ prevMonthTitle }}">&#60;&#60;</a></b></div></td>
+            <td  style="text-align: center" class="sideback"><div style="height:16px;"><b>{{ monthtitle }}</b></div></td>
+            <td  style="text-align: right" class="sideback"><div style="height:16px;"><b><a style="text-decoration: none;" href="{{ nextMonthURL }}" title="{{ nextMonthTitle }}">&#62;&#62;</a></b></div></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        {% set weekdays = MonthText.orderedWeekdays('one') %}
+                        {% for dayName in weekdays %}
+                            <td style="width: 22px"><b>{{ dayName }}</b></td>
+                        {% endfor %}
+                    </tr>
+                    {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',date().getTimeStamp()]) %}
+                    {% set Day = MonthCal.fetch() %}
+                    <xar:while condition="$Day">
+                        {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                        <xar:calendar-decorator object="$Day" decorator="Xaraya" name="DayURI"/>
+                        {% if WeekDate %}
+                            <tr>
+                                <xar:while condition="1">
+                                    {% set RunningDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                                    {% if today == RunningDate %}
+                                        <td class="selected" style="text-align: center">
+                                            {% if not targetmodule %}
+                                                <a href="{{ xar_currenturl({'cal_date': WeekDate}) }}">{{ Day.thisDay() }}</a>
+                                            {% else %}
+                                                <a href="{{ xar_moduleurl(targetmodule, targettype, targetfunc, {'cal_date': WeekDate}) }}">{{ Day.thisDay() }}</a>
+                                            {% endif %}
+                                        </td>
+                                    {% elseif Day.isEmpty() %}
+                                        <td>&#160;</td>
+                                    {% else %}
+                                        <td class="xar-accent" style="text-align: center">
+                                            {% if not targetmodule %}
+                                                <a href="{{ xar_currenturl({'cal_date': WeekDate}) }}">{{ Day.thisDay() }}</a>
+                                            {% else %}
+                                                <a href="{{ xar_moduleurl(targetmodule, targettype, targetfunc, {'cal_date': WeekDate}) }}">{{ Day.thisDay() }}</a>
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+                                    {% if Day.isLast() %}
+                                        <xar:break />
+                                    {% endif %}
+                                    {% set Day = MonthCal.fetch() %}
+                                </xar:while>                            
+                            </tr>
+                        {% endif %}
+                        {% set Day = MonthCal.fetch() %}
+                    </xar:while>
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

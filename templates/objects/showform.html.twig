@@ -1,0 +1,23 @@
+{# @calendar/objects/showform.html.twig #}
+
+{% block showform %}
+{# <!--
+        This is a generic form template for any DD object. You can use a specific template
+        for one particular object in this directory as showform-[objectname].xd, and/or
+        use templates in your own [module]/xartemplates/objects directory by specifying the
+        tplmodule="..." argument in the xar:data-form BL tag or showForm() method call.
+    --> #}
+    {% if not layout or layout == 'default' %}
+        {% for name, property in properties %}
+            {% if property.getDisplayStatus() not = DataPropertyMaster..DD_DISPLAYSTATE_HIDDEN %}
+                <div class="xar-form-input-wrapper">
+                    {{ xar_data_label({property: properties[name], for: "id"}) }}
+                    {{ xar_data_input({property: properties[name]}) }}
+                </div>
+            {% else %}
+                {{ xar_data_input({property: properties[name], hidden: "true"}) }}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{# @calendar/admin/view_calendars.html.twig #}
+
+{% block view_calendars %}
+{{ include('@calendar/includes/admin-mod-head.html.twig') }}
+    <div style="margin: auto;">
+
+        <h2>Calendars</h2>
+        <form method="post" action="{{ xar_moduleurl('calendar','admin','view_calendars') }}">
+          <input type="hidden" name="authid" id="authid" value="{{ authid }}"/>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Action</th>
+            </tr>
+            {% for calendar in calendars %}
+              <tr>
+                <td>
+                  {{ calendar['cid'] }}
+                </td>
+                <td>
+                  {{ calendar['cname'] }}
+                </td>
+                <td>
+                  {{ calendar['cpath'] }}
+                </td>
+                <td>
+                   View 
+                   Edit 
+                  <a href="{{ xar_moduleurl('calendar','admin','delete_calendar',{'calid': calendar['cid']}) }}">
+                     Delete 
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </form>
+    </div>
+{% endblock %}

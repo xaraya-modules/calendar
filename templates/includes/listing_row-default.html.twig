@@ -1,0 +1,50 @@
+{# @calendar/includes/listing_row-default.html.twig #}
+
+{% block listing_row_default %}
+<tr class="$item_class">
+        {{ include('@' ~ module ~ '/includes/listing_rowprefix.html.twig') }}
+        {% for field in fields|keys %}
+            {% set value = loopitem[field] %}
+            {% set column = columns[field] %}
+            {% if (field == primaryalias and not show_primary) or column == 'return_link' %}
+                <xar:continue />
+            {% endif %}
+            <td>
+                {# <!-- TODO: This works within listings module but needs to be adjusted in the
+                DD for modify function to consider the user, or adjust for listings module instance to match.
+                Leaving as display only until this is addressed
+                {% if xar_coremethod('xarUser', 'isLoggedIn') and field == keyfieldalias and (xar_security_check('EditCalendar',0) or currentuserid == thisuserid) %}
+                --> #}
+                {% if xar_coremethod('xarUser', 'isLoggedIn') and field == keyfieldalias and xar_security_check('EditCalendar',0) %}
+                    <a href="{{ xar_moduleurl('calendar','user','modify',{'itemid': loopitem[primaryalias], 'name': objectname,'tplmodule': module}) }}">
+                        {{ xar_data_output({property: properties[column], value: value}) }}
+                    </a>
+                {% else %}
+                    {% if field == keyfieldalias and xar_security_check('ReadCalendar',0) %}
+                        <a href="{{ xar_moduleurl('calendar','user','display',{'itemid': loopitem[primaryalias], 'name': objectname, 'tplmodule': module}) }}">
+                            {{ xar_data_output({property: properties[column], value: value}) }}
+                        </a>
+                    {% else %}
+                        {{ xar_data_output({property: properties[column], value: value}) }}
+                    {% endif %}
+                {% endif %}
+            </td>
+        {% endfor %}
+
+    {# <!-- To be reviewed - jo
+        {% if properties is not null and properties|length > 0 %}
+            {% set id = loop.item['id'] %}
+            {% for key in properties|keys %}
+                <td>
+                    {% if values[id][key] is not null %}
+                        {{ xar_data_output({property: properties[key], value: values[id][key]}) }}
+                    {% else %}
+                        &#160;&#160;
+                    {% endif %}
+                </td>
+            {% endfor %}
+        {% endif %}
+    --> #}
+        {{ include('@' ~ module ~ '/includes/listing_rowsuffix.html.twig') }}
+    </tr>
+{% endblock %}

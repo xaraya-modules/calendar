@@ -1,0 +1,73 @@
+{# @calendar/admin/main.html.twig #}
+
+{% block main %}
+{{ include('@calendar/includes/admin-mod-head.html.twig') }}
+    <div class="xar-mod-body" style="display:block;">
+        <h2>Overview</h2>
+        <div style="border-width: 1px; border-style: solid; border-color: #B3B3B3; padding: 1px;">
+            <div style="float:right;display:block;background-color: #ffffff;padding:10px;">
+                {% set label = 'Official Icon' %}
+                <img src="{{ xar_imageurl('module-generic.png', 'base') }}" alt="{{ label }}" width="96" height="96" class="xar-module-icon"/>
+            </div>
+            <div class="xar-mod-title" style="margin-left: 1em; margin-right: 1em; width: auto; border-width: 1px; border-color: #B3B3B3; border-style: none none dotted none;">
+                Battle plan (see file xartemplates/includes/plan.xd)
+            </div>
+            <div style="margin-left: 1em; margin-right: 1em; text-align:left;">
+                {{ include('@calendar/includes/plan.html.twig') }}
+            </div>
+            <br />
+            <div class="xar-mod-title" style="margin-top: 1em; margin-left: 1em; margin-right: 1em; width: auto; border-width: 1px; border-color: #B3B3B3; border-style: none none dotted none;">
+                What is it?
+            </div>
+            <br />
+            <div style="margin-left: 1em; margin-right: 1em; text-align:left;">
+                <em>Calendar for Xaraya.</em>
+                It is currently responsible for accomplishing these tasks:
+                <ul>
+                    <li>Display a calendar for day, week, month or year.</li>
+                    <li>Display events for a given date.</li>
+                </ul>
+            </div>
+            <br />
+            <div class="xar-mod-title" style="margin-left: 1em; margin-right: 1em; width: auto; border-width: 1px; border-color: #B3B3B3; border-style: none none dotted none;">
+                How to use it?
+            </div>
+            <br />
+            <div style="margin-left: 1em; margin-right: 1em; text-align:left;">
+                Use it like a calendar.
+
+            </div>
+            <br />
+            <div class="xar-mod-title" style="margin-left: 1em; margin-right: 1em; width: auto; border-width: 1px; border-color: #B3B3B3; border-style: none none dotted none;">
+                Included Blocks
+            </div>
+            <br />
+            <div style="margin-left: 1em; margin-right: 1em; text-align:left;">
+                <ul>
+                    <li>Month Calendar</li>
+                    <li>Today's Events</li>
+                    <li>Upcoming Events</li>
+                </ul>
+            </div>
+            <br />
+            <div class="xar-mod-title" style="margin-left: 1em; margin-right: 1em; width: auto; border-width: 1px; border-color: #B3B3B3; border-style: none none dotted none;">
+                Included Hooks
+            </div>
+            <br />
+            <div style="margin-left: 1em; margin-right: 1em; text-align:left;">
+                <ul>
+                    <li>usermenu -- Allows interface with the "My Account Page"</li>
+                    <li>search -- Allows interface with Search Module</li>
+                    <li>addevent -- Allows other modules to add an event</li>
+                </ul>
+            </div>
+            <br />
+            {# <!--
+            <div class="xar-accent" style="text-align: center; border-width: 1px; border-style: solid; border-color: #B3B3B3; padding: 0.5em 1em 0.5em 1em; margin-top: 5px;">
+                Extended information about this module can be found at
+                <a href="http://www.xarcalendar.com">http://www.xarcalendar.com</a>
+            </div>
+            --> #}
+        </div>
+    </div>
+{% endblock %}
