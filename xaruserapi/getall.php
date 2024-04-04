@@ -18,8 +18,7 @@
  *
  * @param $args['numitems'] number of articles to get
  * @param $args['startnum'] starting article number
- * @returns array
- * @return array of calendars, or false on failure
+ * @return array|null of calendars, or false on failure
  */
 
 function calendar_userapi_getall($args)

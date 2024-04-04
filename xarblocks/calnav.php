@@ -28,13 +28,13 @@ class Calendar_CalnavBlock extends BasicBlock implements iBlock
 
     /**
      * Display func.
-     * @param $blockinfo array
-     * @returns $blockinfo array
+     * @param array $data $blockinfo array
+     * @return array|null $blockinfo
      */
 
     public function display(array $data=[])
     {
-        $data = parent::display($data);
+        $data = parent::display();
         if (empty($data)) {
             return;
         }

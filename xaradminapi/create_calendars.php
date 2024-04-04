@@ -22,7 +22,7 @@
  */
 
 /**
-* @returns int (calendar id on success, false on failure)
+* @return int|null (calendar id on success, false on failure)
 */
 function calendar_adminapi_create_calendars($args)
 {

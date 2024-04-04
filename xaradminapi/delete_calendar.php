@@ -26,8 +26,7 @@
  * Usage : if (xarMod::apiFunc('calendar', 'admin', 'delete', $calendar)) {...}
  *
  * @param $args['calid'] ID of the calendar
- * @returns bool
- * @return true on success, false on failure
+ * @return bool|null true on success, false on failure
  */
 
 function calendar_adminapi_delete_calendar($args)

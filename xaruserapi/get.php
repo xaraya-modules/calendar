@@ -24,8 +24,7 @@
  * @Optional parameters
  * @param $args['calname'] name of calendar
  * @param $args['calid'] id of calendar
- * @returns array
- * @return array of calendar, or false on failure
+ * @return array|null of calendar, or false on failure
  */
 
 function calendar_userapi_get($args)
