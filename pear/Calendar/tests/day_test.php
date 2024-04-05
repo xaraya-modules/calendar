@@ -87,7 +87,7 @@ class TestOfDayBuild extends TestOfDay
     public function testFetch()
     {
         $this->cal->build();
-        $i=0;
+        $i = 0;
         while ($Child = $this->cal->fetch()) {
             $i++;
         }
@@ -99,7 +99,7 @@ class TestOfDayBuild extends TestOfDay
         $children = [];
         $i = 0;
         while ($Child = $this->cal->fetch()) {
-            $children[$i]=$Child;
+            $children[$i] = $Child;
             $i++;
         }
         $this->assertEqual($children, $this->cal->fetchAll());

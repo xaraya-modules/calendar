@@ -5,14 +5,14 @@
 function getmicrotime()
 {
     [$usec, $sec] = explode(' ', microtime());
-    return ((float)$usec + (float)$sec);
+    return ((float) $usec + (float) $sec);
 }
 $start = getmicrotime();
 
 if (!@include 'Calendar/Calendar.php') {
     define('CALENDAR_ROOT', '../../');
 }
-require_once CALENDAR_ROOT.'Second.php';
+require_once CALENDAR_ROOT . 'Second.php';
 
 if (!isset($_GET['y'])) {
     $_GET['y'] = date('Y');
@@ -35,15 +35,15 @@ if (!isset($_GET['s'])) {
 
 $Unit = new Calendar_Second($_GET['y'], $_GET['m'], $_GET['d'], $_GET['h'], $_GET['i'], $_GET['s']);
 
-echo '<p><b>Result:</b> '.$Unit->thisYear().'-'.$Unit->thisMonth().'-'.$Unit->thisDay().
-        ' '.$Unit->thisHour().':'.$Unit->thisMinute().':'.$Unit->thisSecond();
+echo '<p><b>Result:</b> ' . $Unit->thisYear() . '-' . $Unit->thisMonth() . '-' . $Unit->thisDay() .
+        ' ' . $Unit->thisHour() . ':' . $Unit->thisMinute() . ':' . $Unit->thisSecond();
 if ($Unit->isValid()) {
     echo ' is valid!</p>';
 } else {
-    $V= $Unit->getValidator();
+    $V = $Unit->getValidator();
     echo ' is invalid:</p>';
     while ($error = $V->fetch()) {
-        echo $error->toString() .'<br />';
+        echo $error->toString() . '<br />';
     }
 }
 ?>
@@ -59,4 +59,4 @@ Second: <input type="text" name="s" value="60"><br />
 </form>
 <p><b>Note:</b> Error messages can be controlled with the constants <code>CALENDAR_VALUE_TOOSMALL</code> and <code>CALENDAR_VALUE_TOOLARGE</code> - see <code>Calendar_Validator.php</code></p>
 
-<?php echo '<p><b>Took: '.(getmicrotime()-$start).' seconds</b></p>'; ?>
+<?php echo '<p><b>Took: ' . (getmicrotime() - $start) . ' seconds</b></p>'; ?>

@@ -1138,8 +1138,8 @@ class Date
                 if ($hn_invprecision > 0) {
                     $hn_year = intval($this->year / pow(10, $hn_invprecision)) *
                                pow(10, $hn_invprecision);
-                //
-                // (Conversion to int necessary for PHP <= 4.0.6)
+                    //
+                    // (Conversion to int necessary for PHP <= 4.0.6)
                 } else {
                     $hn_year = $this->year;
                 }
@@ -1195,14 +1195,14 @@ class Date
             $this->addSeconds($this->partsecond == 0.0 ?
                               -$this->second :
                               -$this->second - $this->partsecond);
-        //
-        // (leap seconds irrelevant)
+            //
+            // (leap seconds irrelevant)
         } elseif ($pn_precision == DATE_PRECISION_10SECONDS) {
             $this->addSeconds($this->partsecond == 0.0 ?
                               -$this->second % 10 :
                               (-$this->second % 10) - $this->partsecond);
-        //
-        // (leap seconds irrelevant)
+            //
+            // (leap seconds irrelevant)
         } else {
             // Assume Summer time offset cannot be composed of part-seconds:
             //
@@ -1637,7 +1637,7 @@ class Date
                             '.',
                             sprintf(
                                 "%09f",
-                                (float)((float) $this->second +
+                                (float) ((float) $this->second +
                                                                $this->partsecond)
                             )
                         );
@@ -1722,7 +1722,7 @@ class Date
                         $output .= "%";
                         break;
                     default:
-                        $output .= $char.$nextchar;
+                        $output .= $char . $nextchar;
                 }
                 $strpos++;
             } else {
@@ -2362,7 +2362,7 @@ class Date
                     // no break
                 case "B":
                     // Check for 'B.C.E.' first:
-                //
+                    //
                     if (strtoupper(substr($ps_format, $i, 6)) == "B.C.E.") {
                         if ($this->year >= 0) {
                             $hs_era = $hb_lower ? "c.e." : "C.E.";
@@ -2422,7 +2422,7 @@ class Date
                         $i += 2;
                     } else {
                         // Code C(CCC...):
-                    //
+                        //
                         $hn_codelen = 1;
                         while (strtoupper(substr(
                             $ps_format,
@@ -2433,7 +2433,7 @@ class Date
                         }
 
                         // Check next code is not 'CE' or 'C.E.'
-                    //
+                        //
                         if ($hn_codelen > 1 &&
                             (
                                 strtoupper(substr(
@@ -2483,7 +2483,7 @@ class Date
                         if (!$hb_nopad) {
                             if (is_null($hn_weekdaypad)) {
                                 // Set week-day padding variable:
-                            //
+                                //
                                 $hn_weekdaypad = 0;
                                 foreach (Date_Calc::getWeekDays() as $hs_weekday) {
                                     $hn_weekdaypad = max(
@@ -2563,7 +2563,7 @@ class Date
                         $i   += 2 + strlen($hs_numberformat);
                     } else {
                         // Code 'D':
-                    //
+                        //
                         $hn_day = Date_Calc::dayOfWeek(
                             $this->day,
                             $this->month,
@@ -2610,7 +2610,7 @@ class Date
                         }
 
                         // Check next code is not F[numeric]:
-                    //
+                        //
                         if ($hn_codelen > 1 &&
                             is_numeric(substr($ps_format, $i + $hn_codelen, 1))) {
                             --$hn_codelen;
@@ -2636,7 +2636,7 @@ class Date
 
                     // '_formatNumber() will not work for this because the
                     // part-second is an int, and we want it to behave like a float:
-                //
+                    //
                     if ($hb_nopad) {
                         $hs_partsec = rtrim($hs_partsec, "0");
                         if ($hs_partsec == "") {
@@ -2668,7 +2668,7 @@ class Date
                         $hn_codelen = 4;
                     } else {
                         // Code 'HH' or 'HH24':
-                    //
+                        //
                         $hn_hour    = $this->hour;
                         $hn_codelen = strtoupper(substr(
                             $ps_format,
@@ -2740,7 +2740,7 @@ class Date
                         $i   += 2 + strlen($hs_numberformat);
                     } else {
                         // Code I(YYY...):
-                    //
+                        //
                         $hn_codelen = 1;
                         while (strtoupper(substr(
                             $ps_format,
@@ -2779,7 +2779,7 @@ class Date
 
                     // Allow sign if negative; allow all digits (specify nought);
                     // suppress padding:
-                //
+                    //
                     $hs_jd = $this->_formatNumber(
                         $hn_jd,
                         $hs_numberformat,
@@ -2840,7 +2840,7 @@ class Date
                         if (!$hb_nopad) {
                             if (is_null($hn_monthpad)) {
                                 // Set month padding variable:
-                            //
+                                //
                                 $hn_monthpad = 0;
                                 foreach (Date_Calc::getMonthNames() as $hs_monthofyear) {
                                     $hn_monthpad = max(
@@ -2878,7 +2878,7 @@ class Date
                 case "N":
                     // No-Padding rule 'NP' applies to the next code (either trailing
                     // spaces or leading/trailing noughts):
-                //
+                    //
                     $hb_nopadflag = true;
                     $i           += 2;
                     break;
@@ -2907,7 +2907,7 @@ class Date
                     // N.B. Current implementation ignores the day and year, but
                     // it is possible that a different implementation might be
                     // desired, so pass these parameters anyway:
-                //
+                    //
                     $hn_quarter = Date_Calc::quarterOfYear(
                         $this->day,
                         $this->month,
@@ -2934,7 +2934,7 @@ class Date
                     // no break
                 case "R":
                     // Code 'RM':
-                //
+                    //
                     switch ($this->month) {
                         case 1:
                             $hs_monthroman = "i";
@@ -2985,7 +2985,7 @@ class Date
                 case "s":
                 case "S":
                     // Check for 'SSSSS' before 'SS':
-                //
+                    //
                     if (strtoupper(substr($ps_format, $i, 5)) == "SSSSS") {
                         if ($this->ob_invalidtime) {
                             return $this->_getErrorInvalidTime();
@@ -3037,7 +3037,7 @@ class Date
                         //  'STZH'
                         //  'STZS'
                         //  'SYEAR'
-                    //
+                        //
                         $hb_showsignflag = true;
                         if ($hb_nopad) {
                             $hb_nopadflag = true;
@@ -3049,12 +3049,12 @@ class Date
                 case "t":
                 case "T":
                     // Code TZ[...]:
-                //
+                    //
 
                     if (strtoupper(substr($ps_format, $i, 3)) == "TZR") {
                         // This time-zone-related code can be called when the time is
                         // invalid, but the others should return an error:
-                    //
+                        //
                         $ret .= $this->getTZID();
                         $i   += 3;
                     } else {
@@ -3074,7 +3074,7 @@ class Date
                             $hn_tzh = intval($hn_tzoffset / 3600000);
 
                             // Suppress sign here (it is added later):
-                        //
+                            //
                             $hs_tzh = $this->_formatNumber(
                                 $hn_tzh,
                                 $hs_numberformat,
@@ -3088,7 +3088,7 @@ class Date
                             }
 
                             // Display sign, even if positive:
-                        //
+                            //
                             $ret .= ($hb_nosign ? "" : ($hn_tzh >= 0 ? '+' : '-')) .
                                     $hs_tzh;
                             $i   += 3 + strlen($hs_numberformat);
@@ -3104,7 +3104,7 @@ class Date
                             $hn_tzm = intval(($hn_tzoffset % 3600000) / 60000);
 
                             // Suppress sign:
-                        //
+                            //
                             $hs_tzm = $this->_formatNumber(
                                 $hn_tzm,
                                 $hs_numberformat,
@@ -3134,7 +3134,7 @@ class Date
                                 $ret .= $hb_nopad ? "Z" : "Z     ";
                             } else {
                                 // Display sign, even if positive:
-                            //
+                                //
                                 $ret .= ($hn_tzoffset >= 0 ? '+' : '-') .
                                         sprintf("%02d", $hn_tzh) .
                                         ":" .
@@ -3176,7 +3176,7 @@ class Date
 
                     // Allow sign if negative; allow all digits (specify nought);
                     // suppress padding:
-                //
+                    //
                     $hs_unixtime = $this->_formatNumber(
                         $hn_unixtime,
                         $hs_numberformat,
@@ -3195,7 +3195,7 @@ class Date
                 case "w":
                 case "W":
                     // Check for 'WW' before 'W':
-                //
+                    //
                     if (strtoupper(substr($ps_format, $i, 2)) == "WW") {
                         $hn_week = Date_Calc::weekOfYearAbsolute(
                             $this->day,
@@ -3284,7 +3284,7 @@ class Date
                         $i   += 2 + strlen($hs_numberformat);
                     } else {
                         // Code 'W':
-                    //
+                        //
                         $hn_week = Date_Calc::weekOfMonthAbsolute(
                             $this->day,
                             $this->month,
@@ -3311,7 +3311,7 @@ class Date
                 case "y":
                 case "Y":
                     // Check for 'YEAR' first:
-                //
+                    //
                     if (strtoupper(substr($ps_format, $i, 4)) == "YEAR") {
                         switch (substr($ps_format, $i, 2)) {
                             case "YE":
@@ -3329,7 +3329,7 @@ class Date
                             $hs_numberformat = $hs_spformat;
 
                             // Allow all digits (specify nought); padding irrelevant:
-                        //
+                            //
                             $hs_year = $this->_formatNumber(
                                 $this->year,
                                 $hs_numberformat,
@@ -3346,12 +3346,12 @@ class Date
                         } else {
                             // Year is spelled 'Nineteen Twelve' rather than
                             // 'One thousand Nine Hundred Twelve':
-                        //
+                            //
                             $hn_century      = intval($this->year / 100);
                             $hs_numberformat = $hs_spformat;
 
                             // Allow all digits (specify nought); padding irrelevant:
-                        //
+                            //
                             $hs_century = $this->_formatNumber(
                                 $hn_century,
                                 $hs_numberformat,
@@ -3369,7 +3369,7 @@ class Date
                             $hs_numberformat = $hs_spformat;
 
                             // Discard sign; padding irrelevant:
-                        //
+                            //
                             $hs_year = $this->_formatNumber(
                                 $this->year,
                                 $hs_numberformat,
@@ -3388,7 +3388,7 @@ class Date
                         $i += 4;
                     } else {
                         // Code Y(YYY...):
-                    //
+                        //
                         $hn_codelen = 1;
                         while (strtoupper(substr(
                             $ps_format,
@@ -3417,7 +3417,7 @@ class Date
                         }
 
                         // Check next code is not 'YEAR'
-                    //
+                        //
                         if ($hn_codelen > 1 &&
                             strtoupper(substr(
                                 $ps_format,

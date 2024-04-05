@@ -3,7 +3,7 @@
 /**
  * delete calendar from database
  */
-function calendar_admin_delete_calendar()
+function calendar_admin_delete_calendar(array $args = [], $context = null)
 {
     // Get parameters
     if (!xarVar::fetch('calid', 'id', $calid)) {
@@ -94,12 +94,12 @@ function calendar_admin_delete_calendar()
         $lastviewarray = unserialize($lastview);
         if (!empty($lastviewarray['ptid']) && $lastviewarray['ptid'] == $ptid) {
             extract($lastviewarray);
-            xarController::redirect(xarController::URL('calendar', 'admin', 'view_calendars'));
+            xarController::redirect(xarController::URL('calendar', 'admin', 'view_calendars'), null, $context);
             return true;
         }
     }
 
-    xarController::redirect(xarController::URL('calendar', 'admin', 'view_calendars'));
+    xarController::redirect(xarController::URL('calendar', 'admin', 'view_calendars'), null, $context);
 
     return true;
 }

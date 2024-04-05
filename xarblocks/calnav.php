@@ -32,7 +32,7 @@ class Calendar_CalnavBlock extends BasicBlock implements iBlock
      * @return array|null $blockinfo
      */
 
-    public function display(array $data=[])
+    public function display(array $data = [])
     {
         $data = parent::display();
         if (empty($data)) {
@@ -42,7 +42,7 @@ class Calendar_CalnavBlock extends BasicBlock implements iBlock
         if (!defined('CALENDAR_ROOT')) {
             define('CALENDAR_ROOT', xarModVars::get('calendar', 'pearcalendar_root'));
         }
-        include_once(CALENDAR_ROOT.'Calendar.php');
+        include_once(CALENDAR_ROOT . 'Calendar.php');
 
 
         $tplData['form_action'] = xarController::URL('calendar', 'user', 'changecalnav');

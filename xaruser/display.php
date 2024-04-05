@@ -17,7 +17,7 @@ sys::import('modules.dynamicdata.class.objects.factory');
  * Display an item of the event object
  *
  */
-function calendar_user_display()
+function calendar_user_display(array $args = [], $context = null)
 {
     if (!xarSecurity::check('ReadCalendar')) {
         return;

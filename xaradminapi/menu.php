@@ -27,7 +27,7 @@
 /**
  * generate the common admin menu configuration
  */
-function calendar_adminapi_menu()
+function calendar_adminapi_menu(array $args = [], $context = null)
 {
     // Initialise the array that will hold the menu configuration
     $menu = [];

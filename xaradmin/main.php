@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_admin_main()
+function calendar_admin_main(array $args = [], $context = null)
 {
     // Xaraya security
     if (!xarSecurity::check('ManageCalendar')) {
@@ -24,10 +24,10 @@ function calendar_admin_main()
         $redirect = xarModVars::get('calendar', 'defaultbackpage');
         if (!empty($redirect)) {
             $truecurrenturl = xarServer::getCurrentURL([], false);
-            $urldata = xarMod::apiFunc('roles', 'user', 'parseuserhome', ['url'=> $redirect,'truecurrenturl'=>$truecurrenturl]);
-            xarController::redirect($urldata['redirecturl']);
+            $urldata = xarMod::apiFunc('roles', 'user', 'parseuserhome', ['url' => $redirect,'truecurrenturl' => $truecurrenturl]);
+            xarController::redirect($urldata['redirecturl'], null, $context);
         } else {
-            xarController::redirect(xarController::URL('calendar', 'admin', 'view'));
+            xarController::redirect(xarController::URL('calendar', 'admin', 'view'), null, $context);
         }
     }
     return true;

@@ -24,7 +24,7 @@
 /**
 * @return int|null (calendar id on success, false on failure)
 */
-function calendar_adminapi_create_calendars($args)
+function calendar_adminapi_create_calendars(array $args = [], $context = null)
 {
     extract($args);
 
@@ -46,7 +46,7 @@ function calendar_adminapi_create_calendars($args)
 
     // Load up database details.
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $caltable = $xartable['calendars'];
 
     // Insert instance details.

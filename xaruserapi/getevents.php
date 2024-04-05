@@ -13,10 +13,10 @@
 
 sys::import('xaraya.structures.query');
 
-function calendar_userapi_getevents($args)
+function calendar_userapi_getevents(array $args = [], $context = null)
 {
     extract($args);
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
 
     $q = new Query('SELECT');
     $q->addtable($xartable['calendar_event']);

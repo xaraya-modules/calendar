@@ -1,9 +1,9 @@
 <?php
 
-function calendar_admin_add_calendars()
+function calendar_admin_add_calendars(array $args = [], $context = null)
 {
     // Security check
-//    if (!xarSecurity::check('AddCalendar',0,'Calendar')) return;
+    //    if (!xarSecurity::check('AddCalendar',0,'Calendar')) return;
     if (!xarVar::fetch('calid', 'int:0:', $calid, '0', xarVar::NOT_REQUIRED)) {
         return;
     }

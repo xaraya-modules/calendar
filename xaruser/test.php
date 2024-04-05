@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_user_test()
+function calendar_user_test(array $args = [], $context = null)
 {
     // some timing for now to see how fast|slow the parser is
     include_once('Benchmark/Timer.php');
@@ -36,8 +36,8 @@ function calendar_user_test()
     ob_end_clean();
 
     $data = [
-        'ical'=>$ical_out,
-        'profile'=>$t->getOutput(),
+        'ical' => $ical_out,
+        'profile' => $t->getOutput(),
     ];
 
     return $data;

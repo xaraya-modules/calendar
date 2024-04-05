@@ -42,7 +42,7 @@
  * @since      File available since Release 1.5
  */
 
-if ('@include_path@' != '@'.'include_path'.'@') {
+if ('@include_path@' != '@' . 'include_path' . '@') {
     ini_set(
         'include_path',
         ini_get('include_path')

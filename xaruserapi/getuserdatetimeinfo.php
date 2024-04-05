@@ -11,13 +11,13 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_userapi_getUserDateTimeInfo()
+function calendar_userapi_getUserDateTimeInfo(array $args = [], $context = null)
 {
     // dates come in as YYYYMMDD
     xarVar::fetch('cal_date', 'str:4:8', $cal_date, xarLocale::formatDate('%Y%m%d'));
 
     $data = [];
-    $data['cal_date'] =& $cal_date;
+    $data['cal_date'] = & $cal_date;
 
     if (!preg_match('/([\d]{4,4})([\d]{2,2})?([\d]{2,2})?/', $cal_date, $match)) {
         $year = xarLocaleFormateDate('Y');
@@ -26,14 +26,14 @@ function calendar_userapi_getUserDateTimeInfo()
     } else {
         $year = $match[1];
         if (isset($match[2])) {
-            $month=$match[2];
+            $month = $match[2];
         } else {
-            $month='01';
+            $month = '01';
         }
         if (isset($match[3])) {
-            $day=$match[3];
+            $day = $match[3];
         } else {
-            $day='01';
+            $day = '01';
         }
     }
 

@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_userapi_getitemtypes($args)
+function calendar_userapi_getitemtypes(array $args = [], $context = null)
 {
     $itemtypes = [];
 
@@ -32,7 +32,7 @@ function calendar_userapi_getitemtypes($args)
                           'url'   => xarController::URL('calendar', 'user', 'view'),
                          ];
     // @todo let's use DataObjectFactory::getModuleItemType here, but not until roles brings in dd automatically
-    $extensionitemtypes = xarMod::apiFunc('dynamicdata', 'user', 'getmoduleitemtypes', ['moduleid' => 7, 'native' =>false]);
+    $extensionitemtypes = xarMod::apiFunc('dynamicdata', 'user', 'getmoduleitemtypes', ['moduleid' => 7, 'native' => false]);
 
     $keys = array_merge(array_keys($itemtypes), array_keys($extensionitemtypes));
     $values = array_merge(array_values($itemtypes), array_values($extensionitemtypes));

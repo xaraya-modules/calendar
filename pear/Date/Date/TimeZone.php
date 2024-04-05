@@ -317,7 +317,7 @@ class Date_TimeZone
      */
     public function Date_TimeZone($ps_id)
     {
-        $_DATE_TIMEZONE_DATA =& $GLOBALS['_DATE_TIMEZONE_DATA'];
+        $_DATE_TIMEZONE_DATA = & $GLOBALS['_DATE_TIMEZONE_DATA'];
 
         if (isset($GLOBALS['_DATE_TIMEZONE_DATA'][$ps_id])) {
             $this->id = $ps_id;

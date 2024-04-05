@@ -30,7 +30,7 @@
 
 sys::import('modules.dynamicdata.class.objects.factory');
 
-function calendar_user_delete($args)
+function calendar_user_delete(array $args = [], $context = null)
 {
     extract($args);
 
@@ -79,7 +79,7 @@ function calendar_user_delete($args)
     $data = $myobject->toArray();
 
     // Security check
-    if (!xarSecurity::check('DeleteDynamicDataItem', 1, 'Item', $data['moduleid'].":".$data['itemtype'].":".$data['itemid'])) {
+    if (!xarSecurity::check('DeleteDynamicDataItem', 1, 'Item', $data['moduleid'] . ":" . $data['itemtype'] . ":" . $data['itemid'])) {
         return;
     }
 
@@ -110,7 +110,7 @@ function calendar_user_delete($args)
 
     $itemid = $myobject->deleteItem();
     if (!empty($return_url)) {
-        xarController::redirect($return_url);
+        xarController::redirect($return_url, null, $context);
     } else {
         $default = xarModVars::get('calendar', 'default_view');
         xarController::redirect(xarController::URL(
@@ -118,9 +118,9 @@ function calendar_user_delete($args)
             'user',
             $default,
             [
-                                      'page' => $default,
-                                      ]
-        ));
+                'page' => $default,
+            ]
+        ), null, $context);
     }
     return true;
 }

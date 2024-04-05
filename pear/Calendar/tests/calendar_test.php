@@ -8,7 +8,7 @@ require_once('calendar_include.php');
 class TestOfCalendar extends UnitTestCase
 {
     public $cal;
-    public function TestOfCalendar($name='Test of Calendar')
+    public function TestOfCalendar($name = 'Test of Calendar')
     {
         $this->UnitTestCase($name);
     }

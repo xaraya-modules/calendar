@@ -43,18 +43,18 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar decorator base class
  */
-require_once CALENDAR_ROOT.'Decorator.php';
+require_once CALENDAR_ROOT . 'Decorator.php';
 
 /**
  * Load a Calendar_Day
  */
-require_once CALENDAR_ROOT.'Day.php';
+require_once CALENDAR_ROOT . 'Day.php';
 /**
  * Decorator for fetching the day of the week
  * <code>
@@ -104,7 +104,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      */
     public function setFirstDay($firstDay)
     {
-        $this->firstDay = (int)$firstDay;
+        $this->firstDay = (int) $firstDay;
     }
 
     /**

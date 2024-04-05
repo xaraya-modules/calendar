@@ -1,6 +1,6 @@
 <?php
 
-function calendar_admin_add_event()
+function calendar_admin_add_event(array $args = [], $context = null)
 {
     // Security check
     if (!xarSecurity::check('Admincalendar')) {

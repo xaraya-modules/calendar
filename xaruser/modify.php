@@ -17,7 +17,7 @@ sys::import('modules.dynamicdata.class.objects.factory');
  * Modify an item of the event object
  *
  */
-function calendar_user_modify()
+function calendar_user_modify(array $args = [], $context = null)
 {
     if (!xarSecurity::check('EditCalendar')) {
         return;

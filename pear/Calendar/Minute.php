@@ -42,13 +42,13 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Represents a Minute and builds Seconds
@@ -97,7 +97,7 @@ class Calendar_Minute extends Calendar
      */
     public function build($sDates = [])
     {
-        include_once CALENDAR_ROOT.'Second.php';
+        include_once CALENDAR_ROOT . 'Second.php';
         $sIM = $this->cE->getSecondsInMinute(
             $this->year,
             $this->month,
@@ -105,7 +105,7 @@ class Calendar_Minute extends Calendar
             $this->hour,
             $this->minute
         );
-        for ($i=0; $i < $sIM; $i++) {
+        for ($i = 0; $i < $sIM; $i++) {
             $this->children[$i] = new Calendar_Second(
                 $this->year,
                 $this->month,
@@ -137,7 +137,7 @@ class Calendar_Minute extends Calendar
                 && $this->day == $sDate->thisDay()
                 && $this->hour == $sDate->thisHour()
                 && $this->minute == $sDate->thisMinute()) {
-                $key = (int)$sDate->thisSecond();
+                $key = (int) $sDate->thisSecond();
                 if (isset($this->children[$key])) {
                     $sDate->setSelected();
                     $this->children[$key] = $sDate;

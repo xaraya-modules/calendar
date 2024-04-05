@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_admin_modifyconfig()
+function calendar_admin_modifyconfig(array $args = [], $context = null)
 {
     $data = xarMod::apiFunc('calendar', 'admin', 'menu');
     $data = array_merge($data, xarMod::apiFunc('calendar', 'admin', 'get_calendars'));
@@ -100,7 +100,7 @@ function calendar_admin_modifyconfig()
             xarModItemVars::set('calendar', 'day_start', $day_start, $regid);
             xarModItemVars::set('calendar', 'day_end', $day_end, $regid);
 
-            xarController::redirect(xarController::URL('calendar', 'admin', 'modifyconfig', ['tab' => $data['tab']]));
+            xarController::redirect(xarController::URL('calendar', 'admin', 'modifyconfig', ['tab' => $data['tab']]), null, $context);
             return true;
             break;
     }

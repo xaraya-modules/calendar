@@ -115,7 +115,7 @@ class Calendar_Table_Helper
      *
      * @access protected
      */
-    public function Calendar_Table_Helper(& $calendar, $firstDay=null)
+    public function Calendar_Table_Helper(& $calendar, $firstDay = null)
     {
         $this->calendar = & $calendar;
         $this->cE = & $calendar->getEngine();
@@ -177,7 +177,7 @@ class Calendar_Table_Helper
             $this->calendar->thisYear(),
             $this->calendar->thisMonth()
         );
-        $this->emptyBefore=0;
+        $this->emptyBefore = 0;
         foreach ($this->daysOfMonth as $dayOfWeek) {
             if ($firstDayInMonth == $dayOfWeek) {
                 break;
@@ -193,7 +193,7 @@ class Calendar_Table_Helper
                 $this->calendar->thisDay()
             )
         );
-        for ($i=1; $i < $this->numWeeks; $i++) {
+        for ($i = 1; $i < $this->numWeeks; $i++) {
             $this->daysOfMonth =
                 array_merge($this->daysOfMonth, $this->daysOfWeek);
         }
@@ -290,7 +290,7 @@ class Calendar_Table_Helper
                 $this->calendar->thisYear(),
                 $this->calendar->thisMonth(),
                 $this->calendar->thisDay()
-            ) * ($this->numWeeks-1)
+            ) * ($this->numWeeks - 1)
         );
     }
 
@@ -304,7 +304,7 @@ class Calendar_Table_Helper
      *
      * @return int timestamp
      */
-    public function getWeekStart($y, $m, $d, $firstDay=1)
+    public function getWeekStart($y, $m, $d, $firstDay = 1)
     {
         $dow = $this->cE->getDayOfWeek($y, $m, $d);
         if ($dow > $firstDay) {

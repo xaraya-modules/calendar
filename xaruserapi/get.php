@@ -27,7 +27,7 @@
  * @return array|null of calendar, or false on failure
  */
 
-function calendar_userapi_get($args)
+function calendar_userapi_get(array $args = [], $context = null)
 {
     extract($args);
     // Optional arguments
@@ -43,11 +43,11 @@ function calendar_userapi_get($args)
     }
 
     // Security check
-//    if (!xarSecurity::check('ViewCalendars')) return;
+    //    if (!xarSecurity::check('ViewCalendars')) return;
 
     $calendars = [];
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $caltable = $xartable['calendars'];
     $cal_filestable = $xartable['calendars_files'];
     $filestable = $xartable['calfiles'];

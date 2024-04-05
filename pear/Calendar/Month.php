@@ -42,13 +42,13 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Represents a Month and builds Days
@@ -80,7 +80,7 @@ class Calendar_Month extends Calendar
      *
      * @access public
      */
-    public function Calendar_Month($y, $m, $firstDay=null)
+    public function Calendar_Month($y, $m, $firstDay = null)
     {
         parent::Calendar($y, $m);
         $this->firstDay = $this->defineFirstDayOfWeek($firstDay);
@@ -97,9 +97,9 @@ class Calendar_Month extends Calendar
      */
     public function build($sDates = [])
     {
-        include_once CALENDAR_ROOT.'Day.php';
+        include_once CALENDAR_ROOT . 'Day.php';
         $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
-        for ($i=1; $i<=$daysInMonth; $i++) {
+        for ($i = 1; $i <= $daysInMonth; $i++) {
             $this->children[$i] = new Calendar_Day($this->year, $this->month, $i);
         }
         if (count($sDates) > 0) {

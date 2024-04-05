@@ -42,13 +42,13 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Represents a Second<br />

@@ -129,7 +129,7 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Year',
                 $y,
-                CALENDAR_VALUE_TOOSMALL.$min
+                CALENDAR_VALUE_TOOSMALL . $min
             );
             return false;
         }
@@ -138,7 +138,7 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Year',
                 $y,
-                CALENDAR_VALUE_TOOLARGE.$max
+                CALENDAR_VALUE_TOOLARGE . $max
             );
             return false;
         }
@@ -159,7 +159,7 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Month',
                 $m,
-                CALENDAR_VALUE_TOOSMALL.$min
+                CALENDAR_VALUE_TOOSMALL . $min
             );
             return false;
         }
@@ -168,7 +168,7 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Month',
                 $m,
-                CALENDAR_VALUE_TOOLARGE.$max
+                CALENDAR_VALUE_TOOLARGE . $max
             );
             return false;
         }
@@ -189,7 +189,7 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Day',
                 $d,
-                CALENDAR_VALUE_TOOSMALL.$min
+                CALENDAR_VALUE_TOOSMALL . $min
             );
             return false;
         }
@@ -201,7 +201,7 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Day',
                 $d,
-                CALENDAR_VALUE_TOOLARGE.$max
+                CALENDAR_VALUE_TOOLARGE . $max
             );
             return false;
         }
@@ -222,16 +222,16 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Hour',
                 $h,
-                CALENDAR_VALUE_TOOSMALL.$min
+                CALENDAR_VALUE_TOOSMALL . $min
             );
             return false;
         }
-        $max = ($this->cE->getHoursInDay($this->calendar->thisDay())-1);
+        $max = ($this->cE->getHoursInDay($this->calendar->thisDay()) - 1);
         if ($h > $max) {
             $this->errors[] = new Calendar_Validation_Error(
                 'Hour',
                 $h,
-                CALENDAR_VALUE_TOOLARGE.$max
+                CALENDAR_VALUE_TOOLARGE . $max
             );
             return false;
         }
@@ -252,16 +252,16 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Minute',
                 $i,
-                CALENDAR_VALUE_TOOSMALL.$min
+                CALENDAR_VALUE_TOOSMALL . $min
             );
             return false;
         }
-        $max = ($this->cE->getMinutesInHour($this->calendar->thisHour())-1);
+        $max = ($this->cE->getMinutesInHour($this->calendar->thisHour()) - 1);
         if ($i > $max) {
             $this->errors[] = new Calendar_Validation_Error(
                 'Minute',
                 $i,
-                CALENDAR_VALUE_TOOLARGE.$max
+                CALENDAR_VALUE_TOOLARGE . $max
             );
             return false;
         }
@@ -282,16 +282,16 @@ class Calendar_Validator
             $this->errors[] = new Calendar_Validation_Error(
                 'Second',
                 $s,
-                CALENDAR_VALUE_TOOSMALL.$min
+                CALENDAR_VALUE_TOOSMALL . $min
             );
             return false;
         }
-        $max = ($this->cE->getSecondsInMinute($this->calendar->thisMinute())-1);
+        $max = ($this->cE->getSecondsInMinute($this->calendar->thisMinute()) - 1);
         if ($s > $max) {
             $this->errors[] = new Calendar_Validation_Error(
                 'Second',
                 $s,
-                CALENDAR_VALUE_TOOLARGE.$max
+                CALENDAR_VALUE_TOOLARGE . $max
             );
             return false;
         }
@@ -409,6 +409,6 @@ class Calendar_Validation_Error
      */
     public function toString()
     {
-        return $this->unit.' = '.$this->value.' ['.$this->message.']';
+        return $this->unit . ' = ' . $this->value . ' [' . $this->message . ']';
     }
 }

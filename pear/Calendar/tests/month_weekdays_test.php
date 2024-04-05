@@ -99,7 +99,7 @@ class TestOfMonthWeekdaysBuild extends TestOfMonthWeekdays
     public function testFetch()
     {
         $this->cal->build();
-        $i=0;
+        $i = 0;
         while ($Child = $this->cal->fetch()) {
             $i++;
         }

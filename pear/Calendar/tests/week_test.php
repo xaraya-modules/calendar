@@ -183,36 +183,36 @@ class TestOfWeek extends TestOfCalendar
     public function testPrevWeekArray()
     {
         $testArray = [
-            'year'=>2003,
-            'month'=>9,
-            'day'=>29,
-            'hour'=>0,
-            'minute'=>0,
-            'second'=>0,
+            'year' => 2003,
+            'month' => 9,
+            'day' => 29,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
             ];
         $this->assertEqual($testArray, $this->cal->prevWeek('array'));
     }
     public function testThisWeekArray()
     {
         $testArray = [
-            'year'=>2003,
-            'month'=>10,
-            'day'=>6,
-            'hour'=>0,
-            'minute'=>0,
-            'second'=>0,
+            'year' => 2003,
+            'month' => 10,
+            'day' => 6,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
             ];
         $this->assertEqual($testArray, $this->cal->thisWeek('array'));
     }
     public function testNextWeekArray()
     {
         $testArray = [
-            'year'=>2003,
-            'month'=>10,
-            'day'=>13,
-            'hour'=>0,
-            'minute'=>0,
-            'second'=>0,
+            'year' => 2003,
+            'month' => 10,
+            'day' => 13,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
             ];
         $this->assertEqual($testArray, $this->cal->nextWeek('array'));
     }
@@ -251,7 +251,7 @@ class TestOfWeekBuild extends TestOfWeek
     public function testFetch()
     {
         $this->cal->build();
-        $i=0;
+        $i = 0;
         while ($Child = $this->cal->fetch()) {
             $i++;
         }
@@ -263,7 +263,7 @@ class TestOfWeekBuild extends TestOfWeek
         $children = [];
         $i = 1;
         while ($Child = $this->cal->fetch()) {
-            $children[$i]=$Child;
+            $children[$i] = $Child;
             $i++;
         }
         $this->assertEqual($children, $this->cal->fetchAll());

@@ -1,6 +1,6 @@
 <?php
 
-function calendar_admin_create_calendars()
+function calendar_admin_create_calendars(array $args = [], $context = null)
 {
     // Get parameters
     // TODO HELPNEEDED here: how do I handle this (e.g. missing calname should return a
@@ -28,7 +28,7 @@ function calendar_admin_create_calendars()
 
     // Security Check
     // TODO
-//    if(!xarSecurity::check('AddCalendar', 0, 'Calendar')) {return;}
+    //    if(!xarSecurity::check('AddCalendar', 0, 'Calendar')) {return;}
 
     // Check if module name has already been used.
     $checkname = xarMod::apiFunc('calendar', 'user', 'get', ['calname' => $calname]);
@@ -64,6 +64,8 @@ function calendar_admin_create_calendars()
 
     // Go on and edit the new instance
     xarController::redirect(
-        xarController::URL('calendar', 'admin', 'add_calendars', ['calid'=>$calid,'calname'=>$calname])
+        xarController::URL('calendar', 'admin', 'add_calendars', ['calid' => $calid,'calname' => $calname]),
+        null,
+        $context
     );
 }

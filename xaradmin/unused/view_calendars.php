@@ -1,6 +1,6 @@
 <?php
 
-function calendar_admin_view_calendars()
+function calendar_admin_view_calendars(array $args = [], $context = null)
 {
     // Security check
     if (!xarSecurity::check('Admincalendar')) {

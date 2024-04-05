@@ -42,18 +42,18 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Load base month
  */
-require_once CALENDAR_ROOT.'Month.php';
+require_once CALENDAR_ROOT . 'Month.php';
 
 /**
  * Represents a Month and builds Days in tabular form<br>
@@ -109,7 +109,7 @@ class Calendar_Month_Weekdays extends Calendar_Month
      *
      * @access public
      */
-    public function Calendar_Month_Weekdays($y, $m, $firstDay=null)
+    public function Calendar_Month_Weekdays($y, $m, $firstDay = null)
     {
         parent::Calendar_Month($y, $m, $firstDay);
     }
@@ -129,7 +129,7 @@ class Calendar_Month_Weekdays extends Calendar_Month
      */
     public function build($sDates = [])
     {
-        include_once CALENDAR_ROOT.'Table/Helper.php';
+        include_once CALENDAR_ROOT . 'Table/Helper.php';
         $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
         Calendar_Month::build($sDates);
         $this->buildEmptyDaysBefore();
@@ -148,7 +148,7 @@ class Calendar_Month_Weekdays extends Calendar_Month
     public function buildEmptyDaysBefore()
     {
         $eBefore = $this->tableHelper->getEmptyDaysBefore();
-        for ($i=0; $i < $eBefore; $i++) {
+        for ($i = 0; $i < $eBefore; $i++) {
             $stamp = $this->cE->dateToStamp($this->year, $this->month, -$i);
             $Day = new Calendar_Day(
                 $this->cE->stampToYear($stamp),
@@ -185,8 +185,8 @@ class Calendar_Month_Weekdays extends Calendar_Month
     {
         $eAfter = $this->tableHelper->getEmptyDaysAfter();
         $sDOM   = $this->tableHelper->getNumTableDaysInMonth();
-        for ($i=1; $i <= $sDOM-$eAfter; $i++) {
-            $Day = new Calendar_Day($this->year, $this->month+1, $i);
+        for ($i = 1; $i <= $sDOM - $eAfter; $i++) {
+            $Day = new Calendar_Day($this->year, $this->month + 1, $i);
             $Day->setEmpty();
             $Day->adjust();
             array_push($this->children, $Day);
@@ -208,9 +208,9 @@ class Calendar_Month_Weekdays extends Calendar_Month
             $this->thisDay()
         );
         $sDOM = $this->tableHelper->getNumTableDaysInMonth();
-        for ($i=1; $i <= $sDOM; $i+= $dIW) {
+        for ($i = 1; $i <= $sDOM; $i += $dIW) {
             $this->children[$i]->setFirst();
-            $this->children[$i+($dIW-1)]->setLast();
+            $this->children[$i + ($dIW - 1)]->setLast();
         }
     }
 }

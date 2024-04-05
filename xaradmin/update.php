@@ -12,7 +12,7 @@
  */
 
 sys::import('modules.dynamicdata.class.objects.factory');
-function calendar_admin_update($args)
+function calendar_admin_update(array $args = [], $context = null)
 {
     extract($args);
 
@@ -103,7 +103,7 @@ function calendar_admin_update($args)
     xarModHooks::call('item', 'update', $itemid, $item);
 
     if (!empty($return_url)) {
-        xarController::redirect($return_url);
+        xarController::redirect($return_url, null, $context);
     } elseif ($myobject->objectid == 2) { // for dynamic properties, return to modifyprop
         $objectid = $myobject->properties['objectid']->value;
         xarController::redirect(xarController::URL(
@@ -111,17 +111,17 @@ function calendar_admin_update($args)
             'admin',
             'modifyprop',
             ['itemid' => $objectid]
-        ));
+        ), null, $context);
     } else {
         xarController::redirect(xarController::URL(
             'dynamicdata',
             'admin',
             'view',
             [
-                                      'itemid' => $objectid,
-                                      'tplmodule' => $tplmodule,
-                                      ]
-        ));
+                'itemid' => $objectid,
+                'tplmodule' => $tplmodule,
+            ]
+        ), null, $context);
     }
     return true;
 }

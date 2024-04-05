@@ -48,13 +48,13 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar decorator base class
  */
-require_once CALENDAR_ROOT.'Decorator.php';
+require_once CALENDAR_ROOT . 'Decorator.php';
 
 /**
  * Static utlities to help with fetching textual representations of months and
@@ -92,7 +92,7 @@ class Calendar_Util_Textual
             $format = 'long';
         }
         $months = [];
-        for ($i=1; $i<=12; $i++) {
+        for ($i = 1; $i <= 12; $i++) {
             $stamp = mktime(0, 0, 0, $i, 1, 2003);
             $month = strftime($formats[$format], $stamp);
             switch ($format) {
@@ -129,8 +129,8 @@ class Calendar_Util_Textual
             $format = 'long';
         }
         $days = [];
-        for ($i=0; $i<=6; $i++) {
-            $stamp = mktime(0, 0, 0, 11, $i+2, 2003);
+        for ($i = 0; $i <= 6; $i++) {
+            $stamp = mktime(0, 0, 0, 11, $i + 2, 2003);
             $day = strftime($formats[$format], $stamp);
             switch ($format) {
                 case 'one':
@@ -229,7 +229,7 @@ class Calendar_Util_Textual
      * @access public
      * @static
      */
-    public static function thisDayName($Calendar, $format='long')
+    public static function thisDayName($Calendar, $format = 'long')
     {
         $days = Calendar_Util_Textual::weekdayNames($format);
         include_once 'Date/Calc.php';
@@ -247,7 +247,7 @@ class Calendar_Util_Textual
      * @access public
      * @static
      */
-    public static function nextDayName($Calendar, $format='long')
+    public static function nextDayName($Calendar, $format = 'long')
     {
         $days = Calendar_Util_Textual::weekdayNames($format);
         $stamp = $Calendar->nextDay('timestamp');

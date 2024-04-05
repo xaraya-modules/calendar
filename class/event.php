@@ -3,11 +3,13 @@
  *
  *  @checkme are these actually in use or not?
  */
+
 namespace Xaraya\Modules\Calendar;
 
-include_once CALENDAR_ROOT.'Day.php';
-include_once CALENDAR_ROOT.'Hour.php';
-include_once CALENDAR_ROOT.'Decorator.php';
+include_once CALENDAR_ROOT . 'Day.php';
+include_once CALENDAR_ROOT . 'Hour.php';
+include_once CALENDAR_ROOT . 'Decorator.php';
+use Calendar_Decorator;
 
 /**
  *  Event
@@ -92,22 +94,22 @@ class Event extends Calendar_Decorator
 
     public function setStartTime($time)
     {
-        $this->starttime =& $time;
+        $this->starttime = & $time;
     }
 
     public function setEndTime($time)
     {
-        $this->endtime =& $time;
+        $this->endtime = & $time;
     }
 
     public function setStartDate($date)
     {
-        $this->startdate =& $date;
+        $this->startdate = & $date;
     }
 
     public function setEndDate($date)
     {
-        $this->enddate =& $date;
+        $this->enddate = & $date;
     }
 
     public function setDuration($days, $hours, $minutes)
@@ -115,31 +117,31 @@ class Event extends Calendar_Decorator
         $seconds = (int) ($days * 24 * 60 * 60) ;
         $seconds += (int) ($hours * 60 * 60) ;
         $seconds += (int) ($minutes * 60) ;
-        $this->duration =& $seconds;
+        $this->duration = & $seconds;
     }
 
     public function setRepeat($repeat)
     {
-        $this->repeat =& $repeat;
+        $this->repeat = & $repeat;
     }
 
     public function setRepeatFreq($freq)
     {
-        $this->repeatfreq =& $freq;
+        $this->repeatfreq = & $freq;
     }
 
     public function setRepeatType($type)
     {
-        $this->repeattype =& $type;
+        $this->repeattype = & $type;
     }
 
     public function setRepeatOnNum($on)
     {
-        $this->repeatonnum =& $on;
+        $this->repeatonnum = & $on;
     }
 
     public function setRepeatOnDay($day)
     {
-        $this->repeatonday =& $day;
+        $this->repeatonday = & $day;
     }
 }

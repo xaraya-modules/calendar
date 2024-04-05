@@ -11,15 +11,15 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-include_once(CALENDAR_ROOT.'Hour.php');
-include_once(CALENDAR_ROOT.'Day.php');
+include_once(CALENDAR_ROOT . 'Hour.php');
+include_once(CALENDAR_ROOT . 'Day.php');
 // grab the Xaraya decorator class
 sys::import("modules.calendar.class.Calendar.Decorator.Xaraya");
 sys::import("modules.calendar.class.Calendar.Decorator.event");
 sys::import("modules.calendar.class.Calendar.Decorator.dayevent");
 sys::import('xaraya.structures.query');
 
-function calendar_user_day()
+function calendar_user_day(array $args = [], $context = null)
 {
     $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
     $DayEvents = new Calendar_Day($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
@@ -29,9 +29,9 @@ function calendar_user_day()
     $day_endts = $DayEvents->getTimestamp() + xarModVars::get('calendar', 'day_end') + 3600;
 
     // get all the events. need to improve this query
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $q = new Query('SELECT', $xartable['calendar_event']);
-//        $q->qecho();
+    //        $q->qecho();
     if (!$q->run()) {
         return;
     }
@@ -42,13 +42,13 @@ function calendar_user_day()
 
     // Loop through the events
     $eventcount = count($events);
-    for ($j=0;$j<$eventcount;$j++) {
+    for ($j = 0;$j < $eventcount;$j++) {
         // make sure events don't go past the end of the day
         $events[$j]['end_time'] = min($events[$j]['end_time'], $day_endts);
 
         $placed = false;
         $slotcount = count($slots);
-        for ($i=0;$i<$slotcount;$i++) {
+        for ($i = 0;$i < $slotcount;$i++) {
             if ($events[$j]['start_time'] >= $slots[$i][1]) {
                 foreach ($slots as $slot) {
                     $events[$slot[0]]['neighbors'] = $slotcount;
@@ -88,7 +88,7 @@ function calendar_user_day()
         */
     $DayDecorator = new DayEvent_Decorator($DayEvents);
     $DayDecorator->build($events);
-    $data['Day'] =& $DayDecorator;
+    $data['Day'] = & $DayDecorator;
     $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
     return $data;
 }

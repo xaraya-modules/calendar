@@ -233,7 +233,7 @@ class Date_Calc
                         $output .= '%';
                         break;
                     default:
-                        $output .= $char.$nextchar;
+                        $output .= $char . $nextchar;
                 }
                 $strpos++;
             } else {
@@ -1240,9 +1240,9 @@ class Date_Calc
 
         $year = $century * 100 + $year;
         if ($month < 10) {
-            $month +=3;
+            $month += 3;
         } else {
-            $month -=9;
+            $month -= 9;
             ++$year;
         }
 
@@ -1926,9 +1926,9 @@ class Date_Calc
         $day   = floor(($day +  5) /  5);
 
         if ($month < 10) {
-            $month +=3;
+            $month += 3;
         } else {
-            $month -=9;
+            $month -= 9;
             ++$year;
         }
 
@@ -1992,7 +1992,7 @@ class Date_Calc
                 case 3:
                 case 4:
                     // Monday - Thursday:
-                //
+                    //
                     $hn_year    = $pn_year;
                     $hn_isoweek = floor(($hn_day + $hn_wd1 - 2) / 7) + 1;
                     break;
@@ -2002,10 +2002,10 @@ class Date_Calc
                 case 5:
                 case 6:
                     // Friday - Sunday:
-                //
+                    //
                     if ($hn_day <= 8 - $hn_wd1) {
                         // ISO week is the last week of the previous ISO year:
-                    //
+                        //
                         [$hn_year, $hn_lastmonth, $hn_lastday] =
                             explode(
                                 " ",
@@ -2414,9 +2414,9 @@ class Date_Calc
      */
     public function getMonthFullname($month)
     {
-        $month = (int)$month;
+        $month = (int) $month;
         if (empty($month)) {
-            $month = (int)Date_Calc::dateNow('%m');
+            $month = (int) Date_Calc::dateNow('%m');
         }
 
         $month_names = Date_Calc::getMonthNames();
@@ -2440,7 +2440,7 @@ class Date_Calc
      */
     public function getMonthAbbrname($month, $length = 3)
     {
-        $month = (int)$month;
+        $month = (int) $month;
         if (empty($month)) {
             $month = Date_Calc::dateNow('%m');
         }
@@ -2862,10 +2862,10 @@ class Date_Calc
             $month = Date_Calc::dateNow('%m');
         }
         $FDOM = Date_Calc::firstOfMonthWeekday($month, $year);
-        if (DATE_CALC_BEGIN_WEEKDAY==1 && $FDOM==0) {
+        if (DATE_CALC_BEGIN_WEEKDAY == 1 && $FDOM == 0) {
             $first_week_days = 7 - $FDOM + DATE_CALC_BEGIN_WEEKDAY;
             $weeks           = 1;
-        } elseif (DATE_CALC_BEGIN_WEEKDAY==0 && $FDOM == 6) {
+        } elseif (DATE_CALC_BEGIN_WEEKDAY == 0 && $FDOM == 6) {
             $first_week_days = 7 - $FDOM + DATE_CALC_BEGIN_WEEKDAY;
             $weeks           = 1;
         } else {

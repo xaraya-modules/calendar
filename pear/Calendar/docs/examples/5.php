@@ -6,19 +6,19 @@
 function getmicrotime()
 {
     [$usec, $sec] = explode(" ", microtime());
-    return ((float)$usec + (float)$sec);
+    return ((float) $usec + (float) $sec);
 }
 $start = getmicrotime();
 
 if (!@include 'Calendar/Calendar.php') {
     define('CALENDAR_ROOT', '../../');
 }
-require_once CALENDAR_ROOT.'Year.php';
-require_once CALENDAR_ROOT.'Month.php';
-require_once CALENDAR_ROOT.'Day.php';
-require_once CALENDAR_ROOT.'Hour.php';
-require_once CALENDAR_ROOT.'Minute.php';
-require_once CALENDAR_ROOT.'Second.php';
+require_once CALENDAR_ROOT . 'Year.php';
+require_once CALENDAR_ROOT . 'Month.php';
+require_once CALENDAR_ROOT . 'Day.php';
+require_once CALENDAR_ROOT . 'Hour.php';
+require_once CALENDAR_ROOT . 'Minute.php';
+require_once CALENDAR_ROOT . 'Second.php';
 
 // Initialize if not set
 if (!isset($_POST['y'])) {
@@ -51,14 +51,14 @@ if (!isset($_POST['s'])) {
 if (isset($_POST['update'])) {
     $Second = new Calendar_Second($_POST['y'], $_POST['m'], $_POST['d'], $_POST['h'], $_POST['i'], $_POST['s']);
     if (!$Second->isValid()) {
-        $V= $Second->getValidator();
+        $V = $Second->getValidator();
         echo('<p>Validation failed:</p>');
         while ($error = $V->fetch()) {
-            echo($error->toString() .'<br>');
+            echo($error->toString() . '<br>');
         }
     } else {
         echo('<p>Validation success.</p>');
-        echo('<p>New timestamp is: '.$Second->getTimeStamp().' which could be used to update a database, for example');
+        echo('<p>New timestamp is: ' . $Second->getTimeStamp() . ' which could be used to update a database, for example');
     }
 } else {
     $Year = new Calendar_Year($_POST['y']);
@@ -76,9 +76,9 @@ $selection = [$Month];
     $Year->build($selection);
     while ($Child = $Year->fetch()) {
         if ($Child->isSelected()) {
-            echo("<option value=\"".$Child->thisMonth()."\" selected>".$Child->thisMonth()."\n");
+            echo("<option value=\"" . $Child->thisMonth() . "\" selected>" . $Child->thisMonth() . "\n");
         } else {
-            echo("<option value=\"".$Child->thisMonth()."\">".$Child->thisMonth()."\n");
+            echo("<option value=\"" . $Child->thisMonth() . "\">" . $Child->thisMonth() . "\n");
         }
     } ?>
 </select>&nbsp;
@@ -88,9 +88,9 @@ $selection = [$Day];
     $Month->build($selection);
     while ($Child = $Month->fetch()) {
         if ($Child->isSelected()) {
-            echo("<option value=\"".$Child->thisDay()."\" selected>".$Child->thisDay()."\n");
+            echo("<option value=\"" . $Child->thisDay() . "\" selected>" . $Child->thisDay() . "\n");
         } else {
-            echo("<option value=\"".$Child->thisDay()."\">".$Child->thisDay()."\n");
+            echo("<option value=\"" . $Child->thisDay() . "\">" . $Child->thisDay() . "\n");
         }
     } ?>
 </select>&nbsp;
@@ -100,9 +100,9 @@ $selection = [$Hour];
     $Day->build($selection);
     while ($Child = $Day->fetch()) {
         if ($Child->isSelected()) {
-            echo("<option value=\"".$Child->thisHour()."\" selected>".$Child->thisHour()."\n");
+            echo("<option value=\"" . $Child->thisHour() . "\" selected>" . $Child->thisHour() . "\n");
         } else {
-            echo("<option value=\"".$Child->thisHour()."\">".$Child->thisHour()."\n");
+            echo("<option value=\"" . $Child->thisHour() . "\">" . $Child->thisHour() . "\n");
         }
     } ?>
 </select>&nbsp;
@@ -112,9 +112,9 @@ $selection = [$Minute];
     $Hour->build($selection);
     while ($Child = $Hour->fetch()) {
         if ($Child->isSelected()) {
-            echo("<option value=\"".$Child->thisMinute()."\" selected>".$Child->thisMinute()."\n");
+            echo("<option value=\"" . $Child->thisMinute() . "\" selected>" . $Child->thisMinute() . "\n");
         } else {
-            echo("<option value=\"".$Child->thisMinute()."\">".$Child->thisMinute()."\n");
+            echo("<option value=\"" . $Child->thisMinute() . "\">" . $Child->thisMinute() . "\n");
         }
     } ?>
 </select>&nbsp;
@@ -124,9 +124,9 @@ $selection = [$Second];
     $Minute->build($selection);
     while ($Child = $Minute->fetch()) {
         if ($Child->isSelected()) {
-            echo("<option value=\"".$Child->thisSecond()."\" selected>".$Child->thisSecond()."\n");
+            echo("<option value=\"" . $Child->thisSecond() . "\" selected>" . $Child->thisSecond() . "\n");
         } else {
-            echo("<option value=\"".$Child->thisSecond()."\">".$Child->thisSecond()."\n");
+            echo("<option value=\"" . $Child->thisSecond() . "\">" . $Child->thisSecond() . "\n");
         }
     } ?>
 </select>&nbsp;
@@ -134,6 +134,6 @@ $selection = [$Second];
 <?php
 }
 ?>
-<?php echo('<p><b>Took: '.(getmicrotime()-$start).' seconds</b></p>'); ?>
+<?php echo('<p><b>Took: ' . (getmicrotime() - $start) . ' seconds</b></p>'); ?>
 </body>
 </html>

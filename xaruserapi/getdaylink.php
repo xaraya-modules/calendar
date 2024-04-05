@@ -21,7 +21,7 @@
  *  @return string a valid link based on xarController::URL()
  *  @todo add necessary get vars to the resulting URL
  */
-function calendar_userapi_getDayLink($date=null)
+function calendar_userapi_getDayLink($date = null)
 {
     if (!isset($date)) {
         $date = date('Ymd');
@@ -30,6 +30,6 @@ function calendar_userapi_getDayLink($date=null)
     $month = substr($date, 4, 2);
     $day = substr($date, 6, 2);
 
-    $link = xarController::URL('calendar', 'user', 'day', ['cal_date'=>$date]);
+    $link = xarController::URL('calendar', 'user', 'day', ['cal_date' => $date]);
     return $link;
 }

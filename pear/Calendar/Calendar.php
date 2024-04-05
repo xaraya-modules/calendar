@@ -42,7 +42,7 @@
  * Allows Calendar include path to be redefined
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
@@ -98,7 +98,7 @@ class Calendar_Engine_Factory
         }
         if (!$engine) {
             if (!class_exists($class)) {
-                include_once CALENDAR_ROOT.'Engine'.DIRECTORY_SEPARATOR.CALENDAR_ENGINE.'.php';
+                include_once CALENDAR_ROOT . 'Engine' . DIRECTORY_SEPARATOR . CALENDAR_ENGINE . '.php';
             }
             $engine = new $class();
         }
@@ -211,12 +211,12 @@ class Calendar
             $cE = & Calendar_Engine_Factory::getEngine();
         }
         $this->cE     = & $cE;
-        $this->year   = (int)$y;
-        $this->month  = (int)$m;
-        $this->day    = (int)$d;
-        $this->hour   = (int)$h;
-        $this->minute = (int)$i;
-        $this->second = (int)$s;
+        $this->year   = (int) $y;
+        $this->month  = (int) $m;
+        $this->day    = (int) $d;
+        $this->hour   = (int) $h;
+        $this->minute = (int) $i;
+        $this->second = (int) $s;
     }
 
     /**
@@ -317,7 +317,7 @@ class Calendar
      * @return array
      * @access public
      */
-    public function toArray($stamp=null)
+    public function toArray($stamp = null)
     {
         if (is_null($stamp)) {
             $stamp = $this->getTimeStamp();
@@ -352,7 +352,7 @@ class Calendar
                 return $this->toArray($stamp);
                 break;
             case 'object':
-                include_once CALENDAR_ROOT.'Factory.php';
+                include_once CALENDAR_ROOT . 'Factory.php';
                 return Calendar_Factory::createByTimestamp($returnType, $stamp);
                 break;
             case 'timestamp':
@@ -472,7 +472,7 @@ class Calendar
     public function & getValidator()
     {
         if (!isset($this->validator)) {
-            include_once CALENDAR_ROOT.'Validator.php';
+            include_once CALENDAR_ROOT . 'Validator.php';
             $this->validator = new Calendar_Validator($this);
         }
         return $this->validator;
@@ -507,7 +507,7 @@ class Calendar
         if (defined('CALENDAR_FIRST_DAY_OF_WEEK')) {
             if (!is_null($firstDay) && ($firstDay != CALENDAR_FIRST_DAY_OF_WEEK)) {
                 $msg = 'CALENDAR_FIRST_DAY_OF_WEEK constant already defined.'
-                  .' The $firstDay parameter will be ignored.';
+                  . ' The $firstDay parameter will be ignored.';
                 trigger_error($msg, E_USER_WARNING);
             }
             return CALENDAR_FIRST_DAY_OF_WEEK;
@@ -533,8 +533,8 @@ class Calendar
      */
     public function prevYear($format = 'int')
     {
-        $ts = $this->cE->dateToStamp($this->year-1, 1, 1, 0, 0, 0);
-        return $this->returnValue('Year', $format, $ts, $this->year-1);
+        $ts = $this->cE->dateToStamp($this->year - 1, 1, 1, 0, 0, 0);
+        return $this->returnValue('Year', $format, $ts, $this->year - 1);
     }
 
     /**
@@ -561,8 +561,8 @@ class Calendar
      */
     public function nextYear($format = 'int')
     {
-        $ts = $this->cE->dateToStamp($this->year+1, 1, 1, 0, 0, 0);
-        return $this->returnValue('Year', $format, $ts, $this->year+1);
+        $ts = $this->cE->dateToStamp($this->year + 1, 1, 1, 0, 0, 0);
+        return $this->returnValue('Year', $format, $ts, $this->year + 1);
     }
 
     /**
@@ -575,7 +575,7 @@ class Calendar
      */
     public function prevMonth($format = 'int')
     {
-        $ts = $this->cE->dateToStamp($this->year, $this->month-1, 1, 0, 0, 0);
+        $ts = $this->cE->dateToStamp($this->year, $this->month - 1, 1, 0, 0, 0);
         return $this->returnValue('Month', $format, $ts, $this->cE->stampToMonth($ts));
     }
 
@@ -603,7 +603,7 @@ class Calendar
      */
     public function nextMonth($format = 'int')
     {
-        $ts = $this->cE->dateToStamp($this->year, $this->month+1, 1, 0, 0, 0);
+        $ts = $this->cE->dateToStamp($this->year, $this->month + 1, 1, 0, 0, 0);
         return $this->returnValue('Month', $format, $ts, $this->cE->stampToMonth($ts));
     }
 
@@ -620,7 +620,7 @@ class Calendar
         $ts = $this->cE->dateToStamp(
             $this->year,
             $this->month,
-            $this->day-1,
+            $this->day - 1,
             0,
             0,
             0
@@ -662,7 +662,7 @@ class Calendar
         $ts = $this->cE->dateToStamp(
             $this->year,
             $this->month,
-            $this->day+1,
+            $this->day + 1,
             0,
             0,
             0
@@ -684,7 +684,7 @@ class Calendar
             $this->year,
             $this->month,
             $this->day,
-            $this->hour-1,
+            $this->hour - 1,
             0,
             0
         );
@@ -726,7 +726,7 @@ class Calendar
             $this->year,
             $this->month,
             $this->day,
-            $this->hour+1,
+            $this->hour + 1,
             0,
             0
         );
@@ -748,7 +748,7 @@ class Calendar
             $this->month,
             $this->day,
             $this->hour,
-            $this->minute-1,
+            $this->minute - 1,
             0
         );
         return $this->returnValue('Minute', $format, $ts, $this->cE->stampToMinute($ts));
@@ -790,7 +790,7 @@ class Calendar
             $this->month,
             $this->day,
             $this->hour,
-            $this->minute+1,
+            $this->minute + 1,
             0
         );
         return $this->returnValue('Minute', $format, $ts, $this->cE->stampToMinute($ts));
@@ -812,7 +812,7 @@ class Calendar
             $this->day,
             $this->hour,
             $this->minute,
-            $this->second-1
+            $this->second - 1
         );
         return $this->returnValue('Second', $format, $ts, $this->cE->stampToSecond($ts));
     }
@@ -854,7 +854,7 @@ class Calendar
             $this->day,
             $this->hour,
             $this->minute,
-            $this->second+1
+            $this->second + 1
         );
         return $this->returnValue('Second', $format, $ts, $this->cE->stampToSecond($ts));
     }

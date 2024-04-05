@@ -52,10 +52,10 @@ class MonthPayload_Decorator extends Calendar_Decorator
     public $month;
     public $firstDay = false;
 
-    public function build($events=[])
+    public function build($events = [])
     {
         require_once CALENDAR_ROOT . 'Day.php';
-        require_once CALENDAR_ROOT .  'Table/Helper.php';
+        require_once CALENDAR_ROOT . 'Table/Helper.php';
 
         $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
         $this->cE = $this->getEngine();
@@ -63,7 +63,7 @@ class MonthPayload_Decorator extends Calendar_Decorator
         $this->month = $this->thisMonth();
 
         $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
-        for ($i=1; $i<=$daysInMonth; $i++) {
+        for ($i = 1; $i <= $daysInMonth; $i++) {
             $Day = new Calendar_Day(2000, 1, 1); // Create Day with dummy values
             $Day->setTimeStamp($this->cE->dateToStamp($this->year, $this->month, $i));
             $this->children[$i] = new DiaryEvent($Day);
@@ -81,9 +81,9 @@ class MonthPayload_Decorator extends Calendar_Decorator
     public function setSelection($events)
     {
         $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
-        for ($i=1; $i<=$daysInMonth; $i++) {
+        for ($i = 1; $i <= $daysInMonth; $i++) {
             $stamp1 = $this->cE->dateToStamp($this->year, $this->month, $i);
-            $stamp2 = $this->cE->dateToStamp($this->year, $this->month, $i+1);
+            $stamp2 = $this->cE->dateToStamp($this->year, $this->month, $i + 1);
             foreach ($events as $event) {
                 if (($stamp1 >= $event['start'] && $stamp1 < $event['end']) ||
                     ($stamp2 >= $event['start'] && $stamp2 < $event['end']) ||
@@ -194,7 +194,7 @@ ul {
 <h2>Sample Calendar Payload Decorator (using <?php echo CALENDAR_ENGINE; ?> engine)</h2>
 <table class="calendar" width="98%" cellspacing="0" cellpadding="0">
 <caption>
-    <?php echo $MonthDecorator->thisMonth().' / '.$MonthDecorator->thisYear(); ?>
+    <?php echo $MonthDecorator->thisMonth() . ' / ' . $MonthDecorator->thisYear(); ?>
 </caption>
 <tr>
     <th>Monday</th>
@@ -218,14 +218,14 @@ while ($Day = $MonthDecorator->fetch()) {
         echo ' calCellEmpty';
     }
     echo '">';
-    echo '<div class="dayNumber">'.$Day->thisDay().'</div>';
+    echo '<div class="dayNumber">' . $Day->thisDay() . '</div>';
 
     if ($Day->isEmpty()) {
         echo '&nbsp;';
     } else {
         echo '<div class="dayContents"><ul>';
         while ($entry = $Day->getEntry()) {
-            echo  '<li>'.$entry['desc'].'</li>';
+            echo  '<li>' . $entry['desc'] . '</li>';
             //you can print the time range as well
         }
         echo '</ul></div>';

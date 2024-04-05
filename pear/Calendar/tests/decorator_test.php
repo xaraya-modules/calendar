@@ -218,7 +218,7 @@ class TestOfDecorator extends UnitTestCase
     public function testToArray()
     {
         $this->mockcal->expectOnce('toArray', [12345]);
-        $testArray = ['foo'=>'bar'];
+        $testArray = ['foo' => 'bar'];
         $this->mockcal->setReturnValue('toArray', $testArray);
         $Decorator = new Calendar_Decorator($this->mockcal);
         $this->assertEqual($testArray, $Decorator->toArray(12345));
@@ -274,7 +274,7 @@ class TestOfDecorator extends UnitTestCase
     }
     public function testBuild()
     {
-        $testArray=['foo'=>'bar'];
+        $testArray = ['foo' => 'bar'];
         $this->mockcal->expectOnce('build', [$testArray]);
         $Decorator = new Calendar_Decorator($this->mockcal);
         $Decorator->build($testArray);

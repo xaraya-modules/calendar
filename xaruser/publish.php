@@ -14,7 +14,7 @@
 /**
  * Publish a calendar
  */
-function calendar_user_publish($args)
+function calendar_user_publish(array $args = [], $context = null)
 {
     extract($args);
     xarVar::fetch('calid', 'id', $calid, 0, xarVar::NOT_REQUIRED);
@@ -66,9 +66,9 @@ function calendar_user_publish($args)
                         header('Content-Type: text/calendar');
                         @readfile($curfile);
 
-                    // TODO: use webdavserver instead ?
-                    // Cfr. phpicalendar/calendars/publish.php (doesn't seem to work for PHP < 4.3)
-                    // publishing
+                        // TODO: use webdavserver instead ?
+                        // Cfr. phpicalendar/calendars/publish.php (doesn't seem to work for PHP < 4.3)
+                        // publishing
                     } else {
                         // get calendar data
                         $data = '';
@@ -94,7 +94,7 @@ function calendar_user_publish($args)
                                 fputs($fp, $data, strlen($data));
                                 @fclose($fp);
                             } else {
-                                xarLog::message('couldnt open file '.$curfile, xarLog::LEVEL_WARNING);
+                                xarLog::message('couldnt open file ' . $curfile, xarLog::LEVEL_WARNING);
                             }
                         } else {
                             xarLog::message('failed getting any data', xarLog::LEVEL_WARNING);

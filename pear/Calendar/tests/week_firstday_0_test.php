@@ -147,36 +147,36 @@ class TestOfWeek_firstday_0 extends TestOfCalendar
     public function testPrevWeekArray()
     {
         $testArray = [
-            'year'=>2003,
-            'month'=>9,
-            'day'=>28,
-            'hour'=>0,
-            'minute'=>0,
-            'second'=>0,
+            'year' => 2003,
+            'month' => 9,
+            'day' => 28,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
             ];
         $this->assertEqual($testArray, $this->cal->prevWeek('array'));
     }
     public function testThisWeekArray()
     {
         $testArray = [
-            'year'=>2003,
-            'month'=>10,
-            'day'=>5,
-            'hour'=>0,
-            'minute'=>0,
-            'second'=>0,
+            'year' => 2003,
+            'month' => 10,
+            'day' => 5,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
             ];
         $this->assertEqual($testArray, $this->cal->thisWeek('array'));
     }
     public function testNextWeekArray()
     {
         $testArray = [
-            'year'=>2003,
-            'month'=>10,
-            'day'=>12,
-            'hour'=>0,
-            'minute'=>0,
-            'second'=>0,
+            'year' => 2003,
+            'month' => 10,
+            'day' => 12,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
             ];
         $this->assertEqual($testArray, $this->cal->nextWeek('array'));
     }
@@ -215,7 +215,7 @@ class TestOfWeek_firstday_0_Build extends TestOfWeek_firstday_0
     public function testFetch()
     {
         $this->cal->build();
-        $i=0;
+        $i = 0;
         while ($Child = $this->cal->fetch()) {
             $i++;
         }
@@ -227,7 +227,7 @@ class TestOfWeek_firstday_0_Build extends TestOfWeek_firstday_0
         $children = [];
         $i = 1;
         while ($Child = $this->cal->fetch()) {
-            $children[$i]=$Child;
+            $children[$i] = $Child;
             $i++;
         }
         $this->assertEqual($children, $this->cal->fetchAll());

@@ -86,7 +86,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
     public function stampToYear($stamp)
     {
         $date = Calendar_Engine_PearDate::stampCollection($stamp);
-        return (int)$date->year;
+        return (int) $date->year;
     }
 
     /**
@@ -100,7 +100,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
     public function stampToMonth($stamp)
     {
         $date = Calendar_Engine_PearDate::stampCollection($stamp);
-        return (int)$date->month;
+        return (int) $date->month;
     }
 
     /**
@@ -114,7 +114,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
     public function stampToDay($stamp)
     {
         $date = Calendar_Engine_PearDate::stampCollection($stamp);
-        return (int)$date->day;
+        return (int) $date->day;
     }
 
     /**
@@ -128,7 +128,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
     public function stampToHour($stamp)
     {
         $date = Calendar_Engine_PearDate::stampCollection($stamp);
-        return (int)$date->hour;
+        return (int) $date->hour;
     }
 
     /**
@@ -142,7 +142,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
     public function stampToMinute($stamp)
     {
         $date = Calendar_Engine_PearDate::stampCollection($stamp);
-        return (int)$date->minute;
+        return (int) $date->minute;
     }
 
     /**
@@ -156,7 +156,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
     public function stampToSecond($stamp)
     {
         $date = Calendar_Engine_PearDate::stampCollection($stamp);
-        return (int)$date->second;
+        return (int) $date->second;
     }
 
     /**
@@ -172,11 +172,11 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return string iso-8601 datetime
      * @access protected
      */
-    public function dateToStamp($y, $m, $d, $h=0, $i=0, $s=0)
+    public function dateToStamp($y, $m, $d, $h = 0, $i = 0, $s = 0)
     {
         $r = [];
         Calendar_Engine_PearDate::adjustDate($y, $m, $d, $h, $i, $s);
-        $key = $y.$m.$d.$h.$i.$s;
+        $key = $y . $m . $d . $h . $i . $s;
         if (!isset($r[$key])) {
             $r[$key] = sprintf(
                 "%04d-%02d-%02d %02d:%02d:%02d",
@@ -230,8 +230,8 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
             $d += floor($h / 24);
             $h %= 24;
         }
-        for (; $m < 1; $y--, $m+=12);
-        for (; $m > 12; $y++, $m-=12);
+        for (; $m < 1; $y--, $m += 12);
+        for (; $m > 12; $y++, $m -= 12);
 
         while ($d < 1) {
             if ($m > 1) {
@@ -283,7 +283,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int (12)
      * @access protected
      */
-    public function getMonthsInYear($y=null)
+    public function getMonthsInYear($y = null)
     {
         return 12;
     }
@@ -299,7 +299,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      */
     public function getDaysInMonth($y, $m)
     {
-        return (int)Date_Calc::daysInMonth($m, $y);
+        return (int) Date_Calc::daysInMonth($m, $y);
     }
 
     /**
@@ -314,7 +314,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      */
     public function getFirstDayInMonth($y, $m)
     {
-        return (int)Date_Calc::dayOfWeek(1, $m, $y);
+        return (int) Date_Calc::dayOfWeek(1, $m, $y);
     }
 
     /**
@@ -327,7 +327,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int (7)
      * @access protected
      */
-    public function getDaysInWeek($y=null, $m=null, $d=null)
+    public function getDaysInWeek($y = null, $m = null, $d = null)
     {
         return 7;
     }
@@ -360,10 +360,10 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int week number
      * @access protected
      */
-    public function getWeekNInMonth($y, $m, $d, $firstDay=1)
+    public function getWeekNInMonth($y, $m, $d, $firstDay = 1)
     {
-        $weekEnd = ($firstDay == 0) ? $this->getDaysInWeek()-1 : $firstDay-1;
-        $end_of_week = (int)Date_Calc::nextDayOfWeek($weekEnd, 1, $m, $y, '%e', true);
+        $weekEnd = ($firstDay == 0) ? $this->getDaysInWeek() - 1 : $firstDay - 1;
+        $end_of_week = (int) Date_Calc::nextDayOfWeek($weekEnd, 1, $m, $y, '%e', true);
         $w = 1;
         while ($d > $end_of_week) {
             ++$w;
@@ -382,7 +382,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int weeks number
      * @access protected
      */
-    public function getWeeksInMonth($y, $m, $firstDay=1)
+    public function getWeeksInMonth($y, $m, $firstDay = 1)
     {
         $FDOM = Date_Calc::firstOfMonthWeekday($m, $y);
         if ($FDOM == 0) {
@@ -396,7 +396,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
             $weeks = 0;
         }
         $daysInTheFirstWeek %= $this->getDaysInWeek();
-        return (int)(ceil(($this->getDaysInMonth($y, $m) - $daysInTheFirstWeek) /
+        return (int) (ceil(($this->getDaysInMonth($y, $m) - $daysInTheFirstWeek) /
                            $this->getDaysInWeek()) + $weeks);
     }
 
@@ -425,7 +425,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return array (0, 1, 2, 3, 4, 5, 6) 1 = Monday
      * @access protected
      */
-    public function getWeekDays($y=null, $m=null, $d=null)
+    public function getWeekDays($y = null, $m = null, $d = null)
     {
         return [0, 1, 2, 3, 4, 5, 6];
     }
@@ -440,7 +440,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int (default 1 = Monday)
      * @access protected
      */
-    public function getFirstDayOfWeek($y=null, $m=null, $d=null)
+    public function getFirstDayOfWeek($y = null, $m = null, $d = null)
     {
         return 1;
     }
@@ -455,7 +455,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int (24)
      * @access protected
      */
-    public function getHoursInDay($y=null, $m=null, $d=null)
+    public function getHoursInDay($y = null, $m = null, $d = null)
     {
         return 24;
     }
@@ -471,7 +471,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int (60)
      * @access protected
      */
-    public function getMinutesInHour($y=null, $m=null, $d=null, $h=null)
+    public function getMinutesInHour($y = null, $m = null, $d = null, $h = null)
     {
         return 60;
     }
@@ -488,7 +488,7 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
      * @return int (60)
      * @access protected
      */
-    public function getSecondsInMinute($y=null, $m=null, $d=null, $h=null, $i=null)
+    public function getSecondsInMinute($y = null, $m = null, $d = null, $h = null, $i = null)
     {
         return 60;
     }

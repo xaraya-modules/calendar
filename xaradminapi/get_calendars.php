@@ -27,7 +27,7 @@
 /**
  * generate the common admin menu configuration
  */
-function calendar_adminapi_get_calendars()
+function calendar_adminapi_get_calendars(array $args = [], $context = null)
 {
     // Initialise the array that will hold the menu configuration
     $cals = [];
@@ -44,8 +44,8 @@ function calendar_adminapi_get_calendars()
         }
     }
 
-    $cals['icsfiles']=$ics_array;
-    $cals['thereAreIcs']=sizeof($ics_array);
+    $cals['icsfiles'] = $ics_array;
+    $cals['thereAreIcs'] = sizeof($ics_array);
 
     // Return the array containing the menu configuration
     return $cals;

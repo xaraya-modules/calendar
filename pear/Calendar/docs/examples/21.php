@@ -5,7 +5,7 @@
 function getmicrotime()
 {
     [$usec, $sec] = explode(" ", microtime());
-    return ((float)$usec + (float)$sec);
+    return ((float) $usec + (float) $sec);
 }
 $start = getmicrotime();
 
@@ -13,8 +13,8 @@ if (!@include 'Calendar/Calendar.php') {
     define('CALENDAR_ROOT', '../../');
 }
 
-require_once CALENDAR_ROOT.'Year.php';
-require_once CALENDAR_ROOT.'Month/Weeks.php';
+require_once CALENDAR_ROOT . 'Year.php';
+require_once CALENDAR_ROOT . 'Month/Weeks.php';
 
 define('CALENDAR_MONTH_STATE', CALENDAR_USE_MONTH_WEEKS);
 
@@ -113,20 +113,20 @@ while ($Month = $Year->fetch()) {
     }
 
     echo "<td>\n<table class=\"month\">\n";
-    echo '<caption class="month">'.date('F', $Month->thisMonth(true)).'</caption>';
-    echo '<colgroup><col class="weekNumbers"><col span="7"></colgroup>'."\n";
+    echo '<caption class="month">' . date('F', $Month->thisMonth(true)) . '</caption>';
+    echo '<colgroup><col class="weekNumbers"><col span="7"></colgroup>' . "\n";
     echo "<tr>\n<th>Week</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th>\n</tr>";
     $Month->build();
     while ($Week = $Month->fetch()) {
         echo "<tr>\n";
-        echo '<td>'.$Week->thisWeek($_GET['week_type'])."</td>\n";
+        echo '<td>' . $Week->thisWeek($_GET['week_type']) . "</td>\n";
         $Week->build();
 
         while ($Day = $Week->fetch()) {
             if ($Day->isEmpty()) {
                 echo "<td>&nbsp;</td>\n";
             } else {
-                echo "<td>".$Day->thisDay()."</td>\n";
+                echo "<td>" . $Day->thisDay() . "</td>\n";
             }
         }
     }
@@ -136,6 +136,6 @@ while ($Month = $Year->fetch()) {
 }
 ?>
 </table>
-<p>Took: <?php echo((getmicrotime()-$start)); ?></p>
+<p>Took: <?php echo((getmicrotime() - $start)); ?></p>
 </body>
 </html>

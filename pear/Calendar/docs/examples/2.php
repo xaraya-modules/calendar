@@ -6,18 +6,18 @@
 function getmicrotime()
 {
     [$usec, $sec] = explode(" ", microtime());
-    return ((float)$usec + (float)$sec);
+    return ((float) $usec + (float) $sec);
 }
 $start = getmicrotime();
 
 // Force UnixTs engine (default setting)
 define('CALENDAR_ENGINE', 'UnixTS');
 
-if (!@include 'Calendar'.DIRECTORY_SEPARATOR.'Calendar.php') {
+if (!@include 'Calendar' . DIRECTORY_SEPARATOR . 'Calendar.php') {
     define('CALENDAR_ROOT', '../../');
 }
-require_once CALENDAR_ROOT.'Month/Weeks.php';
-require_once CALENDAR_ROOT.'Day.php';
+require_once CALENDAR_ROOT . 'Month/Weeks.php';
+require_once CALENDAR_ROOT . 'Day.php';
 
 // Initialize GET variables if not set
 if (!isset($_GET['y'])) {
@@ -46,9 +46,9 @@ $Month->build();
 
 // Construct strings for next/previous links
 $PMonth = $Month->prevMonth('object'); // Get previous month as object
-$prev = $_SERVER['PHP_SELF'].'?y='.$PMonth->thisYear().'&m='.$PMonth->thisMonth().'&d='.$PMonth->thisDay();
+$prev = $_SERVER['PHP_SELF'] . '?y=' . $PMonth->thisYear() . '&m=' . $PMonth->thisMonth() . '&d=' . $PMonth->thisDay();
 $NMonth = $Month->nextMonth('object');
-$next = $_SERVER['PHP_SELF'].'?y='.$NMonth->thisYear().'&m='.$NMonth->thisMonth().'&d='.$NMonth->thisDay();
+$next = $_SERVER['PHP_SELF'] . '?y=' . $NMonth->thisYear() . '&m=' . $NMonth->thisMonth() . '&d=' . $NMonth->thisDay();
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -113,22 +113,22 @@ while ($Week = $Month->fetch()) {
     $Week->build($selectedDays);
     while ($Day = $Week->fetch()) {
         // Build a link string for each day
-        $link = $_SERVER['PHP_SELF'].
-                    '?y='.$Day->thisYear().
-                    '&m='.$Day->thisMonth().
-                    '&d='.$Day->thisDay();
+        $link = $_SERVER['PHP_SELF'] .
+                    '?y=' . $Day->thisYear() .
+                    '&m=' . $Day->thisMonth() .
+                    '&d=' . $Day->thisDay();
 
         // Check to see if day is selected
         if ($Day->isSelected()) {
-            echo '<td class="selected">'.$Day->thisDay().'</td>'."\n";
-        // Check to see if day is empty
+            echo '<td class="selected">' . $Day->thisDay() . '</td>' . "\n";
+            // Check to see if day is empty
         } elseif ($Day->isEmpty()) {
-            echo '<td class="empty">'.$Day->thisDay().'</td>'."\n";
+            echo '<td class="empty">' . $Day->thisDay() . '</td>' . "\n";
         } else {
-            echo '<td><a href="'.$link.'">'.$Day->thisDay().'</a></td>'."\n";
+            echo '<td><a href="' . $link . '">' . $Day->thisDay() . '</a></td>' . "\n";
         }
     }
-    echo '</tr>'."\n";
+    echo '</tr>' . "\n";
 }
 ?>
 <tr>
@@ -142,7 +142,7 @@ while ($Week = $Month->fetch()) {
 </tr>
 </table>
 <?php
-echo '<p><b>Took: '.(getmicrotime()-$start).' seconds</b></p>';
+echo '<p><b>Took: ' . (getmicrotime() - $start) . ' seconds</b></p>';
 ?>
 </body>
 </html>

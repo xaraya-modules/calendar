@@ -21,7 +21,7 @@
  * @return array|null of calendars, or false on failure
  */
 
-function calendar_userapi_getall($args)
+function calendar_userapi_getall(array $args = [], $context = null)
 {
     extract($args);
     // Optional arguments
@@ -32,10 +32,10 @@ function calendar_userapi_getall($args)
     $calendars = [];
 
     // Security check
-//    if (!xarSecurity::check('ViewCalendars')) return;
+    //    if (!xarSecurity::check('ViewCalendars')) return;
 
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $caltable = $xartable['calendars'];
     $cal_filestable = $xartable['calendars_files'];
     $filestable = $xartable['calfiles'];
@@ -52,7 +52,7 @@ function calendar_userapi_getall($args)
 
     // Run the query
     if (isset($numitems) && is_numeric($numitems)) {
-        $result = $dbconn->SelectLimit($query, $numitems, $startnum-1);
+        $result = $dbconn->SelectLimit($query, $numitems, $startnum - 1);
     } else {
         $result = $dbconn->Execute($query);
     }

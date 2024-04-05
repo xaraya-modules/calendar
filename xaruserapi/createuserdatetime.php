@@ -20,7 +20,7 @@
  *  @return string valid date/time
  *  @todo user timezone modifications
  */
-function &calendar_userapi_createUserDateTime($format='Ymd')
+function &calendar_userapi_createUserDateTime($format = 'Ymd')
 {
     return gmdate($format);
 

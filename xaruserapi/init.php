@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_userapi_init()
+function calendar_userapi_init(array $args = [], $context = null)
 {
     //=================================================================
     //  define constants used to make the code more readable

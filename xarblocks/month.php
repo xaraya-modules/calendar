@@ -27,15 +27,15 @@ class Calendar_MonthBlock extends BasicBlock
     public $targettype          = 'user';
     public $targetfunc          = 'month';
 
-    public function display(array $data=[])
+    public function display(array $data = [])
     {
         $data = parent::display($data);
 
         if (!defined('CALENDAR_ROOT')) {
             define('CALENDAR_ROOT', xarModVars::get('calendar', 'pearcalendar_root'));
         }
-        include_once(CALENDAR_ROOT.'Month/Weekdays.php');
-        include_once(CALENDAR_ROOT.'Decorator/Textual.php');
+        include_once(CALENDAR_ROOT . 'Month/Weekdays.php');
+        include_once(CALENDAR_ROOT . 'Decorator/Textual.php');
         sys::import("modules.calendar.class.Calendar.Decorator.Xaraya");
 
         // Build the month

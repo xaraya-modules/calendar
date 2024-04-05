@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_userapi_prev($args=[])
+function calendar_userapi_prev($args = [])
 {
     xarVar::fetch('cal_sdow', 'int:0:7', $cal_sdow, 0);
     // what function are we in
@@ -51,5 +51,5 @@ function calendar_userapi_prev($args=[])
     }
 
     $new_date = gmdate('Ymd', gmmktime(0, 0, 0, $m, $d, $y));
-    return xarController::URL('calendar', 'user', strtolower($func), ['cal_date'=>$new_date,'cal_sdow'=>$cal_sdow]);
+    return xarController::URL('calendar', 'user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
 }

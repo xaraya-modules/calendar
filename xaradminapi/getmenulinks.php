@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_adminapi_getmenulinks()
+function calendar_adminapi_getmenulinks(array $args = [], $context = null)
 {
     $menulinks = [];
     if (xarSecurity::check('AdminCalendar', 0)) {

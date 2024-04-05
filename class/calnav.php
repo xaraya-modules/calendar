@@ -1,7 +1,5 @@
 <?php
 
-    sys::import('xaraya.structures.containers.blocks.basicblock');
+sys::import('xaraya.structures.containers.blocks.basicblock');
 
-    class CalnavBlock extends BasicBlock
-    {
-    }
+class CalnavBlock extends BasicBlock {}

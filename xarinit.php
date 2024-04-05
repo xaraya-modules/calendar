@@ -14,9 +14,9 @@
 function calendar_init()
 {
     # --------------------------------------------------------
-#
+    #
     # Set up tables
-#
+    #
     sys::import('xaraya.structures.query');
     $q = new Query();
     $prefix = xarDB::getPrefix();
@@ -92,9 +92,9 @@ function calendar_init()
     */
 
     # --------------------------------------------------------
-#
+    #
     # Set up masks
-#
+    #
     xarMasks::register('ViewCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_OVERVIEW');
     xarMasks::register('ReadCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_READ');
     xarMasks::register('CommentCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_COMMENT');
@@ -105,9 +105,9 @@ function calendar_init()
     xarMasks::register('AdminCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_ADMIN');
 
     # --------------------------------------------------------
-#
+    #
     # Set up privileges
-#
+    #
     xarPrivileges::register('ViewCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_OVERVIEW');
     xarPrivileges::register('ReadCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_READ');
     xarPrivileges::register('CommentCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_COMMENT');
@@ -118,9 +118,9 @@ function calendar_init()
     xarPrivileges::register('AdminCalendar', 'All', 'calendar', 'All', 'All', 'ACCESS_ADMIN');
 
     # --------------------------------------------------------
-#
+    #
     # Set up modvars
-#
+    #
 
     // Location of the PEAR Calendar Classes
     // Use the PHP Include path for now
@@ -132,10 +132,10 @@ function calendar_init()
 
     // Other variables from phpIcalendar config.inc.php
     xarModVars::set('calendar', 'minical_view', 'week');
-//    xarModVars::set('calendar','cal_sdow'               , 0);   // 0=sunday $week_start_day in phpIcalendar
-//    xarModVars::set('calendar','day_start'              , '0700');
-//    xarModVars::set('calendar','day_end'                , '2300');
-//    xarModVars::set('calendar','gridLength'             , 15);
+    //    xarModVars::set('calendar','cal_sdow'               , 0);   // 0=sunday $week_start_day in phpIcalendar
+    //    xarModVars::set('calendar','day_start'              , '0700');
+    //    xarModVars::set('calendar','day_end'                , '2300');
+    //    xarModVars::set('calendar','gridLength'             , 15);
     xarModVars::set('calendar', 'num_years', 1);
     xarModVars::set('calendar', 'month_event_lines', 1);
     xarModVars::set('calendar', 'tomorrows_events_lines', 1);
@@ -162,7 +162,7 @@ function calendar_init()
     xarModVars::set('calendar', 'minutesperunit', 15);
     xarModVars::set('calendar', 'unitheight', 12);
 
-    xarModVars::set('calendar', 'event_duration', 60*60);
+    xarModVars::set('calendar', 'event_duration', 60 * 60);
     xarModVars::set('calendar', 'cal_sdow', 0);
     xarModVars::set('calendar', 'day_start', 25200);
     xarModVars::set('calendar', 'day_end', 82800);
@@ -176,7 +176,7 @@ function calendar_init()
 
     # --------------------------------------------------------
     #  Register block types
-#
+    #
     xarMod::apiFunc('blocks', 'admin', 'register_block_type', ['modName' => 'calendar','blockType' => 'calnav']);
     xarMod::apiFunc('blocks', 'admin', 'register_block_type', ['modName' => 'calendar','blockType' => 'month']);
 
@@ -194,18 +194,18 @@ function calendar_init()
         */
 
     # --------------------------------------------------------
-#
+    #
     # Set up hooks
-#
+    #
 
     xarModHooks::register('item', 'create', 'API', 'calendar', 'admin', 'hookcreate');
     xarModHooks::register('item', 'update', 'API', 'calendar', 'admin', 'hookupdate');
-//    xarModHooks::register('item', 'delete', 'API','calendar', 'admin', 'hookdelete');
+    //    xarModHooks::register('item', 'delete', 'API','calendar', 'admin', 'hookdelete');
 
     # --------------------------------------------------------
-#
+    #
     # Create DD objects
-#
+    #
     $module = 'calendar';
     $objects = [
                    'calendar_calendar',
@@ -229,7 +229,7 @@ function calendar_upgrade($oldversion)
             // Start creating the tables
 
             $dbconn = xarDB::getConn();
-            $xartable =& xarDB::getTables();
+            $xartable = & xarDB::getTables();
             $calfilestable = $xartable['calendars_files'];
             sys::import('xaraya.tableddl');
             $fields = [
@@ -296,7 +296,7 @@ function calendar_delete()
     #
     # Remove block types
     #
-    if (!xarMod::apiFunc('blocks', 'admin', 'unregister_block_type', ['modName'  => 'calendar', 'blockType'=> 'month'])) {
+    if (!xarMod::apiFunc('blocks', 'admin', 'unregister_block_type', ['modName'  => 'calendar', 'blockType' => 'month'])) {
         return;
     }
 

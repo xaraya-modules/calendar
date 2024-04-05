@@ -16,7 +16,7 @@
  * This is a standard function to update the configuration parameters of the
  * module given the information passed back by the modification form
  */
-function calendar_admin_updateconfig()
+function calendar_admin_updateconfig(array $args = [], $context = null)
 {
     // Get parameters from whatever input we need.  All arguments to this
     // function should be obtained from xarVar::fetch(), xarVarCleanFromInput
@@ -164,7 +164,7 @@ function calendar_admin_updateconfig()
 
     // This function generated no output, and so now it is complete we redirect
     // the user to an appropriate page for them to carry on their work
-    xarController::redirect(xarController::URL('calendar', 'admin', 'modifyconfig'));
+    xarController::redirect(xarController::URL('calendar', 'admin', 'modifyconfig'), null, $context);
 
     // Return
     return true;

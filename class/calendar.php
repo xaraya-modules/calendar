@@ -9,6 +9,10 @@
 
 namespace Xaraya\Modules\Calendar;
 
+use xarLocale;
+use xarMod;
+use xarVar;
+
 class Calendar
 {
     public $startDayOfWeek;
@@ -28,7 +32,7 @@ class Calendar
         $this->startDayOfWeek = 0;
 
         // load the locale date
-        $localeData =& xarLocale::loadData();
+        $localeData = & xarLocale::loadData();
         //echo '<pre>'; print_r($localeData); echo '</pre>';
         // long month names from locale.xml
         $this->monthNamesLong = [
@@ -96,11 +100,11 @@ class Calendar
 
     /**
      *    will return array of events for the range specified
-     *    @params $date1 string valid date as YYYYMMDD
-     *    @params $date2 string valid date as YYYYMMDD
-     *    @return array events for the range specified
+     *    @param $date1 string valid date as YYYYMMDD
+     *    @param $date2 string valid date as YYYYMMDD
+     *    @return array|bool events for the range specified
      */
-    public function &getEvents($date1, $date2=null)
+    public function &getEvents($date1, $date2 = null)
     {
         return true;
     }
@@ -109,7 +113,7 @@ class Calendar
      *  creates an array used to build the final output
      *  @param string $d optional date of the week to build [ YYYYMMDD ]
      */
-    public function &getCalendarWeek($d=null)
+    public function &getCalendarWeek($d = null)
     {
         if (!isset($d)) {
             $d = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Ymd');
@@ -118,7 +122,7 @@ class Calendar
         $month = substr($d, 4, 2);
         $day = substr($d, 6, 2);
 
-        $month = $this->getCalendarMonth($year.$month);
+        $month = $this->getCalendarMonth($year . $month);
 
         foreach ($month as $week) {
             if (in_array($d, $week)) {
@@ -134,7 +138,7 @@ class Calendar
      *  creates an array used to build the final output
      *  @param string $d optional date of the month to build [ YYYYMM ]
      */
-    public function &getCalendarMonth($d=null)
+    public function &getCalendarMonth($d = null)
     {
         if (!isset($d)) {
             $d = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Ym');
@@ -167,14 +171,14 @@ class Calendar
             $nextDays = -$nextDays;
         }
 
-        $start = gmdate('Ymd', gmmktime(0, 0, 0, $month, 1-$pastDays, $year));
-        $last = gmdate('Ymd', gmmktime(0, 0, 0, $month, $numDays+$nextDays, $year));
-        $numWeeks = ceil(($this->dateToDays($last) - $this->dateToDays($start))/7);
+        $start = gmdate('Ymd', gmmktime(0, 0, 0, $month, 1 - $pastDays, $year));
+        $last = gmdate('Ymd', gmmktime(0, 0, 0, $month, $numDays + $nextDays, $year));
+        $numWeeks = ceil(($this->dateToDays($last) - $this->dateToDays($start)) / 7);
         $current_day = $this->dateToDays($start);
 
         // build the month array
-        for ($i=0; $i<$numWeeks; $i++) {
-            for ($d=0; $d<7; $d++) {
+        for ($i = 0; $i < $numWeeks; $i++) {
+            for ($d = 0; $d < 7; $d++) {
                 $date = $this->daysToDate($current_day);
                 $month_array[$i][$d] = $date;
                 $current_day++;
@@ -188,7 +192,7 @@ class Calendar
      *  creates an array used to build the final output
      *  @param string $d optional date of the year to build [ YYYY ]
      */
-    public function &getCalendarYear($y=null)
+    public function &getCalendarYear($y = null)
     {
         if (!isset($y)) {
             $y = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Y');
@@ -196,9 +200,9 @@ class Calendar
 
         $year_array = [];
         // year month loops
-        for ($i=1;$i<=12;$i++) {
+        for ($i = 1;$i <= 12;$i++) {
             $m = sprintf('%02d', $i);
-            $year_array[$i] = $this->getCalendarMonth($y.$m);
+            $year_array[$i] = $this->getCalendarMonth($y . $m);
         }
         return $year_array;
     }
@@ -214,7 +218,7 @@ class Calendar
             // we'll just leave it as is then
             return true;
         }
-        $this->startDayOfWeek =& $d;
+        $this->startDayOfWeek = & $d;
         return true;
     }
 
@@ -231,7 +235,7 @@ class Calendar
      *  Returns the day the calendar starts on (0=Sunday through 6=Saturday)
      *  @return bool if the day is
      */
-    public function dayIs($dow=0, $date=null)
+    public function dayIs($dow = 0, $date = null)
     {
         if (!isset($date)) {
             $date = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Ymd');
@@ -255,56 +259,56 @@ class Calendar
         return $this->monthNamesShort;
     }
 
-    public function &getLongDayNames($sdow=0)
+    public function &getLongDayNames($sdow = 0)
     {
         if ($sdow == 0) {
             return $this->dayNamesLong;
         }
         $ordered_array = [];
-        for ($i=0;$i<7;$i++) {
+        for ($i = 0;$i < 7;$i++) {
             $ordered_array[] = $this->dayNamesLong[$sdow];
             if (++$sdow > 6) {
-                $sdow=0;
+                $sdow = 0;
             }
         }
         return $ordered_array;
     }
 
-    public function &getMediumDayNames($sdow=0)
+    public function &getMediumDayNames($sdow = 0)
     {
         if ($sdow == 0) {
             return $this->dayNamesMedium;
         }
         $ordered_array = [];
-        for ($i=0;$i<7;$i++) {
+        for ($i = 0;$i < 7;$i++) {
             $ordered_array[] = $this->dayNamesMedium[$sdow];
             if (++$sdow > 6) {
-                $sdow=0;
+                $sdow = 0;
             }
         }
         return $ordered_array;
     }
 
-    public function &getShortDayNames($sdow=0)
+    public function &getShortDayNames($sdow = 0)
     {
         if ($sdow == 0) {
             return $this->dayNamesShort;
         }
         $ordered_array = [];
-        for ($i=0;$i<7;$i++) {
+        for ($i = 0;$i < 7;$i++) {
             $ordered_array[] = $this->dayNamesShort[$sdow];
             if (++$sdow > 6) {
-                $sdow=0;
+                $sdow = 0;
             }
         }
         return $ordered_array;
     }
 
-    public function &MonthLong($month=1)
+    public function &MonthLong($month = 1)
     {
         return $this->monthNamesLong[--$month];
     }
-    public function &MonthShort($month=1)
+    public function &MonthShort($month = 1)
     {
         return $this->monthNamesLong[--$month];
     }
@@ -353,10 +357,10 @@ class Calendar
                 $year--;
             } else {
                 $year = 99;
-                $century --;
+                $century--;
             }
         }
-        return(floor((146097*$century)/4)+floor((1461*$year)/4)+floor((153*$month+2)/5)+$day+1721119);
+        return(floor((146097 * $century) / 4) + floor((1461 * $year) / 4) + floor((153 * $month + 2) / 5) + $day + 1721119);
     }
     /**
      *  daysToDate
@@ -366,19 +370,19 @@ class Calendar
     public function daysToDate($days)
     {
         $days   -= 1721119;
-        $century = floor((4*$days-1)/146097);
-        $days    = floor(4*$days-1-146097*$century);
-        $day     = floor($days/4);
-        $year    = floor((4*$day+3)/1461);
-        $day     = floor(4*$day+3-1461*$year);
-        $day     = floor(($day+4)/4);
-        $month   = floor((5*$day-3)/153);
-        $day     = floor(5*$day-3-153*$month);
-        $day     = floor(($day+5)/5);
+        $century = floor((4 * $days - 1) / 146097);
+        $days    = floor(4 * $days - 1 - 146097 * $century);
+        $day     = floor($days / 4);
+        $year    = floor((4 * $day + 3) / 1461);
+        $day     = floor(4 * $day + 3 - 1461 * $year);
+        $day     = floor(($day + 4) / 4);
+        $month   = floor((5 * $day - 3) / 153);
+        $day     = floor(5 * $day - 3 - 153 * $month);
+        $day     = floor(($day + 5) / 5);
         if ($month < 10) {
-            $month +=3;
+            $month += 3;
         } else {
-            $month -=9;
+            $month -= 9;
             if ($year++ == 99) {
                 $year = 0;
                 $century++;
@@ -386,6 +390,6 @@ class Calendar
         }
         $century = sprintf("%02d", $century);
         $year = sprintf("%02d", $year);
-        return(gmdate('Ymd', gmmktime(0, 0, 0, $month, $day, $century.$year)));
+        return(gmdate('Ymd', gmmktime(0, 0, 0, $month, $day, $century . $year)));
     }
 }

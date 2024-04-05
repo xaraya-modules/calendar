@@ -106,5 +106,5 @@ function calendar_userapi_encode_shorturl(&$params)
     }
 
 
-    return $path.$extra;
+    return $path . $extra;
 }

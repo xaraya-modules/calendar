@@ -14,7 +14,7 @@
 /**
  *  Allows a user to modify their Calendar specific changes
  */
-function calendar_user_updateconfig()
+function calendar_user_updateconfig(array $args = [], $context = null)
 {
     xarVar::fetch('cal_sdow', 'int:0:6', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
     xarModUserVars::set('calendar', 'cal_sdow', $cal_sdow);
@@ -22,5 +22,5 @@ function calendar_user_updateconfig()
     xarVar::fetch('default_view', 'str::', $default_view, xarModUserVars::get('calendar', 'default_view'));
     xarModUserVars::set('calendar', 'default_view', $default_view);
 
-    xarController::redirect(xarController::URL('calendar', 'user', 'modifyconfig'));
+    xarController::redirect(xarController::URL('calendar', 'user', 'modifyconfig'), null, $context);
 }

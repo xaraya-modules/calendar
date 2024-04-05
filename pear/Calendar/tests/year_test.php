@@ -132,7 +132,7 @@ class TestOfYearBuild extends TestOfYear
     public function testFetch()
     {
         $this->cal->build();
-        $i=0;
+        $i = 0;
         while ($Child = $this->cal->fetch()) {
             $i++;
         }
@@ -144,7 +144,7 @@ class TestOfYearBuild extends TestOfYear
         $children = [];
         $i = 1;
         while ($Child = $this->cal->fetch()) {
-            $children[$i]=$Child;
+            $children[$i] = $Child;
             $i++;
         }
         $this->assertEqual($children, $this->cal->fetchAll());

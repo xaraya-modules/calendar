@@ -17,7 +17,7 @@ sys::import('modules.dynamicdata.class.objects.factory');
  * Create a new item of the event object
  *
  */
-function calendar_user_new()
+function calendar_user_new(array $args = [], $context = null)
 {
     if (!xarSecurity::check('AddCalendar')) {
         return;

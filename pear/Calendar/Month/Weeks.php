@@ -43,18 +43,18 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Load base month
  */
-require_once CALENDAR_ROOT.'Month.php';
+require_once CALENDAR_ROOT . 'Month.php';
 
 /**
  * Represents a Month and builds Weeks
@@ -101,7 +101,7 @@ class Calendar_Month_Weeks extends Calendar_Month
      *
      * @access public
      */
-    public function Calendar_Month_Weeks($y, $m, $firstDay=null)
+    public function Calendar_Month_Weeks($y, $m, $firstDay = null)
     {
         parent::Calendar_Month($y, $m, $firstDay);
     }
@@ -117,12 +117,12 @@ class Calendar_Month_Weeks extends Calendar_Month
      */
     public function build($sDates = [])
     {
-        include_once CALENDAR_ROOT.'Table/Helper.php';
+        include_once CALENDAR_ROOT . 'Table/Helper.php';
         $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
-        include_once CALENDAR_ROOT.'Week.php';
+        include_once CALENDAR_ROOT . 'Week.php';
         $numWeeks = $this->tableHelper->getNumWeeks();
-        for ($i=1, $d=1; $i<=$numWeeks; $i++,
-            $d+=$this->cE->getDaysInWeek(
+        for ($i = 1, $d = 1; $i <= $numWeeks; $i++,
+            $d += $this->cE->getDaysInWeek(
                 $this->thisYear(),
                 $this->thisMonth(),
                 $this->thisDay()

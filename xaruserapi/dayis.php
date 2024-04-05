@@ -19,7 +19,7 @@
  *  @param int $date valid date YYYYMMDD
  *  @return bool true/false depending on day looking for and the date
  */
-function calendar_userapi_dayIs($args)
+function calendar_userapi_dayIs(array $args = [], $context = null)
 {
     extract($args);
     unset($args);

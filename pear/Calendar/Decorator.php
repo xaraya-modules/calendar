@@ -77,7 +77,7 @@ class Calendar_Decorator
      *
      * @param object &$calendar subclass to Calendar to decorate
      */
-    public function Calendar_Decorator(&$calendar)
+    public function __construct(&$calendar)
     {
         $this->calendar = & $calendar;
     }
@@ -441,7 +441,7 @@ class Calendar_Decorator
         } else {
             include_once 'PEAR.php';
             PEAR::raiseError(
-                'Cannot call prevWeek on Calendar object of type: '.
+                'Cannot call prevWeek on Calendar object of type: ' .
                 get_class($this->calendar),
                 133,
                 PEAR_ERROR_TRIGGER,
@@ -467,7 +467,7 @@ class Calendar_Decorator
         } else {
             include_once 'PEAR.php';
             PEAR::raiseError(
-                'Cannot call thisWeek on Calendar object of type: '.
+                'Cannot call thisWeek on Calendar object of type: ' .
                 get_class($this->calendar),
                 133,
                 PEAR_ERROR_TRIGGER,
@@ -493,7 +493,7 @@ class Calendar_Decorator
         } else {
             include_once 'PEAR.php';
             PEAR::raiseError(
-                'Cannot call thisWeek on Calendar object of type: '.
+                'Cannot call thisWeek on Calendar object of type: ' .
                 get_class($this->calendar),
                 133,
                 PEAR_ERROR_TRIGGER,

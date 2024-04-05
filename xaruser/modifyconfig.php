@@ -14,12 +14,12 @@
 /**
  *  Allows a user to modify their Calendar specific changes
  */
-function calendar_user_modifyconfig()
+function calendar_user_modifyconfig(array $args = [], $context = null)
 {
     xarVar::fetch('cal_sdow', 'int:0:6', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
     xarVar::fetch('default_view', 'int:0:6', $default_view, xarModUserVars::get('calendar', 'default_view'));
     return [
-        'cal_sdow'=>$cal_sdow,
-        'default_view'=>$default_view,
+        'cal_sdow' => $cal_sdow,
+        'default_view' => $default_view,
         ];
 }

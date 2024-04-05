@@ -6,9 +6,9 @@
 if (!@include 'Calendar/Calendar.php') {
     define('CALENDAR_ROOT', '../../');
 }
-require_once CALENDAR_ROOT.'Day.php';
-require_once CALENDAR_ROOT.'Hour.php';
-require_once CALENDAR_ROOT.'Decorator.php';
+require_once CALENDAR_ROOT . 'Day.php';
+require_once CALENDAR_ROOT . 'Hour.php';
+require_once CALENDAR_ROOT . 'Decorator.php';
 
 // Decorator to "attach" functionality to selected hours
 class DiaryEvent extends Calendar_Decorator
@@ -38,15 +38,15 @@ $sql = "
         FROM
             diary
         WHERE
-            eventtime >= '".$Day->thisDay(true)."'
+            eventtime >= '" . $Day->thisDay(true) . "'
         AND
-            eventtime < '".$Day->nextDay(true)."';";
+            eventtime < '" . $Day->nextDay(true) . "';";
 
 // An array simulating data from a database
 $result = [
-    ['eventtime'=>mktime(9, 0, 0, 10, 24, 2003),'entry'=>'Meeting with sales team'],
-    ['eventtime'=>mktime(11, 0, 0, 10, 24, 2003),'entry'=>'Conference call with Widget Inc.'],
-    ['eventtime'=>mktime(15, 0, 0, 10, 24, 2003),'entry'=>'Presentation to board of directors'],
+    ['eventtime' => mktime(9, 0, 0, 10, 24, 2003),'entry' => 'Meeting with sales team'],
+    ['eventtime' => mktime(11, 0, 0, 10, 24, 2003),'entry' => 'Conference call with Widget Inc.'],
+    ['eventtime' => mktime(15, 0, 0, 10, 24, 2003),'entry' => 'Presentation to board of directors'],
     ];
 
 // An array to place selected hours in
@@ -95,7 +95,7 @@ while ($Hour = $Day->fetch()) {
 
         // If the hour is selected, call the decorator method...
         if ($Hour->isSelected()) {
-            echo("<td bgcolor=\"silver\">".$Hour->getEntry()."</td>\n");
+            echo("<td bgcolor=\"silver\">" . $Hour->getEntry() . "</td>\n");
         } else {
             echo("<td>&nbsp;</td>\n");
         }

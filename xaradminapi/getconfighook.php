@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_adminapi_getconfighook($args)
+function calendar_adminapi_getconfighook(array $args = [], $context = null)
 {
     extract($args);
     if (!isset($extrainfo['tabs'])) {

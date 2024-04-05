@@ -55,18 +55,18 @@ class CalendarDisplayProperty extends DataProperty
     {
         switch ($timeframe) {
             case 'week':
-                include_once(CALENDAR_ROOT.'Week.php');
+                include_once(CALENDAR_ROOT . 'Week.php');
                 sys::import("modules.calendar.class.Calendar.Decorator.event");
                 sys::import("modules.calendar.class.Calendar.Decorator.weekevent");
                 break;
             case 'month':
-                include_once(CALENDAR_ROOT.'Month/Weekdays.php');
-                include_once(CALENDAR_ROOT.'Day.php');
+                include_once(CALENDAR_ROOT . 'Month/Weekdays.php');
+                include_once(CALENDAR_ROOT . 'Day.php');
                 sys::import("modules.calendar.class.Calendar.Decorator.event");
                 sys::import("modules.calendar.class.Calendar.Decorator.monthevent");
                 break;
             case 'year':
-                include_once(CALENDAR_ROOT.'Year.php');
+                include_once(CALENDAR_ROOT . 'Year.php');
                 sys::import("modules.calendar.class.Calendar.Decorator.event");
                 sys::import("modules.calendar.class.Calendar.Decorator.monthevent");
                 sys::import("modules.calendar.class.Calendar.Decorator.yearevent");
@@ -88,7 +88,7 @@ class CalendarDisplayProperty extends DataProperty
 
                 $WeekDecorator = new WeekEvent_Decorator($WeekEvents);
                 $WeekDecorator->build($events);
-                $data['Week'] =& $WeekDecorator;
+                $data['Week'] = & $WeekDecorator;
                 $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
                 break;
             case 'month':
@@ -109,10 +109,10 @@ class CalendarDisplayProperty extends DataProperty
 
                 $MonthDecorator = new MonthEvent_Decorator($MonthEvents);
                 $MonthDecorator->build($events);
-                $data['Month'] =& $MonthDecorator;
+                $data['Month'] = & $MonthDecorator;
                 break;
             case 'year':
-                $Year = new Calendar_Year($data['cal_year']+1);
+                $Year = new Calendar_Year($data['cal_year'] + 1);
                 $end_time = $Year->getTimestamp();
                 $Year = new Calendar_Year($data['cal_year']);
                 $start_time = $Year->getTimestamp();
@@ -121,7 +121,7 @@ class CalendarDisplayProperty extends DataProperty
 
                 $YearDecorator = new YearEvent_Decorator($Year);
                 $YearDecorator->build($events);
-                $data['Year'] =& $YearDecorator->calendar;
+                $data['Year'] = & $YearDecorator->calendar;
                 $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
                 break;
         }
@@ -131,12 +131,12 @@ class CalendarDisplayProperty extends DataProperty
     public function getEvents($start_time, $end_time, $role_id)
     {
         // get all the events. need to improve this query and combine it with the query in the template
-        $xartable =& xarDB::getTables();
+        $xartable = & xarDB::getTables();
         $q = new Query('SELECT', $xartable['calendar_event']);
         $q->ge('start_time', $start_time);
         $q->lt('start_time', $end_time);
         $q->eq('role_id', $role_id);
-//        $q->qecho();
+        //        $q->qecho();
         if (!$q->run()) {
             return;
         }

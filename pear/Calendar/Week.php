@@ -43,13 +43,13 @@
  * @ignore
  */
 if (!defined('CALENDAR_ROOT')) {
-    define('CALENDAR_ROOT', 'Calendar'.DIRECTORY_SEPARATOR);
+    define('CALENDAR_ROOT', 'Calendar' . DIRECTORY_SEPARATOR);
 }
 
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Represents a Week and builds Days in tabular format<br>
@@ -138,7 +138,7 @@ class Calendar_Week extends Calendar
      */
     public function Calendar_Week($y, $m, $d, $firstDay = null)
     {
-        include_once CALENDAR_ROOT.'Table/Helper.php';
+        include_once CALENDAR_ROOT . 'Table/Helper.php';
         parent::Calendar($y, $m, $d);
         $this->firstDay    = $this->defineFirstDayOfWeek($firstDay);
         $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
@@ -215,7 +215,7 @@ class Calendar_Week extends Calendar
      */
     public function build($sDates = [])
     {
-        include_once CALENDAR_ROOT.'Day.php';
+        include_once CALENDAR_ROOT . 'Day.php';
         $year  = $this->cE->stampToYear($this->thisWeek);
         $month = $this->cE->stampToMonth($this->thisWeek);
         $day   = $this->cE->stampToDay($this->thisWeek);
@@ -225,7 +225,7 @@ class Calendar_Week extends Calendar
             $this->thisDay()
         );
 
-        for ($i=1; $i <= $end; $i++) {
+        for ($i = 1; $i <= $end; $i++) {
             $stamp = $this->cE->dateToStamp($year, $month, $day++);
             $this->children[$i] = new Calendar_Day(
                 $this->cE->stampToYear($stamp),
@@ -237,13 +237,13 @@ class Calendar_Week extends Calendar
         //set empty days (@see Calendar_Month_Weeks::build())
         if ($this->firstWeek) {
             $eBefore = $this->tableHelper->getEmptyDaysBefore();
-            for ($i=1; $i <= $eBefore; $i++) {
+            for ($i = 1; $i <= $eBefore; $i++) {
                 $this->children[$i]->setEmpty();
             }
         }
         if ($this->lastWeek) {
             $eAfter = $this->tableHelper->getEmptyDaysAfterOffset();
-            for ($i = $eAfter+1; $i <= $end; $i++) {
+            for ($i = $eAfter + 1; $i <= $end; $i++) {
                 $this->children[$i]->setEmpty();
             }
         }
@@ -350,7 +350,7 @@ class Calendar_Week extends Calendar
         switch (strtolower($format)) {
             case 'int':
             case 'n_in_month':
-                return ($this->firstWeek) ? null : $this->thisWeek('n_in_month') -1;
+                return ($this->firstWeek) ? null : $this->thisWeek('n_in_month') - 1;
             case 'n_in_year':
                 return $this->cE->getWeekNInYear(
                     $this->cE->stampToYear($this->prevWeek),
@@ -360,7 +360,7 @@ class Calendar_Week extends Calendar
             case 'array':
                 return $this->toArray($this->prevWeek);
             case 'object':
-                include_once CALENDAR_ROOT.'Factory.php';
+                include_once CALENDAR_ROOT . 'Factory.php';
                 return Calendar_Factory::createByTimestamp('Week', $this->prevWeek);
             case 'timestamp':
             default:
@@ -406,7 +406,7 @@ class Calendar_Week extends Calendar
             case 'array':
                 return $this->toArray($this->thisWeek);
             case 'object':
-                include_once CALENDAR_ROOT.'Factory.php';
+                include_once CALENDAR_ROOT . 'Factory.php';
                 return Calendar_Factory::createByTimestamp('Week', $this->thisWeek);
             case 'timestamp':
             default:
@@ -427,7 +427,7 @@ class Calendar_Week extends Calendar
         switch (strtolower($format)) {
             case 'int':
             case 'n_in_month':
-                return ($this->lastWeek) ? null : $this->thisWeek('n_in_month') +1;
+                return ($this->lastWeek) ? null : $this->thisWeek('n_in_month') + 1;
             case 'n_in_year':
                 return $this->cE->getWeekNInYear(
                     $this->cE->stampToYear($this->nextWeek),
@@ -437,7 +437,7 @@ class Calendar_Week extends Calendar
             case 'array':
                 return $this->toArray($this->nextWeek);
             case 'object':
-                include_once CALENDAR_ROOT.'Factory.php';
+                include_once CALENDAR_ROOT . 'Factory.php';
                 return Calendar_Factory::createByTimestamp('Week', $this->nextWeek);
             case 'timestamp':
             default:

@@ -40,7 +40,7 @@ function calendar_userapi_decode_shorturl(&$params)
     }
 
     // check out the next set of parameters (
-    for ($i=2,$max=count($params); $i<$max; $i++) {
+    for ($i = 2,$max = count($params); $i < $max; $i++) {
         if (preg_match('/(^[\d]{4,8})$/', $params[$i], $matches)) {
             // this is a date of some sort (YYYYMMDD)
             $args['cal_date'] = $matches[1];

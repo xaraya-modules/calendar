@@ -12,7 +12,7 @@
  */
 
 /** temp placeholder function to make year view work */
-function calendar_userapi_getweeknumber()
+function calendar_userapi_getweeknumber(array $args = [], $context = null)
 {
     return 1;
 }

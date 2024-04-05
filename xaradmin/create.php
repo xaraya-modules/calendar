@@ -12,7 +12,7 @@
  */
 
 sys::import('modules.dynamicdata.class.objects.factory');
-function calendar_admin_create($args)
+function calendar_admin_create(array $args = [], $context = null)
 {
     extract($args);
 
@@ -99,17 +99,17 @@ function calendar_admin_create($args)
     xarModHooks::call('item', 'create', $itemid, $item);
 
     if (!empty($return_url)) {
-        xarController::redirect($return_url);
+        xarController::redirect($return_url, null, $context);
     } else {
         xarController::redirect(xarController::URL(
             'dynamicdata',
             'admin',
             'view',
             [
-                                      'itemid' => $myobject->objectid,
-                                      'tplmodule' => $tplmodule,
-                                      ]
-        ));
+                'itemid' => $myobject->objectid,
+                'tplmodule' => $tplmodule,
+            ]
+        ), null, $context);
     }
     return true;
 }

@@ -11,10 +11,10 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-include_once(CALENDAR_ROOT.'Week.php');
+include_once(CALENDAR_ROOT . 'Week.php');
 sys::import('xaraya.structures.query');
 
-function calendar_user_week()
+function calendar_user_week(array $args = [], $context = null)
 {
     $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
 

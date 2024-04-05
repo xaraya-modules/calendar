@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_userapi_getMonthNameShort($args)
+function calendar_userapi_getMonthNameShort(array $args = [], $context = null)
 {
     extract($args);
     unset($args);

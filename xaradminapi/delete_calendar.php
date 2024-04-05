@@ -29,7 +29,7 @@
  * @return bool|null true on success, false on failure
  */
 
-function calendar_adminapi_delete_calendar($args)
+function calendar_adminapi_delete_calendar(array $args = [], $context = null)
 {
     // Get arguments from argument array
     extract($args);
@@ -64,13 +64,13 @@ function calendar_adminapi_delete_calendar($args)
 
     // Get database setup
     $dbconn = xarDB::getConn();
-    $xartable =& xarDB::getTables();
+    $xartable = & xarDB::getTables();
     $calendarstable = $xartable['calendars'];
     $cal_filestable = $xartable['calendars_files'];
     $calfiles = $xartable['calfiles'];
 
     // Get files associated with that calendar
-    $query ="SELECT xar_files_id FROM $cal_filestable
+    $query = "SELECT xar_files_id FROM $cal_filestable
              WHERE xar_calendars_id = ? LIMIT 1 ";
     $result = $dbconn->Execute($query, [$calid]);
     if (!$result) {

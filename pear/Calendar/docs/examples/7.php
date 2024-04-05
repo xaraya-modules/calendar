@@ -2,11 +2,11 @@
 /**
 * Description: a SOAP Calendar Server
 */
-if (!@include('SOAP'.DIRECTORY_SEPARATOR.'Server.php')) {
+if (!@include('SOAP' . DIRECTORY_SEPARATOR . 'Server.php')) {
     die('You must have PEAR::SOAP installed');
 }
 
-if (!@include 'Calendar'.DIRECTORY_SEPARATOR.'Calendar.php') {
+if (!@include 'Calendar' . DIRECTORY_SEPARATOR . 'Calendar.php') {
     define('CALENDAR_ROOT', '../../');
 }
 
@@ -18,7 +18,7 @@ class Calendar_Server
     public function Calendar_Server()
     {
         $this->__dispatch_map['getMonth'] =
-            ['in'  => ['year' => 'int', 'month'=>'int'],
+            ['in'  => ['year' => 'int', 'month' => 'int'],
                   'out' => ['month' => '{urn:PEAR_SOAP_Calendar}Month'],
                   ];
         $this->__typedef['Month'] = [
@@ -43,13 +43,13 @@ class Calendar_Server
 
     public function getMonth($year, $month)
     {
-        require_once(CALENDAR_ROOT.'Month'.DIRECTORY_SEPARATOR.'Weekdays.php');
+        require_once(CALENDAR_ROOT . 'Month' . DIRECTORY_SEPARATOR . 'Weekdays.php');
         $Month = new Calendar_Month_Weekdays($year, $month);
         if (!$Month->isValid()) {
             $V = $Month->getValidator();
             $errorMsg = '';
             while ($error = $V->fetch()) {
-                $errorMsg .= $error->toString()."\n";
+                $errorMsg .= $error->toString() . "\n";
             }
             return new SOAP_Fault($errorMsg, 'Client');
         } else {
@@ -58,10 +58,10 @@ class Calendar_Server
             $Month->build();
             while ($Day = $Month->fetch()) {
                 $day = [
-                    'isFirst' => (int)$Day->isFirst(),
-                    'isLast'  => (int)$Day->isLast(),
-                    'isEmpty' => (int)$Day->isEmpty(),
-                    'day'     => (int)$Day->thisDay(),
+                    'isFirst' => (int) $Day->isFirst(),
+                    'isLast'  => (int) $Day->isLast(),
+                    'isEmpty' => (int) $Day->isEmpty(),
+                    'day'     => (int) $Day->thisDay(),
                     ];
                 $days[] = $day;
             }
@@ -75,13 +75,13 @@ $server->_auto_translation = true;
 $calendar = new Calendar_Server();
 $server->addObjectMap($calendar, 'urn:PEAR_SOAP_Calendar');
 
-if (strtoupper($_SERVER['REQUEST_METHOD'])=='POST') {
+if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
     $server->service($GLOBALS['HTTP_RAW_POST_DATA']);
 } else {
-    require_once 'SOAP'.DIRECTORY_SEPARATOR.'Disco.php';
+    require_once 'SOAP' . DIRECTORY_SEPARATOR . 'Disco.php';
     $disco = new SOAP_DISCO_Server($server, "PEAR_SOAP_Calendar");
     if (isset($_SERVER['QUERY_STRING']) &&
-        strcasecmp($_SERVER['QUERY_STRING'], 'wsdl')==0) {
+        strcasecmp($_SERVER['QUERY_STRING'], 'wsdl') == 0) {
         header("Content-type: text/xml");
         echo $disco->getWSDL();
     } else {

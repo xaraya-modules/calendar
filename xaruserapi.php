@@ -50,13 +50,13 @@ if (!defined('CALENDAR_MODULE_ROOT')) {
     define('CALENDAR_MODULE_ROOT', "code/modules/{$modinfo['directory']}/");
 }
 if (!defined('CALENDAR_MODULE_INCLUDES')) {
-    define('CALENDAR_MODULE_INCLUDES', CALENDAR_MODULE_ROOT.'xarincludes/');
+    define('CALENDAR_MODULE_INCLUDES', CALENDAR_MODULE_ROOT . 'xarincludes/');
 }
 
 /**
  *  Used to get the current view the calendar is in (Day, Week, Month, Year)
  */
-function calendar_userapi_currentView()
+function calendar_userapi_currentView(array $args = [], $context = null)
 {
     xarVar::fetch('func', 'str::', $func, 'main', xarVar::NOT_REQUIRED);
     $valid = ['day','week','month','year'];
@@ -69,7 +69,7 @@ function calendar_userapi_currentView()
 }
 
 
-function calendar_userapi_buildURL($args=[])
+function calendar_userapi_buildURL($args = [])
 {
     extract($args);
     unset($args);
@@ -78,59 +78,59 @@ function calendar_userapi_buildURL($args=[])
         'calendar',
         'user',
         $cal_view,
-        ['cal_date'=>$cal_date]
+        ['cal_date' => $cal_date]
     );
 }
 
 
-function calendar_userapi_currentMonthURL()
+function calendar_userapi_currentMonthURL(array $args = [], $context = null)
 {
     return xarMod::apiFunc(
         'calendar',
         'user',
         'buildURL',
         [
-                    'cal_view'=>'month',
-                    'cal_date'=>xarLocale::formatDate('%Y%m%d'),
+                    'cal_view' => 'month',
+                    'cal_date' => xarLocale::formatDate('%Y%m%d'),
                     ]
     );
 }
 
-function calendar_userapi_currentWeekURL()
+function calendar_userapi_currentWeekURL(array $args = [], $context = null)
 {
     return xarMod::apiFunc(
         'calendar',
         'user',
         'buildURL',
         [
-                    'cal_view'=>'week',
-                    'cal_date'=>xarLocale::formatDate('%Y%m%d'),
+                    'cal_view' => 'week',
+                    'cal_date' => xarLocale::formatDate('%Y%m%d'),
                     ]
     );
 }
 
-function calendar_userapi_currentDayURL()
+function calendar_userapi_currentDayURL(array $args = [], $context = null)
 {
     return xarMod::apiFunc(
         'calendar',
         'user',
         'buildURL',
         [
-                    'cal_view'=>'day',
-                    'cal_date'=>xarLocale::formatDate('%Y%m%d'),
+                    'cal_view' => 'day',
+                    'cal_date' => xarLocale::formatDate('%Y%m%d'),
                     ]
     );
 }
 
-function calendar_userapi_currentYearURL()
+function calendar_userapi_currentYearURL(array $args = [], $context = null)
 {
     return xarMod::apiFunc(
         'calendar',
         'user',
         'buildURL',
         [
-                    'cal_view'=>'year',
-                    'cal_date'=>xarLocale::formatDate('%Y%m'),
+                    'cal_view' => 'year',
+                    'cal_date' => xarLocale::formatDate('%Y%m'),
                     ]
     );
 }

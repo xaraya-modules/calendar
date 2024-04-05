@@ -11,7 +11,7 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_admin_view($args)
+function calendar_admin_view(array $args = [], $context = null)
 {
     if (!xarSecurity::check('ManageCalendar')) {
         return;
