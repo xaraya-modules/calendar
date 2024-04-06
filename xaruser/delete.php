@@ -93,6 +93,7 @@ function calendar_user_delete(array $args = [], $context = null)
     if (empty($confirm)) {
         $data['authid'] = xarSec::genAuthKey();
         $data['object'] = $myobject;
+        $data['context'] ??= $context;
 
         if (file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/user-delete.xd') ||
             file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xd')) {

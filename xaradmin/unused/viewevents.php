@@ -7,5 +7,6 @@ function calendar_admin_viewevents(array $args = [], $context = null)
     }
     $data['object'] = xarMod::apiFunc('dynamicdata', 'user', 'getobjectlist', ['name' => 'calendar_event']);
     $data['object']->getItems();
+    $data['context'] ??= $context;
     return xarTpl::module('calendar', 'admin', 'view', $data);
 }

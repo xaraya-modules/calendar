@@ -84,6 +84,7 @@ function calendar_admin_update(array $args = [], $context = null)
         $hooks = xarModHooks::call('item', 'modify', $myobject->itemid, $item, $modinfo['name']);
         $data['hooks'] = $hooks;
 
+        $data['context'] ??= $context;
         return xarTpl::module($tplmodule, 'user', 'modify', $data);
     }
 

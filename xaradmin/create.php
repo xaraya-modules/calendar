@@ -81,6 +81,7 @@ function calendar_admin_create(array $args = [], $context = null)
         if (!isset($template)) {
             $template = $myobject->name;
         }
+        $data['context'] ??= $context;
         return xarTpl::module($tplmodule, 'user', 'new', $data, $template);
     }
 

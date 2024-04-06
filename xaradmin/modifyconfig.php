@@ -66,6 +66,7 @@ function calendar_admin_modifyconfig(array $args = [], $context = null)
 
             $isvalid = $data['module_settings']->checkInput();
             if (!$isvalid) {
+                $data['context'] ??= $context;
                 return xarTpl::module('calendar', 'admin', 'modifyconfig', $data);
             } else {
                 $itemid = $data['module_settings']->updateItem();
