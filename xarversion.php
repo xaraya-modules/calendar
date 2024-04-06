@@ -28,15 +28,19 @@ $modversion['admin']          = true;
 $modversion['user']           = true;
 $modversion['class']          = 'Complete';
 $modversion['category']       = 'Content';
+//$modversion['namespace']      = 'Xaraya\Modules\Calendar';
+$modversion['twigtemplates']  = true;
 $modversion['dependencyinfo'] = [
-                                    0 => [
-                                            'name' => 'Xaraya Core',
-                                            'version_ge' => '2.4.0',
-                                         ],
-                                ];
-$modversion['securityschema'] = ['calendar::event'     => 'Event Title::Event ID',
-                                      'calendar::category'  => 'Category Name::Category ID',
-                                      'calendar::topic'     => 'Topic Name::Topic ID',
-                                      'calendar::user'      => 'User Name::User ID',
-                                      'calendar::sharing'   => 'User Name::User ID',
-                                      'calendar::'          => '::', ];
+    0 => [
+        'name' => 'Xaraya Core',
+        'version_ge' => '2.4.1',
+    ],
+];
+$modversion['securityschema'] = [
+    'calendar::event'     => 'Event Title::Event ID',
+    'calendar::category'  => 'Category Name::Category ID',
+    'calendar::topic'     => 'Topic Name::Topic ID',
+    'calendar::user'      => 'User Name::User ID',
+    'calendar::sharing'   => 'User Name::User ID',
+    'calendar::'          => '::',
+];
