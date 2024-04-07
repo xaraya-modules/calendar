@@ -192,7 +192,7 @@ class Calendar
      */
     public $children = [];
 
-    protected $firstDay;
+    public $firstDay;
 
     /**
      * Constructs the Calendar
