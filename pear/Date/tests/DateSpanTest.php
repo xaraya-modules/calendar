@@ -22,7 +22,7 @@
 
 require_once 'Date.php';
 require_once 'Date/Span.php';
-require_once 'PHPUnit/Autoload.php';
+//require_once 'PHPUnit/Autoload.php';
 
 /**
  * Test case for Date_Span
@@ -30,7 +30,7 @@ require_once 'PHPUnit/Autoload.php';
  * @package Date
  * @author Leandro Lucarella <llucax@php.net>
  */
-class Date_SpanTest extends PHPUnit_Framework_TestCase
+class Date_SpanTest extends \PHPUnit\Framework\TestCase
 {
     public $time;
 

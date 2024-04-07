@@ -7,7 +7,7 @@ require_once('calendar_include.php');
 
 class ValidatorTests extends GroupTest
 {
-    public function ValidatorTests()
+    public function __construct()
     {
         $this->GroupTest('Validator Tests');
         $this->addTestFile('validator_unit_test.php');

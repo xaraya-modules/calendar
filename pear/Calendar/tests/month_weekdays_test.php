@@ -9,7 +9,7 @@ require_once './calendar_test.php';
 
 class TestOfMonthWeekdays extends TestOfCalendar
 {
-    public function TestOfMonthWeekdays()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Month Weekdays');
     }
@@ -87,7 +87,7 @@ class TestOfMonthWeekdays extends TestOfCalendar
 
 class TestOfMonthWeekdaysBuild extends TestOfMonthWeekdays
 {
-    public function TestOfMonthWeekdaysBuild()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Month_Weekdays::build()');
     }

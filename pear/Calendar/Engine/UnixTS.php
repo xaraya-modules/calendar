@@ -94,7 +94,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function stampToYear($stamp)
     {
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return (int) $date[0];
     }
 
@@ -108,7 +108,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function stampToMonth($stamp)
     {
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return (int) $date[1];
     }
 
@@ -122,7 +122,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function stampToDay($stamp)
     {
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return (int) $date[2];
     }
 
@@ -136,7 +136,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function stampToHour($stamp)
     {
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return (int) $date[3];
     }
 
@@ -150,7 +150,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function stampToMinute($stamp)
     {
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return (int) $date[4];
     }
 
@@ -164,7 +164,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function stampToSecond($stamp)
     {
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return (int) $date[5];
     }
 
@@ -236,8 +236,8 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function getDaysInMonth($y, $m)
     {
-        $stamp = Calendar_Engine_UnixTS::dateToStamp($y, $m, 1);
-        $date  = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $stamp = (new Calendar_Engine_UnixTS())->dateToStamp($y, $m, 1);
+        $date  = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return $date[6];
     }
 
@@ -253,8 +253,8 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function getFirstDayInMonth($y, $m)
     {
-        $stamp = Calendar_Engine_UnixTS::dateToStamp($y, $m, 1);
-        $date  = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $stamp = (new Calendar_Engine_UnixTS())->dateToStamp($y, $m, 1);
+        $date  = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return $date[8];
     }
 
@@ -285,8 +285,8 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function getWeekNInYear($y, $m, $d)
     {
-        $stamp = Calendar_Engine_UnixTS::dateToStamp($y, $m, $d);
-        $date  = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $stamp = (new Calendar_Engine_UnixTS())->dateToStamp($y, $m, $d);
+        $date  = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return $date[7];
     }
 
@@ -356,8 +356,8 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
      */
     public function getDayOfWeek($y, $m, $d)
     {
-        $stamp = Calendar_Engine_UnixTS::dateToStamp($y, $m, $d);
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $stamp = (new Calendar_Engine_UnixTS())->dateToStamp($y, $m, $d);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return $date[8];
     }
 
@@ -454,7 +454,7 @@ class Calendar_Engine_UnixTS /* implements Calendar_Engine_Interface */
             $today_date = @date('Y n j');
             $today = sscanf($today_date, '%d %d %d');
         }
-        $date = Calendar_Engine_UnixTS::stampCollection($stamp);
+        $date = (new Calendar_Engine_UnixTS())->stampCollection($stamp);
         return ($date[2] == $today[2]
                 && $date[1] == $today[1]
                 && $date[0] == $today[0]

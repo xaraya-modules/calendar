@@ -14,7 +14,7 @@ class MyBoldDecorator extends Calendar_Decorator
 {
     public function MyBoldDecorator(&$Calendar)
     {
-        parent::Calendar_Decorator($Calendar);
+        parent::__construct($Calendar);
     }
 
     public function thisDay()

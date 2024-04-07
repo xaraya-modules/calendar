@@ -12,7 +12,7 @@ class TestOfTableHelper extends UnitTestCase
 {
     public $mockengine;
     public $mockcal;
-    public function TestOfTableHelper()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Table_Helper');
     }

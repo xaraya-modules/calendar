@@ -315,7 +315,7 @@ class Date_TimeZone
      * @access   public
      * @see      Date::setTZ(), Date::setTZByID(), Date_TimeZone::isValidID()
      */
-    public function Date_TimeZone($ps_id)
+    public function __construct($ps_id)
     {
         $_DATE_TIMEZONE_DATA = & $GLOBALS['_DATE_TIMEZONE_DATA'];
 
@@ -422,7 +422,7 @@ class Date_TimeZone
      * @return   object     Date_TimeZone object of the default time zone
      * @access   public
      */
-    public function getDefault()
+    public static function getDefault()
     {
         return new Date_TimeZone($GLOBALS['_DATE_TIMEZONE_DEFAULT']);
     }
@@ -439,7 +439,7 @@ class Date_TimeZone
      * @return   void
      * @access   public
      */
-    public function setDefault($id)
+    public static function setDefault($id)
     {
         if (Date_TimeZone::isValidID($id)) {
             $GLOBALS['_DATE_TIMEZONE_DEFAULT'] = $id;
@@ -503,7 +503,7 @@ class Date_TimeZone
      * @access   public
      * @see      Date::setTZByID(), Date_TimeZone::Date_TimeZone()
      */
-    public function isValidID($ps_id)
+    public static function isValidID($ps_id)
     {
         if (isset($GLOBALS['_DATE_TIMEZONE_DATA'][$ps_id])) {
             return true;
@@ -665,23 +665,11 @@ class Date_TimeZone
                 $ha_matches
             )) {
                 [$hn_nmyear, $hn_nextmonth, $hn_nmday] =
-                    explode(" ", Date_Calc::beginOfMonthBySpan(
-                        1,
-                        $pn_month,
-                        $pn_year,
-                        "%Y %m %d"
-                    ));
+                    explode(" ", (new Date_Calc())->beginOfMonthBySpan(1, $pn_month, $pn_year, "%Y %m %d"));
                 [$hn_year, $hn_month, $hn_day] =
                     explode(
                         " ",
-                        Date_Calc::prevDayOfWeek(
-                            $ha_daysofweek[$ha_matches[1]],
-                            $hn_nmday,
-                            $hn_nextmonth,
-                            $hn_nmyear,
-                            "%Y %m %d",
-                            false
-                        )
+                        (new Date_Calc())->prevDayOfWeek($ha_daysofweek[$ha_matches[1]], $hn_nmday, $hn_nextmonth, $hn_nmyear, "%Y %m %d", false)
                     ); // not including
                 // this day
 
@@ -689,7 +677,7 @@ class Date_TimeZone
                     // This code happen legitimately if the calendar jumped some days
                     // e.g. in a calendar switch, or the limit day is badly defined:
                     //
-                    $hn_day = Date_Calc::getFirstDayOfMonth($pn_month, $pn_year);
+                    $hn_day = (new Date_Calc())->getFirstDayOfMonth($pn_month, $pn_year);
                 }
             } elseif (preg_match(
                 '/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)([><]=)([0-9]+)$/',
@@ -700,37 +688,23 @@ class Date_TimeZone
                     [$hn_year, $hn_month, $hn_day] =
                         explode(
                             " ",
-                            Date_Calc::prevDayOfWeek(
-                                $ha_daysofweek[$ha_matches[1]],
-                                $ha_matches[3],
-                                $pn_month,
-                                $pn_year,
-                                "%Y %m %d",
-                                true
-                            )
+                            (new Date_Calc())->prevDayOfWeek($ha_daysofweek[$ha_matches[1]], $ha_matches[3], $pn_month, $pn_year, "%Y %m %d", true)
                         ); // including
                     // this day
 
                     if ($hn_month != $pn_month) {
-                        $hn_day = Date_Calc::getFirstDayOfMonth($pn_month, $pn_year);
+                        $hn_day = (new Date_Calc())->getFirstDayOfMonth($pn_month, $pn_year);
                     }
                 } else {
                     [$hn_year, $hn_month, $hn_day] =
                         explode(
                             " ",
-                            Date_Calc::nextDayOfWeek(
-                                $ha_daysofweek[$ha_matches[1]],
-                                $ha_matches[3],
-                                $pn_month,
-                                $pn_year,
-                                "%Y %m %d",
-                                true
-                            )
+                            (new Date_Calc())->nextDayOfWeek($ha_daysofweek[$ha_matches[1]], $ha_matches[3], $pn_month, $pn_year, "%Y %m %d", true)
                         ); // including
                     // this day
 
                     if ($hn_month != $pn_month) {
-                        $hn_day = Date_Calc::daysInMonth($pn_month, $pn_year);
+                        $hn_day = (new Date_Calc())->daysInMonth($pn_month, $pn_year);
                     }
                 }
             }
@@ -817,12 +791,7 @@ class Date_TimeZone
                            $this->on_summertimestarttime) {
                     return PEAR::raiseError(
                         "Invalid time specified for date '" .
-                                            Date_Calc::dateFormat(
-                                                $hn_day,
-                                                $hn_month,
-                                                $hn_year,
-                                                "%Y-%m-%d"
-                                            ) .
+                                            (new Date_Calc())->dateFormat($hn_day, $hn_month, $hn_year, "%Y-%m-%d") .
                                             "'",
                         DATE_ERROR_INVALIDTIME
                     );

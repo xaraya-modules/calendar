@@ -8,7 +8,7 @@ require_once('calendar_include.php');
 class TestOfCalendar extends UnitTestCase
 {
     public $cal;
-    public function TestOfCalendar($name = 'Test of Calendar')
+    public function __construct($name = 'Test of Calendar')
     {
         $this->UnitTestCase($name);
     }
@@ -144,7 +144,7 @@ class TestOfCalendar extends UnitTestCase
     }
     public function testIsToday()
     {
-        $stamp = mktime();
+        $stamp = time();
         $this->cal->setTimestamp($stamp);
         $this->assertTrue($this->cal->isToday());
 

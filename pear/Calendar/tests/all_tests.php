@@ -2,7 +2,7 @@
 
 // $Id: all_tests.php 166473 2004-08-16 08:55:24Z hfuecks $
 
-require_once('simple_include.php');
+//require_once('simple_include.php');
 require_once('calendar_include.php');
 
 define("TEST_RUNNING", true);
@@ -19,7 +19,7 @@ require_once('./util_tests.php');
 
 class AllTests extends GroupTest
 {
-    public function AllTests()
+    public function __construct()
     {
         $this->GroupTest('All PEAR::Calendar Tests');
         $this->AddTestCase(new CalendarTests());

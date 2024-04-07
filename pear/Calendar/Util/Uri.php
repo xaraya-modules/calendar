@@ -99,7 +99,7 @@ class Calendar_Util_Uri
      *
      * @access public
      */
-    public function Calendar_Util_Uri($y, $m = null, $d = null, $h = null, $i = null, $s = null)
+    public function __construct($y, $m = null, $d = null, $h = null, $i = null, $s = null)
     {
         $this->setFragments($y, $m, $d, $h, $i, $s);
     }

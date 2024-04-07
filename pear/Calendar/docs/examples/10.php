@@ -20,7 +20,7 @@ class MonthDecorator extends Calendar_Decorator
     */
     public function MonthDecorator(& $Month)
     {
-        parent::Calendar_Decorator($Month);
+        parent::__construct($Month);
     }
     /**
     * Override the prevMonth method to format the output

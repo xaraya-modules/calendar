@@ -8,7 +8,7 @@ require_once('calendar_include.php');
 class TestOfUnixTsEngine extends UnitTestCase
 {
     public $engine;
-    public function TestOfUnixTsEngine()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Engine_UnixTs');
     }
@@ -124,7 +124,7 @@ class TestOfUnixTsEngine extends UnitTestCase
     }
     public function testIsToday()
     {
-        $stamp = mktime();
+        $stamp = time();
         $this->assertTrue($this->engine->isToday($stamp));
         $stamp += 1000000000;
         $this->assertFalse($this->engine->isToday($stamp));

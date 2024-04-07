@@ -136,10 +136,10 @@ class Calendar_Week extends Calendar
      *
      * @access public
      */
-    public function Calendar_Week($y, $m, $d, $firstDay = null)
+    public function __construct($y, $m, $d, $firstDay = null)
     {
         include_once CALENDAR_ROOT . 'Table/Helper.php';
-        parent::Calendar($y, $m, $d);
+        parent::__construct($y, $m, $d);
         $this->firstDay    = $this->defineFirstDayOfWeek($firstDay);
         $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
         $this->thisWeek    = $this->tableHelper->getWeekStart($y, $m, $d, $this->firstDay);

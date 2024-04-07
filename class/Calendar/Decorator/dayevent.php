@@ -10,6 +10,7 @@ class DayEvent_Decorator extends Calendar_Decorator
     public $month;
     public $day;
     public $firstDay = false;
+    public $children = [];
 
     public function build($events = [])
     {

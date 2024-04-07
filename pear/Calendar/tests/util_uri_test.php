@@ -12,7 +12,7 @@ class TestOfUtilUri extends UnitTestCase
 {
     public $MockCal;
 
-    public function TestOfUtilUri()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Util_Uri');
     }

@@ -50,7 +50,7 @@ if ('@include_path@' != '@' . 'include_path' . '@') {
 } else {
     ini_set(
         'include_path',
-        realpath(dirname(__FILE__) . '/../')
+        realpath(__DIR__ . '/../')
             . PATH_SEPARATOR . '.' . PATH_SEPARATOR
             . ini_get('include_path')
     );

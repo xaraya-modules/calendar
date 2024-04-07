@@ -9,7 +9,7 @@ require_once('./calendar_test.php');
 
 class TestOfYear extends TestOfCalendar
 {
-    public function TestOfYear()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Year');
     }
@@ -120,7 +120,7 @@ class TestOfYear extends TestOfCalendar
 
 class TestOfYearBuild extends TestOfYear
 {
-    public function TestOfYearBuild()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Year::build()');
     }

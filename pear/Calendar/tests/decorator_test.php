@@ -15,7 +15,7 @@ class TestOfDecorator extends UnitTestCase
     public $mockengine;
     public $mockcal;
     public $decorator;
-    public function TestOfDecorator()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Decorator');
     }

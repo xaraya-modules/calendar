@@ -9,7 +9,7 @@ require_once('./decorator_test.php');
 
 class TestOfDecoratorTextual extends TestOfDecorator
 {
-    public function TestOfDecoratorTextual()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Decorator_Textual');
     }

@@ -10,7 +10,7 @@ require_once('./calendar_test.php');
 
 class TestOfWeek_firstday_0 extends TestOfCalendar
 {
-    public function TestOfWeek_firstday_0()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Week - Week Starting on Sunday');
     }
@@ -202,7 +202,7 @@ class TestOfWeek_firstday_0 extends TestOfCalendar
 
 class TestOfWeek_firstday_0_Build extends TestOfWeek_firstday_0
 {
-    public function TestOfWeek_firstday_0_Build()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Week::build() - FirstDay = Sunday');
     }

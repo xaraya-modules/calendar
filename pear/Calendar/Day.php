@@ -101,9 +101,9 @@ class Calendar_Day extends Calendar
      *
      * @access public
      */
-    public function Calendar_Day($y, $m, $d)
+    public function __construct($y, $m, $d)
     {
-        parent::Calendar($y, $m, $d);
+        parent::__construct($y, $m, $d);
     }
 
     /**

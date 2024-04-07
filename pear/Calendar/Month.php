@@ -80,9 +80,9 @@ class Calendar_Month extends Calendar
      *
      * @access public
      */
-    public function Calendar_Month($y, $m, $firstDay = null)
+    public function __construct($y, $m, $firstDay = null)
     {
-        parent::Calendar($y, $m);
+        parent::__construct($y, $m);
         $this->firstDay = $this->defineFirstDayOfWeek($firstDay);
     }
 

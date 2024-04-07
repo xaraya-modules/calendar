@@ -4,9 +4,15 @@
     "description": "Calendar System",
     "homepage": "https://github.com/xaraya-modules/calendar",
     "license": "GPL-2.0-or-later",
-    "require": {},
     "autoload": {
         "classmap": ["./"],
-        "exclude-from-classmap": ["/vendor/", "/pear/"]
+        "exclude-from-classmap": [
+            "/pear/Calendar/tests/",
+            "/pear/Calendar/docs/",
+            "/pear/Date/tests/"
+        ]
+    },
+    "require": {
+        "pear/pear-core-minimal": "^1.10"
     }
 }

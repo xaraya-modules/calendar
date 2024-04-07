@@ -15,7 +15,7 @@ class Calendar_Server
     public $__dispatch_map = [];
     public $__typedef      = [];
 
-    public function Calendar_Server()
+    public function __construct()
     {
         $this->__dispatch_map['getMonth'] =
             ['in'  => ['year' => 'int', 'month' => 'int'],
@@ -35,10 +35,7 @@ class Calendar_Server
 
     public function __dispatch($methodname)
     {
-        if (isset($this->__dispatch_map[$methodname])) {
-            return $this->__dispatch_map[$methodname];
-        }
-        return null;
+        return $this->__dispatch_map[$methodname] ?? null;
     }
 
     public function getMonth($year, $month)

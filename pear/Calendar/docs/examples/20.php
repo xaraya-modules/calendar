@@ -22,7 +22,7 @@ class DiaryEvent extends Calendar_Decorator
 
     public function DiaryEvent($calendar)
     {
-        Calendar_Decorator::Calendar_Decorator($calendar);
+        parent::__construct($calendar);
     }
 
     public function addEntry($entry)
@@ -32,7 +32,11 @@ class DiaryEvent extends Calendar_Decorator
 
     public function getEntry()
     {
-        $entry = each($this->entries);
+        $entry[1] = current($this->entries);
+        $entry['value'] = current($this->entries);
+        $entry[0] = key($this->entries);
+        $entry['key'] = key($this->entries);
+        next($this->entries);
         if ($entry) {
             return $entry['value'];
         } else {
@@ -98,7 +102,11 @@ class MonthPayload_Decorator extends Calendar_Decorator
 
     public function fetch()
     {
-        $child = each($this->children);
+        $child[1] = current($this->children);
+        $child['value'] = current($this->children);
+        $child[0] = key($this->children);
+        $child['key'] = key($this->children);
+        next($this->children);
         if ($child) {
             return $child['value'];
         } else {

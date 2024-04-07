@@ -16,7 +16,7 @@ class DiaryEvent extends Calendar_Decorator
     public $entry;
     public function DiaryEvent($calendar)
     {
-        Calendar_Decorator::Calendar_Decorator($calendar);
+        parent::__construct($calendar);
     }
     public function setEntry($entry)
     {

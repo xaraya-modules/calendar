@@ -8,7 +8,7 @@ require_once('calendar_include.php');
 class TestOfValidationError extends UnitTestCase
 {
     public $vError;
-    public function TestOfValidationError()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Validation Error');
     }

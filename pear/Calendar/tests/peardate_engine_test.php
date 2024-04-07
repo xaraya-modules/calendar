@@ -8,7 +8,7 @@ require_once('calendar_include.php');
 class TestOfPearDateEngine extends UnitTestCase
 {
     public $engine;
-    public function TestOfPearDateEngine()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Engine_PearDate');
     }

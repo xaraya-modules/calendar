@@ -12,7 +12,7 @@ class TestOfValidator extends UnitTestCase
 {
     public $mockengine;
     public $mockcal;
-    public function TestOfValidator()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Validator');
     }
@@ -174,7 +174,7 @@ class TestOfValidator extends UnitTestCase
 
 class TestOfValidatorLive extends UnitTestCase
 {
-    public function TestOfValidatorLive()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Validator Live');
     }

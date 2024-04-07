@@ -192,6 +192,8 @@ class Calendar
      */
     public $children = [];
 
+    protected $firstDay;
+
     /**
      * Constructs the Calendar
      *
@@ -204,7 +206,7 @@ class Calendar
      *
      * @access protected
      */
-    public function Calendar($y = 2000, $m = 1, $d = 1, $h = 0, $i = 0, $s = 0)
+    public function __construct($y = 2000, $m = 1, $d = 1, $h = 0, $i = 0, $s = 0)
     {
         static $cE = null;
         if (!isset($cE)) {

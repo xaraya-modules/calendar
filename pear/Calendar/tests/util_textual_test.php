@@ -11,7 +11,7 @@ class TestOfUtilTextual extends UnitTestCase
 {
     public $mockengine;
     public $mockcal;
-    public function TestOfUtilTextual()
+    public function __construct()
     {
         $this->UnitTestCase('Test of Calendar_Util_Textual');
     }

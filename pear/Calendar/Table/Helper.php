@@ -115,7 +115,7 @@ class Calendar_Table_Helper
      *
      * @access protected
      */
-    public function Calendar_Table_Helper(& $calendar, $firstDay = null)
+    public function __construct(& $calendar, $firstDay = null)
     {
         $this->calendar = & $calendar;
         $this->cE = & $calendar->getEngine();

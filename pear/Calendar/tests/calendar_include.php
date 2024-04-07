@@ -17,7 +17,7 @@ require_once(CALENDAR_ROOT . 'Month/Weekdays.php');
 require_once(CALENDAR_ROOT . 'Month/Weeks.php');
 require_once(CALENDAR_ROOT . 'Validator.php');
 require_once(CALENDAR_ROOT . 'Engine/Interface.php');
-require_once(CALENDAR_ROOT . 'Engine/UnixTs.php');
+require_once(CALENDAR_ROOT . 'Engine/UnixTS.php');
 require_once(CALENDAR_ROOT . 'Engine/PearDate.php');
 require_once(CALENDAR_ROOT . 'Table/Helper.php');
 require_once(CALENDAR_ROOT . 'Decorator/Textual.php');

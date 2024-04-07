@@ -81,9 +81,9 @@ class Calendar_Hour extends Calendar
      *
      * @access public
      */
-    public function Calendar_Hour($y, $m, $d, $h)
+    public function __construct($y, $m, $d, $h)
     {
-        parent::Calendar($y, $m, $d, $h);
+        parent::__construct($y, $m, $d, $h);
     }
 
     /**

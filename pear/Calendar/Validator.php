@@ -90,7 +90,7 @@ class Calendar_Validator
      *
      * @access public
      */
-    public function Calendar_Validator(&$calendar)
+    public function __construct(&$calendar)
     {
         $this->calendar = & $calendar;
         $this->cE       = & $calendar->getEngine();
@@ -361,7 +361,7 @@ class Calendar_Validation_Error
      *
      * @access protected
      */
-    public function Calendar_Validation_Error($unit, $value, $message)
+    public function __construct($unit, $value, $message)
     {
         $this->unit    = $unit;
         $this->value   = $value;

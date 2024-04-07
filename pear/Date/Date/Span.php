@@ -174,7 +174,7 @@ class Date_Span
      * @access   public
      * @see      set()
      */
-    public function Date_Span($time = 0, $format = null)
+    public function __construct($time = 0, $format = null)
     {
         $this->set($time, $format);
     }
@@ -451,7 +451,7 @@ class Date_Span
                 if (is_null($val)) {
                     return false;
                 }
-                $$vars[$i] = $val;
+                ${$vars}[$i] = $val;
             }
             if (strcasecmp($pm, 'pm') == 0) {
                 $hour += 12;
@@ -619,14 +619,7 @@ class Date_Span
             [$tdate1, $tdate2] = [$tdate2, $tdate1];
         }
 
-        $days = Date_Calc::dateDiff(
-            $tdate1->getDay(),
-            $tdate1->getMonth(),
-            $tdate1->getYear(),
-            $tdate2->getDay(),
-            $tdate2->getMonth(),
-            $tdate2->getYear()
-        );
+        $days = (new Date_Calc())->dateDiff($tdate1->getDay(), $tdate1->getMonth(), $tdate1->getYear(), $tdate2->getDay(), $tdate2->getMonth(), $tdate2->getYear());
 
         $hours = $tdate2->getHour() - $tdate1->getHour();
         $mins  = $tdate2->getMinute() - $tdate1->getMinute();
