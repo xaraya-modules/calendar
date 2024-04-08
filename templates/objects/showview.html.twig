@@ -8,7 +8,7 @@
     tplmodule="..." argument in the xar:data-list BL tag or showList() method call.
 --> #}
 {{ xar_style({scope: "module", module: "dynamicdata", file: "dd"}) }}
-{% if isprimary and xar_coremethod('xarModHooks', 'isHooked', ['categories',modname,itemtype]) %}
+{% if isprimary and xar_coremethod('xarModHooks', 'isHooked', 'categories', modname, itemtype) %}
     {{ include('@calendar/includes/catnavigation.html.twig') }}
 {% endif %}
 
