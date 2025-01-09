@@ -67,7 +67,7 @@ function calendar_userapi_init(array $args = [], $context = null)
     define('CAL_STATUS_CANCELLED', 2); // vevent, vtodo, vjournal
     define('CAL_STATUS_NEEDS_ACTION', 3); // vtodo
     define('CAL_STATUS_COMPLETED', 4); // vtodo
-    define('CAL_STATUS_IN-PROCESS', 5); // vtodo
+    define('CAL_STATUS_IN_PROCESS', 5); // vtodo
     define('CAL_STATUS_DRAFT', 7); // vjournal
     define('CAL_STATUS_FINAL', 8); // vjournal
 
