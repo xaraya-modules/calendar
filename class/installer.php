@@ -21,6 +21,7 @@ use xarModVars;
 use xarMod;
 use xarModHooks;
 use xarTableDDL;
+use Query;
 use sys;
 use Exception;
 

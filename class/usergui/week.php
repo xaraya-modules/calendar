@@ -14,6 +14,7 @@ namespace Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSession;
+use Query;
 use sys;
 use BadParameterException;
 
@@ -30,7 +31,7 @@ class WeekMethod extends MethodClass
     {
         $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
 
-        $WeekEvents = new Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
+        $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
 
         $start_time = $WeekEvents->thisWeek;
         $end_time = $WeekEvents->nextWeek;

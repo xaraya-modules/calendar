@@ -19,6 +19,7 @@ use xarModHooks;
 use xarTpl;
 use xarSession;
 use xarController;
+use DataObjectFactory;
 use sys;
 use BadParameterException;
 

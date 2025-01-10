@@ -21,6 +21,7 @@ use xarTpl;
 use xarModItemVars;
 use xarController;
 use xarModHooks;
+use DataPropertyMaster;
 use sys;
 use BadParameterException;
 
@@ -68,7 +69,7 @@ class ModifyconfigMethod extends MethodClass
                 switch ($data['tab']) {
                     case 'calendar_general':
                         sys::import('modules.calendar.pear.Calendar.Util.Textual');
-                        $data['weekdays'] = Calendar_Util_Textual::weekdayNames();
+                        $data['weekdays'] = \Calendar_Util_Textual::weekdayNames();
                         break;
                 }
 

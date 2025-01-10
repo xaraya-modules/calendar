@@ -17,6 +17,7 @@ use xarVar;
 use xarModVars;
 use xarSession;
 use xarServer;
+use DataObjectFactory;
 use sys;
 use BadParameterException;
 

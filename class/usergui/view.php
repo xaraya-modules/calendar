@@ -28,9 +28,9 @@ class ViewMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
-        $DayEvents = new Calendar_Day($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
+        $DayEvents = new \Calendar_Day($data['cal_year'], $data['cal_month'], $data['cal_day']);
         $args = [
-            'day' => &$Day,
+            'day' => &$DayEvents,
         ];
         $events = xarMod::apiFunc('calendar', 'user', 'getevents', $args);
         return $data;

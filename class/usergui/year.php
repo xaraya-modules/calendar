@@ -28,7 +28,7 @@ class YearMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
-        $Year = new Calendar_Year($data['cal_year']);
+        $Year = new \Calendar_Year($data['cal_year']);
         $Year->build(); // TODO: find a better way to handle this
         $data['Year'] = & $Year;
         $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;

@@ -40,7 +40,7 @@ class Calendar_MonthBlock extends BasicBlock
 
         // Build the month
         $data['content'] = xarMod::apiFunc('calendar', 'user', 'getuserdatetimeinfo');
-        $data['content']['MonthCal'] = new Calendar_Month_Weekdays(
+        $data['content']['MonthCal'] = new \Calendar_Month_Weekdays(
             $data['content']['cal_year'],
             $data['content']['cal_month'],
             CALENDAR_FIRST_DAY_OF_WEEK

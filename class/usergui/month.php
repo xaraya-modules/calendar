@@ -15,6 +15,7 @@ use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarModVars;
 use xarSession;
+use Query;
 use sys;
 use BadParameterException;
 
@@ -31,13 +32,13 @@ class MonthMethod extends MethodClass
     {
         $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
 
-        $MonthEvents = new Calendar_Month_Weekdays(
+        $MonthEvents = new \Calendar_Month_Weekdays(
             $data['cal_year'],
             $data['cal_month'] + 1,
             xarModVars::get('calendar', 'cal_sdow')
         );
         $end_time = $MonthEvents->getTimestamp();
-        $MonthEvents = new Calendar_Month_Weekdays(
+        $MonthEvents = new \Calendar_Month_Weekdays(
             $data['cal_year'],
             $data['cal_month'],
             xarModVars::get('calendar', 'cal_sdow')

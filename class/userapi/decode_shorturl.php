@@ -34,7 +34,7 @@ class DecodeShorturlMethod extends MethodClass
      * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
      * @author Marc Lutolf <mfl@netspan.ch>
      */
-    public function __invoke(&$params)
+    public function __invoke(array $params = [])
     {
         $args = [];
         $func = null;

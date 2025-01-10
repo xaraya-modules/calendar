@@ -30,7 +30,7 @@ class FactoryMethod extends MethodClass
      *  @version $Id: factory.php,v 1.5 2003/06/24 21:30:30 roger Exp $
      * @param string $class the name of the object to create
      */
-    public function __invoke($class)
+    public function __invoke(array $class = [])
     {
         static $calobject;
         static $icalobject;
@@ -41,7 +41,7 @@ class FactoryMethod extends MethodClass
         static $modinfo;
 
         if (!isset($modinfo)) {
-            $modInfo = & xarMod::getInfo(xarMod::getRegID('calendar'));
+            $modInfo = xarMod::getInfo(xarMod::getRegID('calendar'));
         }
 
         switch (strtolower($class)) {
@@ -51,23 +51,22 @@ class FactoryMethod extends MethodClass
                     $calobject = new \Xaraya\Modules\Calendar\Calendar();
                 }
                 return $calobject;
-                break;
 
             case 'ical_parser':
                 if (!isset($icalobject)) {
+                    // @todo no idea where this is now
                     sys::import("modules.$modInfo[osdirectory].class.ical_parser");
                     $icalobject = new \Xaraya\Modules\Calendar\iCal_Parser();
                 }
                 return $icalobject;
-                break;
 
             case 'event':
                 if (!isset($eventobject)) {
+                    // @todo needs a Calendar argument
                     sys::import("modules.$modInfo[osdirectory].class.event");
                     $eventobject = new \Xaraya\Modules\Calendar\Event();
                 }
                 return $eventobject;
-                break;
 
                 /*
                 case 'import':
@@ -81,7 +80,6 @@ class FactoryMethod extends MethodClass
                 */
             default:
                 return;
-                break;
         }
     }
 }

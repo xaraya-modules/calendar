@@ -39,8 +39,9 @@ class TestMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // some timing for now to see how fast|slow the parser is
+        // @todo no idea where this is now
         include_once('Benchmark/Timer.php');
-        $t = new Benchmark_Timer();
+        $t = new \Benchmark_Timer();
         $t->start();
         // @todo use johngrogg/ics-parser or sabre/vobject package
         $ical = xarMod::apiFunc('icalendar', 'user', 'factory', 'ical_parser');

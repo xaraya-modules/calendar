@@ -14,8 +14,9 @@ namespace Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSession;
+use DataObjectFactory;
 use sys;
-use BadParameterException;
+use IDNotFoundException;
 
 sys::import('xaraya.modules.method');
 
@@ -26,7 +27,7 @@ class HookcreateMethod extends MethodClass
 {
     /** functions imported by bermuda_cleanup */
 
-    public function __invoke($data)
+    public function __invoke(array $data = [])
     {
         if (!isset($data['extrainfo']) || !is_array($data['extrainfo'])) {
             $data['extrainfo'] = [];

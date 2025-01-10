@@ -21,7 +21,7 @@ class Calendar_MonthBlockAdmin extends Calendar_MonthBlock
         return $data;
     }
 
-    public function update(array $data = [])
+    public function update($data = [])
     {
         $args = [];
         xarVar::fetch('targetmodule', 'str', $args['targetmodule'], $this->targetmodule, xarVar::NOT_REQUIRED);

@@ -10,7 +10,7 @@
 
   <xsl:template match="xar:calendar-decorator">
     <xsl:processing-instruction name="php">
-      <xsl:text>$class = 'Calendar_Decorator_</xsl:text>
+      <xsl:text>$class = '\Calendar_Decorator_</xsl:text>
       <xsl:value-of select="@decorator"/>
       <xsl:text>';</xsl:text>
       <xsl:text>if(!class_exists($class)) {</xsl:text>

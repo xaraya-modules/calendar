@@ -15,6 +15,7 @@ use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarModVars;
 use xarDB;
+use Query;
 use sys;
 use BadParameterException;
 
@@ -30,9 +31,9 @@ class DayMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
-        $DayEvents = new Calendar_Day($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
+        $DayEvents = new \Calendar_Day($data['cal_year'], $data['cal_month'], $data['cal_day']);
         $args = [
-            'day' => &$Day,
+            'day' => &$DayEvents,
         ];
         $day_endts = $DayEvents->getTimestamp() + xarModVars::get('calendar', 'day_end') + 3600;
 
@@ -81,7 +82,7 @@ class DayMethod extends MethodClass
         /*
             $selection = array();
             foreach ( $entries as $entry ) {
-                $Hour = new Calendar_Hour(2000,1,1,1);
+                $Hour = new \Calendar_Hour(2000,1,1,1);
                 $Hour->setTimeStamp($entry['start_time']);
 
                 // Create the decorator, passing it the Hour
@@ -94,7 +95,7 @@ class DayMethod extends MethodClass
                 $selection[] = $event;
             }
             */
-        $DayDecorator = new DayEvent_Decorator($DayEvents);
+        $DayDecorator = new \DayEvent_Decorator($DayEvents);
         $DayDecorator->build($events);
         $data['Day'] = & $DayDecorator;
         $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;

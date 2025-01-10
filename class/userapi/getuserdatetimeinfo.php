@@ -47,9 +47,9 @@ class GetuserdatetimeinfoMethod extends MethodClass
         $data['cal_date'] = & $cal_date;
 
         if (!preg_match('/([\d]{4,4})([\d]{2,2})?([\d]{2,2})?/', $cal_date, $match)) {
-            $year = xarLocaleFormateDate('Y');
-            $month = xarLocaleFormateDate('m');
-            $day = xarLocaleFormateDate('d');
+            $year = xarLocale::formatDate('Y');
+            $month = xarLocale::formatDate('m');
+            $day = xarLocale::formatDate('d');
         } else {
             $year = $match[1];
             if (isset($match[2])) {
@@ -71,7 +71,7 @@ class GetuserdatetimeinfoMethod extends MethodClass
         //$data['selected_timestamp'] = gmmktime(0,0,0,$month,$day,$year);
 
         sys::import('xaraya.structures.datetime');
-        $today = new XarDateTime();
+        $today = new \XarDateTime();
         $usertz = xarModUserVars::get('roles', 'usertimezone', xarSession::getVar('role_id'));
         $useroffset = $today->getTZOffset($usertz);
         $data['now'] = getdate(time() + $useroffset);

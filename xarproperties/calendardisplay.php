@@ -80,7 +80,7 @@ class CalendarDisplayProperty extends DataProperty
         $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
         switch ($timeframe) {
             case 'week':
-                $WeekEvents = new Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
+                $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
                 $start_time = $WeekEvents->thisWeek;
                 $end_time = $WeekEvents->nextWeek;
 
@@ -92,13 +92,13 @@ class CalendarDisplayProperty extends DataProperty
                 $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
                 break;
             case 'month':
-                $MonthEvents = new Calendar_Month_Weekdays(
+                $MonthEvents = new \Calendar_Month_Weekdays(
                     $data['cal_year'],
                     $data['cal_month'] + 1,
                     xarModVars::get('calendar', 'cal_sdow')
                 );
                 $end_time = $MonthEvents->getTimestamp();
-                $MonthEvents = new Calendar_Month_Weekdays(
+                $MonthEvents = new \Calendar_Month_Weekdays(
                     $data['cal_year'],
                     $data['cal_month'],
                     xarModVars::get('calendar', 'cal_sdow')
@@ -112,9 +112,9 @@ class CalendarDisplayProperty extends DataProperty
                 $data['Month'] = & $MonthDecorator;
                 break;
             case 'year':
-                $Year = new Calendar_Year($data['cal_year'] + 1);
+                $Year = new \Calendar_Year($data['cal_year'] + 1);
                 $end_time = $Year->getTimestamp();
-                $Year = new Calendar_Year($data['cal_year']);
+                $Year = new \Calendar_Year($data['cal_year']);
                 $start_time = $Year->getTimestamp();
 
                 $events = $this->getEvents($start_time, $end_time, $role_id);
