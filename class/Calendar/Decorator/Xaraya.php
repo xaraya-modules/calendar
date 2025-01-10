@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File: $Id$
  * Xaraya Decorator for PEAR::Calendar Objects

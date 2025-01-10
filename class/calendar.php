@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    $Id: class.calendar.php,v 1.5 2003/06/24 20:30:28 roger Exp $
  *  xarCalendar
@@ -90,12 +91,12 @@ class Calendar
 
         // returns just the first letter from the shortDayNames
         $this->dayNamesShort = [substr($this->dayNamesMedium[0], 0, 1),
-                                     substr($this->dayNamesMedium[1], 0, 1),
-                                     substr($this->dayNamesMedium[2], 0, 1),
-                                     substr($this->dayNamesMedium[3], 0, 1),
-                                     substr($this->dayNamesMedium[4], 0, 1),
-                                     substr($this->dayNamesMedium[5], 0, 1),
-                                     substr($this->dayNamesMedium[6], 0, 1), ];
+            substr($this->dayNamesMedium[1], 0, 1),
+            substr($this->dayNamesMedium[2], 0, 1),
+            substr($this->dayNamesMedium[3], 0, 1),
+            substr($this->dayNamesMedium[4], 0, 1),
+            substr($this->dayNamesMedium[5], 0, 1),
+            substr($this->dayNamesMedium[6], 0, 1), ];
     }
 
     /**
