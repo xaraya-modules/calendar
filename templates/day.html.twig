@@ -42,7 +42,7 @@
                 {{- xar_button({type: "link", target: prevMonthURL, label: label}) -}}
                 {% set label = 'Previous Day' %}
                 {{- xar_button({type: "link", target: prevDayURL, label: label}) -}}
-                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %d %Y',Day.getTimeStamp()]) }}
+                {{ xar_coremethod('xarLocale', 'formatDate', '%B %d %Y',Day.getTimeStamp()) }}
                 {% set label = 'Next Day' %}
                 {{- xar_button({type: "link", target: nextDayURL, label: label}) -}}
                 {% set label = 'Next Month' %}

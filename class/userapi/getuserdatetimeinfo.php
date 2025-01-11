@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarLocale;
@@ -22,9 +24,10 @@ use BadParameterException;
 sys::import('xaraya.modules.method');
 
 /**
- * calendar userapi getuserdatetimeinfo function
+ * calendar userapi getUserDateTimeInfo function
+ * @extends MethodClass<UserApi>
  */
-class GetuserdatetimeinfoMethod extends MethodClass
+class GetUserDateTimeInfoMethod extends MethodClass
 {
     /** functions imported by bermuda_cleanup */
 

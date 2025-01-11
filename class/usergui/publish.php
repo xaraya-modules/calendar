@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
+
+use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarModVars;
@@ -25,6 +27,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar user publish function
+ * @extends MethodClass<UserGui>
  */
 class PublishMethod extends MethodClass
 {

@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use sys;
@@ -20,6 +22,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi factory function
+ * @extends MethodClass<UserApi>
  */
 class FactoryMethod extends MethodClass
 {

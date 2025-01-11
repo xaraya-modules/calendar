@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarController;
@@ -21,6 +23,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi prev function
+ * @extends MethodClass<UserApi>
  */
 class PrevMethod extends MethodClass
 {

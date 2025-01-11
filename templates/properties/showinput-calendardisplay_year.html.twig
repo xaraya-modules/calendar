@@ -12,14 +12,14 @@
             <th class="cal-navigation">
                 {% set label = 'Previous Year' %}
                 {{- xar_button({type: "link", target: prevYearURL, label: label}) -}}
-                {{ xar_coremethod('xarLocale', 'formatDate', ['%Y',Year.getTimeStamp()]) }}
+                {{ xar_coremethod('xarLocale', 'formatDate', '%Y',Year.getTimeStamp()) }}
                 {% set label = 'Next Year' %}
                 {{- xar_button({type: "link", target: nextYearURL, label: label}) -}}
             </th>
         </tr>
     </table>
 
-    {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d']) %}
+    {% set today = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d') %}
 
     {% set Month = Year.fetch() %}    
     <table id="cal-calendar">
@@ -34,7 +34,7 @@
                         <table id="cal-calendar">
                             <tr>
                                 <th class="cal-navigation" colspan="8">
-                                    <a href="{{ MonthURI.current('month') }}">{{ xar_coremethod('xarLocale', 'formatDate', ['%B',Month.getTimeStamp()]) }}</a>
+                                    <a href="{{ MonthURI.current('month') }}">{{ xar_coremethod('xarLocale', 'formatDate', '%B',Month.getTimeStamp()) }}</a>
                                 </th>
                             </tr>
                             <tr>
@@ -48,16 +48,16 @@
                             <xar:while condition="$Day">
                                 {% if Day.isFirst() %}
                                     {# <!-- Start a new row --> #}
-                                    {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.thisDay('timestamp')]) %}
+                                    {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.thisDay('timestamp')) %}
                                     {% set WeekUrl = xar_moduleurl('calendar','user','week',{'cal_date': WeekDate}) %}
                                     {% set WeekNum = xar_apifunc('calendar','user','getWeekNumber',{'cal_date': WeekDate}) %}
                                     <tr>
                                         <td>
-                                            <a href="{{ WeekUrl }}">{{ xar_coremethod('xarLocale', 'formatDate', ['%U',Day.getTimeStamp()]) }}</a>
+                                            <a href="{{ WeekUrl }}">{{ xar_coremethod('xarLocale', 'formatDate', '%U',Day.getTimeStamp()) }}</a>
                                         </td>
                                         <xar:while condition="1">                        
                                             {# <!-- populate the day --> #}
-                                            {% set thisday = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.thisDay('timestamp')]) %}
+                                            {% set thisday = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.thisDay('timestamp')) %}
                                             {% if today == thisday %}
                                                 {% set accentclass = 'xar-accent' %}
                                             {% else %}

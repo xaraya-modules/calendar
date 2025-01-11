@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarLocale;
@@ -22,6 +24,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi encode_shorturl function
+ * @extends MethodClass<UserApi>
  */
 class EncodeShorturlMethod extends MethodClass
 {

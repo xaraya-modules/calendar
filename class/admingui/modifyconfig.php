@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\AdminGui;
 
+
+use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSecurity;
@@ -29,6 +31,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar admin modifyconfig function
+ * @extends MethodClass<AdminGui>
  */
 class ModifyconfigMethod extends MethodClass
 {

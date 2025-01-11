@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarController;
 use sys;
@@ -19,9 +21,10 @@ use BadParameterException;
 sys::import('xaraya.modules.method');
 
 /**
- * calendar userapi getweeklink function
+ * calendar userapi getWeekLink function
+ * @extends MethodClass<UserApi>
  */
-class GetweeklinkMethod extends MethodClass
+class GetWeekLinkMethod extends MethodClass
 {
     /** functions imported by bermuda_cleanup */
 

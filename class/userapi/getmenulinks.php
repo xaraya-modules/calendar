@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarModUserVars;
@@ -24,6 +26,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi getmenulinks function
+ * @extends MethodClass<UserApi>
  */
 class GetmenulinksMethod extends MethodClass
 {

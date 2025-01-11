@@ -18,6 +18,15 @@ sys::import('xaraya.modules.adminapi');
 
 /**
  * Handle the calendar admin API
+ *
+ * @method mixed createCalendars(array $args)
+ * @method mixed deleteCalendar(array $args)
+ * @method mixed getCalendars(array $args)
+ * @method mixed getconfighook(array $args)
+ * @method mixed getmenulinks(array $args)
+ * @method mixed hookcreate(array $args)
+ * @method mixed hookupdate(array $args)
+ * @method mixed menu(array $args)
  * @extends AdminApiClass<Module>
  */
 class AdminApi extends AdminApiClass

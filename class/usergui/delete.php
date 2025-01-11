@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
+
+use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarSecurity;
@@ -28,6 +30,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar user delete function
+ * @extends MethodClass<UserGui>
  */
 class DeleteMethod extends MethodClass
 {

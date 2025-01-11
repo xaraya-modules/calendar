@@ -2,8 +2,8 @@
 
 {% block showinput_listing %}
 {% set url = xar_currenturl(params) %}
-    {% set search = search is not null?search.''; %}
-    {% set showsearch = showsearch is not null?showsearch.xar_coremethod('xarModItemVars', 'get', ['listings','showsearch',regid]); %}
+    {% set search = search is not null ? search : '' %}
+    {% set showsearch = showsearch is not null ? showsearch : xar_coremethod('xarModItemVars', 'get', ['listings','showsearch',regid]) %}
 
     <br />
     {{ include('@' ~ module ~ '/includes/listing_searchboxline.html.twig') }}

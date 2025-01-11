@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
+
+use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarModUserVars;
@@ -22,6 +24,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar user updateconfig function
+ * @extends MethodClass<UserGui>
  */
 class UpdateconfigMethod extends MethodClass
 {

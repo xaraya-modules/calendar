@@ -23,15 +23,15 @@
                             <td style="width: 22px"><b>{{ dayName }}</b></td>
                         {% endfor %}
                     </tr>
-                    {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',date().getTimeStamp()]) %}
+                    {% set today = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',date().getTimeStamp()) %}
                     {% set Day = MonthCal.fetch() %}
                     <xar:while condition="$Day">
-                        {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                        {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.getTimeStamp()) %}
                         <xar:calendar-decorator object="$Day" decorator="Xaraya" name="DayURI"/>
                         {% if WeekDate %}
                             <tr>
                                 <xar:while condition="1">
-                                    {% set RunningDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                                    {% set RunningDate = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.getTimeStamp()) %}
                                     {% if today == RunningDate %}
                                         <td class="selected" style="text-align: center">
                                             {% if not targetmodule %}

@@ -12,7 +12,7 @@
                 <a href="{{ url }}" alt="Click to order by this field" title="Order by {{ field }}">
                     {{ field }}
                 </a>
-                {% set subdata = array_merge(params,{'column': column}) %}
+                {% set subdata = params|merge({'column': column}) %}
                 {{ include('@' ~ module ~ '/includes/sortarrows.html.twig', subdata) }}
             </th>
         {% endfor %}

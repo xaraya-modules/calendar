@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
+
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarDB;
@@ -21,6 +23,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi getall function
+ * @extends MethodClass<UserApi>
  */
 class GetallMethod extends MethodClass
 {

@@ -25,8 +25,8 @@
                 {{- xar_button({type: "link", target: prevYearURL, label: label}) -}}
                 {% set label = 'Previous Week' %}
                 {{- xar_button({type: "link", target: prevWeekURL, label: label}) -}}
-                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %d %Y',startts]) }} -
-                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %d %Y',endts]) }}
+                {{ xar_coremethod('xarLocale', 'formatDate', '%B %d %Y',startts) }} -
+                {{ xar_coremethod('xarLocale', 'formatDate', '%B %d %Y',endts) }}
                 {% set label = 'Next Week' %}
                 {{- xar_button({type: "link", target: nextWeekURL, label: label}) -}}
                 {% set label = 'Next Year' %}
@@ -44,8 +44,8 @@
                         <td>&#160;{# <!-- week info goes here --> #}</td>
                     {% endif %}
                     {# <!-- populate the day --> #}
-                    {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d']) %}
-                    {% set thisday = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}                    
+                    {% set today = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d') %}
+                    {% set thisday = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.getTimeStamp()) %}                    
                     {% if today == thisday %}
                         {% set accentclass = 'xar-accent' %}
                     {% else %}

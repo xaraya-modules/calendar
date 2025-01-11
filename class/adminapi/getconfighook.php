@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
+
+use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
 use sys;
 use BadParameterException;
@@ -19,6 +21,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi getconfighook function
+ * @extends MethodClass<AdminApi>
  */
 class GetconfighookMethod extends MethodClass
 {

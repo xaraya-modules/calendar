@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
+
+use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSession;
@@ -22,6 +24,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar user week function
+ * @extends MethodClass<UserGui>
  */
 class WeekMethod extends MethodClass
 {

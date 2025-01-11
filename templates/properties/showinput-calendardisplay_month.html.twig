@@ -16,7 +16,7 @@
                 {{- xar_button({type: "link", target: prevYearURL, label: label}) -}}
                 {% set label = 'Previous Month' %}
                 {{- xar_button({type: "link", target: prevMonthURL, label: label}) -}}
-                {{ xar_coremethod('xarLocale', 'formatDate', ['%B %Y',Month.getTimeStamp()]) }}
+                {{ xar_coremethod('xarLocale', 'formatDate', '%B %Y',Month.getTimeStamp()) }}
                 {% set label = 'Next Month' %}
                 {{- xar_button({type: "link", target: nextMonthURL, label: label}) -}}
                 {% set label = 'Next Year' %}
@@ -46,17 +46,17 @@
                     Week URLs are more difficult to set up than regular URLs for the Calendar.
                     Below is currently the best way to set up a Week URL for the Calendar
                 --> #}
-                {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                {% set WeekDate = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.getTimeStamp()) %}
                 {% set WeekUrl = xar_moduleurl('calendar','user','week',{'cal_date': WeekDate}) %}
                 {% set WeekNum = xar_apifunc('calendar','user','getWeekNumber',{'cal_date': WeekDate}) %}
                 <tr>
                     <th class="cal-week">
-                        <a href="{{ WeekUrl }}">{{ xar_coremethod('xarLocale', 'formatDate', ['%U',Day.getTimeStamp()]) }}</a>
+                        <a href="{{ WeekUrl }}">{{ xar_coremethod('xarLocale', 'formatDate', '%U',Day.getTimeStamp()) }}</a>
                     </th>
                     <xar:while condition="1">                        
                         {# <!-- populate the day --> #}
-                        {% set today = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d']) %}
-                        {% set thisday = xar_coremethod('xarLocale', 'formatDate', ['%Y%m%d',Day.getTimeStamp()]) %}
+                        {% set today = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d') %}
+                        {% set thisday = xar_coremethod('xarLocale', 'formatDate', '%Y%m%d',Day.getTimeStamp()) %}
                         {% if today == thisday %}
                             {% set accentclass = 'xar-accent' %}
                         {% else %}

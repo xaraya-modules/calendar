@@ -19,6 +19,12 @@ sys::import('modules.calendar.class.adminapi');
 
 /**
  * Handle the calendar admin GUI
+ *
+ * @method mixed create(array $args)
+ * @method mixed main(array $args)
+ * @method mixed modifyconfig(array $args)
+ * @method mixed update(array $args)
+ * @method mixed view(array $args)
  * @extends AdminGuiClass<Module>
  */
 class AdminGui extends AdminGuiClass

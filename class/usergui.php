@@ -19,6 +19,22 @@ sys::import('modules.calendar.class.userapi');
 
 /**
  * Handle the calendar user GUI
+ *
+ * @method mixed day(array $args)
+ * @method mixed delete(array $args)
+ * @method mixed display(array $args)
+ * @method mixed main(array $args)
+ * @method mixed modify(array $args)
+ * @method mixed modifyconfig(array $args)
+ * @method mixed month(array $args)
+ * @method mixed new(array $args)
+ * @method mixed publish(array $args)
+ * @method mixed submit(array $args)
+ * @method mixed test(array $args)
+ * @method mixed updateconfig(array $args)
+ * @method mixed view(array $args)
+ * @method mixed week(array $args)
+ * @method mixed year(array $args)
  * @extends UserGuiClass<Module>
  */
 class UserGui extends UserGuiClass

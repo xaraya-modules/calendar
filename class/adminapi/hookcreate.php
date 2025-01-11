@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
+
+use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSession;
@@ -22,6 +24,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi hookcreate function
+ * @extends MethodClass<AdminApi>
  */
 class HookcreateMethod extends MethodClass
 {

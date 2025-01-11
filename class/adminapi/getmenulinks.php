@@ -11,6 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
+
+use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarSecurity;
 use xarController;
@@ -21,6 +23,7 @@ sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi getmenulinks function
+ * @extends MethodClass<AdminApi>
  */
 class GetmenulinksMethod extends MethodClass
 {

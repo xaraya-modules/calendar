@@ -12,15 +12,123 @@
 namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\UserApiClass;
+use xarLocale;
+use xarMod;
+use xarModVars;
+use xarVar;
+use xarController;
 use sys;
 
 sys::import('xaraya.modules.userapi');
 
 /**
  * Handle the calendar user API
+ *
+ * @method mixed createUserDateTime(array $args)
+ * @method mixed dayis(array $args)
+ * @method mixed decodeShorturl(array $args)
+ * @method mixed encodeShorturl(array $args)
+ * @method mixed factory(array $args)
+ * @method mixed get(array $args)
+ * @method mixed getUserDateTimeInfo(array $args)
+ * @method mixed getall(array $args)
+ * @method mixed getdaylink(array $args)
+ * @method mixed getevents(array $args)
+ * @method mixed getitemtypes(array $args)
+ * @method mixed getmenulinks(array $args)
+ * @method mixed getmonthlink(array $args)
+ * @method mixed getmonthnamelong(array $args)
+ * @method mixed getmonthnameshort(array $args)
+ * @method mixed getmonthstructure(array $args)
+ * @method mixed getWeekLink(array $args)
+ * @method mixed getWeekNumber(array $args)
+ * @method mixed getyearlink(array $args)
+ * @method mixed init(array $args)
+ * @method mixed next(array $args)
+ * @method mixed prev(array $args)
  * @extends UserApiClass<Module>
  */
 class UserApi extends UserApiClass
 {
-    // ...
+    /**
+     *  Used to get the current view the calendar is in (Day, Week, Month, Year)
+     */
+    public function currentView(array $args = [], $context = null)
+    {
+        xarVar::fetch('func', 'str::', $func, 'main', xarVar::NOT_REQUIRED);
+        $valid = ['day','week','month','year'];
+        $func = strtolower($func);
+        if (!in_array($func, $valid)) {
+            return xarModVars::get('calendar', 'default_view');
+        } else {
+            return $func;
+        }
+    }
+
+
+    public function buildURL($args = [])
+    {
+        extract($args);
+        unset($args);
+
+        return xarController::URL(
+            'calendar',
+            'user',
+            $cal_view,
+            ['cal_date' => $cal_date]
+        );
+    }
+
+
+    public function currentMonthURL(array $args = [], $context = null)
+    {
+        return xarMod::apiFunc(
+            'calendar',
+            'user',
+            'buildURL',
+            [
+                        'cal_view' => 'month',
+                        'cal_date' => xarLocale::formatDate('%Y%m%d'),
+                        ]
+        );
+    }
+
+    public function currentWeekURL(array $args = [], $context = null)
+    {
+        return xarMod::apiFunc(
+            'calendar',
+            'user',
+            'buildURL',
+            [
+                        'cal_view' => 'week',
+                        'cal_date' => xarLocale::formatDate('%Y%m%d'),
+                        ]
+        );
+    }
+
+    public function currentDayURL(array $args = [], $context = null)
+    {
+        return xarMod::apiFunc(
+            'calendar',
+            'user',
+            'buildURL',
+            [
+                        'cal_view' => 'day',
+                        'cal_date' => xarLocale::formatDate('%Y%m%d'),
+                        ]
+        );
+    }
+
+    public function currentYearURL(array $args = [], $context = null)
+    {
+        return xarMod::apiFunc(
+            'calendar',
+            'user',
+            'buildURL',
+            [
+                        'cal_view' => 'year',
+                        'cal_date' => xarLocale::formatDate('%Y%m'),
+                        ]
+        );
+    }
 }
