@@ -47,7 +47,7 @@ class GetconfighookMethod extends MethodClass
         $tabinfo = [
             'module'  => $module,
             'configarea'  => 'general',
-            'configtitle'  => xarML('Calendar'),
+            'configtitle'  => $this->translate('Calendar'),
             'configcontent' => '',
         ];
         $extrainfo['tabs'][] = $tabinfo;

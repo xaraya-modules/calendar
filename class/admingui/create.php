@@ -39,32 +39,32 @@ class CreateMethod extends MethodClass
     {
         extract($args);
 
-        if (!xarVar::fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('itemid', 'isset', $itemid, 0, xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('itemid', 'isset', $itemid, 0, xarVar::NOT_REQUIRED)) {
             return;
         }
-        if (!xarVar::fetch('preview', 'isset', $preview, 0, xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('preview', 'isset', $preview, 0, xarVar::NOT_REQUIRED)) {
             return;
         }
-        if (!xarVar::fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('template', 'isset', $template, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('template', 'isset', $template, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('tplmodule', 'isset', $tplmodule, 'calendar', xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('tplmodule', 'isset', $tplmodule, 'calendar', xarVar::NOT_REQUIRED)) {
             return;
         }
 
-        if (!xarSec::confirmAuthKey()) {
+        if (!$this->confirmAuthKey()) {
             return;
         }
 
@@ -81,7 +81,7 @@ class CreateMethod extends MethodClass
 
             $data['object'] = & $myobject;
 
-            $data['authid'] = xarSec::genAuthKey();
+            $data['authid'] = $this->genAuthKey();
             $data['preview'] = $preview;
             if (!empty($return_url)) {
                 $data['return_url'] = $return_url;
@@ -123,9 +123,9 @@ class CreateMethod extends MethodClass
         xarModHooks::call('item', 'create', $itemid, $item);
 
         if (!empty($return_url)) {
-            xarController::redirect($return_url, null, $this->getContext());
+            $this->redirect($return_url);
         } else {
-            xarController::redirect(xarController::URL(
+            $this->redirect(xarController::URL(
                 'dynamicdata',
                 'admin',
                 'view',
@@ -133,7 +133,7 @@ class CreateMethod extends MethodClass
                     'itemid' => $myobject->objectid,
                     'tplmodule' => $tplmodule,
                 ]
-            ), null, $this->getContext());
+            ));
         }
         return true;
     }

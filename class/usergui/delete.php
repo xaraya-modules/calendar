@@ -40,34 +40,34 @@ class DeleteMethod extends MethodClass
     {
         extract($args);
 
-        if (!xarVar::fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('name', 'isset', $name, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('name', 'isset', $name, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('itemid', 'id', $itemid)) {
+        if (!$this->fetch('itemid', 'id', $itemid)) {
             return;
         }
-        if (!xarVar::fetch('confirm', 'isset', $confirm, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('confirm', 'isset', $confirm, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('noconfirm', 'isset', $noconfirm, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('noconfirm', 'isset', $noconfirm, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('tplmodule', 'isset', $tplmodule, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('tplmodule', 'isset', $tplmodule, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('template', 'isset', $template, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('template', 'isset', $template, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
             return;
         }
 
@@ -97,7 +97,7 @@ class DeleteMethod extends MethodClass
         $myobject->getItem();
 
         if (empty($confirm)) {
-            $data['authid'] = xarSec::genAuthKey();
+            $data['authid'] = $this->genAuthKey();
             $data['object'] = $myobject;
             $data['context'] ??= $this->getContext();
 
@@ -111,23 +111,22 @@ class DeleteMethod extends MethodClass
 
         // If we get here it means that the user has confirmed the action
 
-        if (!xarSec::confirmAuthKey()) {
+        if (!$this->confirmAuthKey()) {
             return;
         }
 
         $itemid = $myobject->deleteItem();
         if (!empty($return_url)) {
-            xarController::redirect($return_url, null, $this->getContext());
+            $this->redirect($return_url);
         } else {
-            $default = xarModVars::get('calendar', 'default_view');
-            xarController::redirect(xarController::URL(
-                'calendar',
+            $default = $this->getModVar('default_view');
+            $this->redirect($this->getUrl(
                 'user',
                 $default,
                 [
                     'page' => $default,
                 ]
-            ), null, $this->getContext());
+            ));
         }
         return true;
     }

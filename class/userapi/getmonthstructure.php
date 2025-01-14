@@ -11,7 +11,6 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
@@ -49,12 +48,13 @@ class GetmonthstructureMethod extends MethodClass
         if (!isset($year)) {
             return;
         }
-
         xarVar::validate('int:1:12', $month);
         xarVar::validate('int::', $year);
-        xarVar::fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
+        $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
 
-        $c = xarMod::apiFunc('calendar', 'user', 'factory', 'calendar');
+        $userapi = $this->getParent();
+
+        $c = $userapi->factory('calendar');
         $c->setStartDayOfWeek($cal_sdow);
         // echo the content to the screen
         return $c->getCalendarMonth($year . $month);

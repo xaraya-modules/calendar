@@ -44,29 +44,29 @@ class GetmenulinksMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        xarVar::fetch('cal_sdow', 'int::', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
-        xarVar::fetch('cal_date', 'int::', $cal_date, xarLocale::formatDate('%Y%m%d'));
+        $this->fetch('cal_sdow', 'int::', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
+        $this->fetch('cal_date', 'int::', $cal_date, xarLocale::formatDate('%Y%m%d'));
 
-        $menulinks[] = ['url'   => xarController::URL('calendar', 'user', 'day', ['cal_date' => $cal_date]),
-            'title' => xarML('Day'),
-            'label' => xarML('Day'), ];
+        $menulinks[] = ['url'   => $this->getUrl( 'user', 'day', ['cal_date' => $cal_date]),
+            'title' => $this->translate('Day'),
+            'label' => $this->translate('Day'), ];
 
-        $menulinks[] = ['url'   => xarController::URL('calendar', 'user', 'week', ['cal_date' => $cal_date]),
-            'title' => xarML('Week'),
-            'label' => xarML('Week'), ];
+        $menulinks[] = ['url'   => $this->getUrl( 'user', 'week', ['cal_date' => $cal_date]),
+            'title' => $this->translate('Week'),
+            'label' => $this->translate('Week'), ];
 
-        $menulinks[] = ['url'   => xarController::URL('calendar', 'user', 'month', ['cal_date' => $cal_date]),
-            'title' => xarML('Month'),
-            'label' => xarML('Month'), ];
+        $menulinks[] = ['url'   => $this->getUrl( 'user', 'month', ['cal_date' => $cal_date]),
+            'title' => $this->translate('Month'),
+            'label' => $this->translate('Month'), ];
 
-        $menulinks[] = ['url'   => xarController::URL('calendar', 'user', 'year', ['cal_date' => $cal_date]),
-            'title' => xarML('Year'),
-            'label' => xarML('Year'), ];
+        $menulinks[] = ['url'   => $this->getUrl( 'user', 'year', ['cal_date' => $cal_date]),
+            'title' => $this->translate('Year'),
+            'label' => $this->translate('Year'), ];
 
         if (xarUser::isLoggedIn()) {
-            $menulinks[] = ['url' => xarController::URL('calendar', 'user', 'modifyconfig'),
-                'title' => xarML('Modify Config'),
-                'label' => xarML('Modify Config'), ];
+            $menulinks[] = ['url' => $this->getUrl('user', 'modifyconfig'),
+                'title' => $this->translate('Modify Config'),
+                'label' => $this->translate('Modify Config'), ];
         }
 
         return $menulinks;

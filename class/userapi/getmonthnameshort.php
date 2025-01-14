@@ -11,7 +11,6 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
@@ -51,7 +50,9 @@ class GetmonthnameshortMethod extends MethodClass
         if (!xarVar::validate('int:1:12', $month)) {
             return;
         }
-        $c = xarMod::apiFunc('calendar', 'user', 'factory', 'calendar');
+        $userapi = $this->getParent();
+
+        $c = $userapi->factory('calendar');
         return $c->MonthShort($month);
     }
 }

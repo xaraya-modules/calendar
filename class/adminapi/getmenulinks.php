@@ -42,32 +42,24 @@ class GetmenulinksMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         $menulinks = [];
-        if (xarSecurity::check('AdminCalendar', 0)) {
-            $menulinks[] = ['url'   => xarController::URL(
-                'calendar',
-                'admin',
-                'view'
-            ),
-                'title' => xarML('Manage the Master Tables  of this module'),
-                'label' => xarML('Master Tables'), ];
-            $menulinks[] = ['url'   => xarController::URL(
-                'calendar',
-                'admin',
-                'modifyconfig'
-            ),
-                'title' => xarML('Modify the configuration settings'),
-                'label' => xarML('Modify Config'), ];
+        if ($this->checkAccess('AdminCalendar', 0)) {
+            $menulinks[] = ['url'   => $this->getUrl('admin', 'view'),
+                'title' => $this->translate('Manage the Master Tables  of this module'),
+                'label' => $this->translate('Master Tables'), ];
+            $menulinks[] = ['url'   => $this->getUrl('admin', 'modifyconfig'),
+                'title' => $this->translate('Modify the configuration settings'),
+                'label' => $this->translate('Modify Config'), ];
 
             /*
                 $menulinks[] = Array(
-                    'url'=>xarController::URL('calendar','admin','add_event'),
-                    'title'=>xarML('Add a new calendar event'),
-                    'label'=>xarML('Add event')
+                    'url'=>$this->getUrl('admin', 'add_event'),
+                    'title'=>$this->translate('Add a new calendar event'),
+                    'label'=>$this->translate('Add event')
                     );
                 $menulinks[] = Array(
-                    'url'=>xarController::URL('calendar','admin','view'),
-                    'title'=>xarML('View queued events'),
-                    'label'=>xarML('View Queue')
+                    'url'=>$this->getUrl('admin', 'view'),
+                    'title'=>$this->translate('View queued events'),
+                    'label'=>$this->translate('View Queue')
                     );
                 */
         }

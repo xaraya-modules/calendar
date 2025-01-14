@@ -35,12 +35,12 @@ class UpdateconfigMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        xarVar::fetch('cal_sdow', 'int:0:6', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
+        $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
         xarModUserVars::set('calendar', 'cal_sdow', $cal_sdow);
 
-        xarVar::fetch('default_view', 'str::', $default_view, xarModUserVars::get('calendar', 'default_view'));
+        $this->fetch('default_view', 'str::', $default_view, xarModUserVars::get('calendar', 'default_view'));
         xarModUserVars::set('calendar', 'default_view', $default_view);
 
-        xarController::redirect(xarController::URL('calendar', 'user', 'modifyconfig'), null, $this->getContext());
+        $this->redirect($this->getUrl('user', 'modifyconfig'));
     }
 }

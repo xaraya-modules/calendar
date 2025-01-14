@@ -41,7 +41,7 @@ class CreateCalendarsMethod extends MethodClass
 
         // argument check
         if (!isset($calname)) {
-            $msg = xarML('Calendar name not specified', 'admin', 'create', 'calendar');
+            $msg = $this->translate('Calendar name not specified', 'admin', 'create', 'calendar');
             throw new Exception($msg);
         }
 

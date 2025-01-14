@@ -45,14 +45,14 @@ class ViewMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        if (!xarSecurity::check('ManageCalendar')) {
+        if (!$this->checkAccess('ManageCalendar')) {
             return;
         }
 
         $modulename = 'calendar';
 
         // Define which object will be shown
-        if (!xarVar::fetch('objectname', 'str', $objectname, 'calendar_calendar', xarVar::DONT_SET)) {
+        if (!$this->fetch('objectname', 'str', $objectname, 'calendar_calendar', xarVar::DONT_SET)) {
             return;
         }
         if (!empty($objectname)) {

@@ -39,11 +39,11 @@ class PublishMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         extract($args);
-        xarVar::fetch('calid', 'id', $calid, 0, xarVar::NOT_REQUIRED);
-        xarVar::fetch('calname', 'str:1:', $calname, '', xarVar::NOT_REQUIRED);
+        $this->fetch('calid', 'id', $calid, 0, xarVar::NOT_REQUIRED);
+        $this->fetch('calname', 'str:1:', $calname, '', xarVar::NOT_REQUIRED);
 
         // test
-        xarModVars::set('calendar', 'SupportShortURLs', 1);
+        $this->setModVar('SupportShortURLs', 1);
 
         // TODO: security et al.
 
@@ -60,7 +60,7 @@ class PublishMethod extends MethodClass
                         header('WWW-Authenticate: Basic realm="'.$realm.'"');
                         //header('HTTP/1.0 401 Unauthorized');
                         header("Status: 401 Access Denied");
-                        echo xarML('You must enter a valid username and password to access this calendar');
+                        echo $this->translate('You must enter a valid username and password to access this calendar');
                         exit;
                      }
             */

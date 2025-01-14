@@ -11,8 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
-
 use Xaraya\Modules\Calendar\UserGui;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarVar;
@@ -41,15 +41,18 @@ class TestMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
+        /** @var UserApi $userapi */
+        $userapi = $this->getAPI();
+
         // some timing for now to see how fast|slow the parser is
         // @todo no idea where this is now
         include_once('Benchmark/Timer.php');
         $t = new \Benchmark_Timer();
         $t->start();
         // @todo use johngrogg/ics-parser or sabre/vobject package
-        $ical = xarMod::apiFunc('icalendar', 'user', 'factory', 'ical_parser');
+        $ical = $userapi->factory('ical_parser');
         $t->setMarker('Class Instantiated');
-        xarVar::fetch('file', 'str::', $file);
+        $this->fetch('file', 'str::', $file);
         $t->setMarker('File Var Fetched');
         //$ical->setFile('code/modules/timezone/zoneinfo/America/Phoenix.ics');
         $ical->setFile($file);

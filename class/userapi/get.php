@@ -38,8 +38,9 @@ class GetMethod extends MethodClass
      * @subpackage calendar module
      * @author Andrea Moro
      * @Optional parameters
-     * @param mixed $args ['calname'] name of calendar
-     * @param mixed $args ['calid'] id of calendar
+     * @param array<mixed> $args
+     * @var mixed $calname name of calendar
+     * @var mixed $calid id of calendar
      * @return array|null of calendar, or false on failure
      */
     public function __invoke(array $args = [])
@@ -47,7 +48,7 @@ class GetMethod extends MethodClass
         extract($args);
         // Optional arguments
         if (!isset($calname) && (!isset($calid) || !is_numeric($calid))) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid Parameter #(1) for #(2) function #(3)() in module #(4)',
                 'calid or calname',
                 'userapi',
@@ -58,7 +59,7 @@ class GetMethod extends MethodClass
         }
 
         // Security check
-        //    if (!xarSecurity::check('ViewCalendars')) return;
+        //    if (!$this->checkAccess('ViewCalendars')) return;
 
         $calendars = [];
         $dbconn = xarDB::getConn();

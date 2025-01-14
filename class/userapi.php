@@ -55,11 +55,11 @@ class UserApi extends UserApiClass
      */
     public function currentView(array $args = [], $context = null)
     {
-        xarVar::fetch('func', 'str::', $func, 'main', xarVar::NOT_REQUIRED);
+        $this->fetch('func', 'str::', $func, 'main', xarVar::NOT_REQUIRED);
         $valid = ['day','week','month','year'];
         $func = strtolower($func);
         if (!in_array($func, $valid)) {
-            return xarModVars::get('calendar', 'default_view');
+            return $this->getModVar('default_view');
         } else {
             return $func;
         }
@@ -71,8 +71,7 @@ class UserApi extends UserApiClass
         extract($args);
         unset($args);
 
-        return xarController::URL(
-            'calendar',
+        return $this->getUrl(
             'user',
             $cal_view,
             ['cal_date' => $cal_date]
@@ -82,53 +81,111 @@ class UserApi extends UserApiClass
 
     public function currentMonthURL(array $args = [], $context = null)
     {
-        return xarMod::apiFunc(
-            'calendar',
-            'user',
-            'buildURL',
+        return $this->buildURL(
             [
-                        'cal_view' => 'month',
-                        'cal_date' => xarLocale::formatDate('%Y%m%d'),
-                        ]
+                'cal_view' => 'month',
+                'cal_date' => xarLocale::formatDate('%Y%m%d'),
+            ]
         );
     }
 
     public function currentWeekURL(array $args = [], $context = null)
     {
-        return xarMod::apiFunc(
-            'calendar',
-            'user',
-            'buildURL',
+        return $this->buildURL(
             [
-                        'cal_view' => 'week',
-                        'cal_date' => xarLocale::formatDate('%Y%m%d'),
-                        ]
+                'cal_view' => 'week',
+                'cal_date' => xarLocale::formatDate('%Y%m%d'),
+            ]
         );
     }
 
     public function currentDayURL(array $args = [], $context = null)
     {
-        return xarMod::apiFunc(
-            'calendar',
-            'user',
-            'buildURL',
+        return $this->buildURL(
             [
-                        'cal_view' => 'day',
-                        'cal_date' => xarLocale::formatDate('%Y%m%d'),
-                        ]
+                'cal_view' => 'day',
+                'cal_date' => xarLocale::formatDate('%Y%m%d'),
+            ]
         );
     }
 
     public function currentYearURL(array $args = [], $context = null)
     {
-        return xarMod::apiFunc(
-            'calendar',
-            'user',
-            'buildURL',
+        return $this->buildURL(
             [
-                        'cal_view' => 'year',
-                        'cal_date' => xarLocale::formatDate('%Y%m'),
-                        ]
+                'cal_view' => 'year',
+                'cal_date' => xarLocale::formatDate('%Y%m'),
+            ]
         );
+    }
+
+    /**
+     * Factory method that allows the creation of new objects
+     *  @version $Id: factory.php,v 1.5 2003/06/24 21:30:30 roger Exp $
+     * @param string $class the name of the object to create
+     */
+    public function factory(string $class)
+    {
+        static $calobject;
+        static $icalobject;
+        static $eventobject;
+        static $importobject;
+        static $exportobject;
+        static $alarmobject;
+        static $modinfo;
+
+        if (!isset($modinfo)) {
+            $modInfo = xarMod::getInfo(xarMod::getRegID('calendar'));
+        }
+        if (is_array($class)) {
+            if (!empty($args['class'])) {
+                // ['class' => '...']
+                extract($args);
+            } elseif (!empty($args[0])) {
+                // ['...']
+                $class = $args[0];
+            } else {
+                $class = '';
+            }
+        }
+
+        switch (strtolower($class)) {
+            case 'calendar':
+                if (!isset($calobject)) {
+                    sys::import("modules.$modInfo[osdirectory].class.calendar");
+                    $calobject = new \Xaraya\Modules\Calendar\Calendar();
+                }
+                return $calobject;
+
+            case 'ical_parser':
+                // @todo use johngrogg/ics-parser or sabre/vobject package
+                if (!isset($icalobject)) {
+                    // @todo no idea where this is now
+                    sys::import("modules.$modInfo[osdirectory].class.ical_parser");
+                    $icalobject = new \Xaraya\Modules\Calendar\iCal_Parser();
+                }
+                return $icalobject;
+
+            case 'event':
+                if (!isset($eventobject)) {
+                    // @todo needs a Calendar argument
+                    sys::import("modules.$modInfo[osdirectory].class.event");
+                    $eventobject = new \Xaraya\Modules\Calendar\Event();
+                }
+                return $eventobject;
+
+            /*
+            case 'import':
+                break;
+
+            case 'export':
+                break;
+
+            case 'alarm':
+                break;
+            */
+            default:
+                return;
+        }
     }
 }

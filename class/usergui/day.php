@@ -38,7 +38,7 @@ class DayMethod extends MethodClass
         $args = [
             'day' => &$DayEvents,
         ];
-        $day_endts = $DayEvents->getTimestamp() + xarModVars::get('calendar', 'day_end') + 3600;
+        $day_endts = $DayEvents->getTimestamp() + $this->getModVar('day_end') + 3600;
 
         // get all the events. need to improve this query
         $xartable = & xarDB::getTables();

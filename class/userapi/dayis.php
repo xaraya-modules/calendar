@@ -11,7 +11,6 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
@@ -50,7 +49,9 @@ class DayisMethod extends MethodClass
         if (!xarVar::validate('int::', $date)) {
             return;
         }
-        $c = xarMod::apiFunc('calendar', 'user', 'factory', 'calendar');
+        $userapi = $this->getParent();
+
+        $c = $userapi->factory('calendar');
         return $c->dayIs($day, $date);
     }
 }

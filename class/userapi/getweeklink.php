@@ -47,7 +47,7 @@ class GetWeekLinkMethod extends MethodClass
         $month = substr($date, 4, 2);
         $day = substr($date, 6, 2);
 
-        $link = xarController::URL('calendar', 'user', 'week', ['cal_date' => $date]);
+        $link = $this->getUrl( 'user', 'week', ['cal_date' => $date]);
         return $link;
     }
 }

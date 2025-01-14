@@ -32,8 +32,9 @@ class GetallMethod extends MethodClass
     /**
      * get overview of all calendars
      * Note : the following parameters are all optional
-     * @param mixed $args ['numitems'] number of articles to get
-     * @param mixed $args ['startnum'] starting article number
+     * @param array<mixed> $args
+     * @var mixed $numitems number of articles to get
+     * @var mixed $startnum starting article number
      * @return array|null of calendars, or false on failure
      */
     public function __invoke(array $args = [])
@@ -47,7 +48,7 @@ class GetallMethod extends MethodClass
         $calendars = [];
 
         // Security check
-        //    if (!xarSecurity::check('ViewCalendars')) return;
+        //    if (!$this->checkAccess('ViewCalendars')) return;
 
         $dbconn = xarDB::getConn();
         $xartable = & xarDB::getTables();

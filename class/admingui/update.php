@@ -39,29 +39,29 @@ class UpdateMethod extends MethodClass
     {
         extract($args);
 
-        if (!xarVar::fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('itemid', 'isset', $itemid, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('itemid', 'isset', $itemid, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('tplmodule', 'isset', $tplmodule, 'calendar', xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('tplmodule', 'isset', $tplmodule, 'calendar', xarVar::NOT_REQUIRED)) {
             return;
         }
-        if (!xarVar::fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
+        if (!$this->fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
             return;
         }
-        if (!xarVar::fetch('preview', 'isset', $preview, 0, xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('preview', 'isset', $preview, 0, xarVar::NOT_REQUIRED)) {
             return;
         }
 
-        if (!xarSec::confirmAuthKey()) {
+        if (!$this->confirmAuthKey()) {
             return;
         }
         $myobject = DataObjectFactory::getObject(['objectid' => $objectid,
@@ -87,7 +87,7 @@ class UpdateMethod extends MethodClass
 
             $data['objectid'] = $myobject->objectid;
             $data['itemid'] = $itemid;
-            $data['authid'] = xarSec::genAuthKey();
+            $data['authid'] = $this->genAuthKey();
             $data['preview'] = $preview;
             if (!empty($return_url)) {
                 $data['return_url'] = $return_url;
@@ -127,17 +127,17 @@ class UpdateMethod extends MethodClass
         xarModHooks::call('item', 'update', $itemid, $item);
 
         if (!empty($return_url)) {
-            xarController::redirect($return_url, null, $this->getContext());
+            $this->redirect($return_url);
         } elseif ($myobject->objectid == 2) { // for dynamic properties, return to modifyprop
             $objectid = $myobject->properties['objectid']->value;
-            xarController::redirect(xarController::URL(
+            $this->redirect(xarController::URL(
                 'dynamicdata',
                 'admin',
                 'modifyprop',
                 ['itemid' => $objectid]
-            ), null, $this->getContext());
+            ));
         } else {
-            xarController::redirect(xarController::URL(
+            $this->redirect(xarController::URL(
                 'dynamicdata',
                 'admin',
                 'view',
@@ -145,7 +145,7 @@ class UpdateMethod extends MethodClass
                     'itemid' => $objectid,
                     'tplmodule' => $tplmodule,
                 ]
-            ), null, $this->getContext());
+            ));
         }
         return true;
     }

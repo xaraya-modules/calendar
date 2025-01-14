@@ -37,18 +37,18 @@ class NewMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        if (!xarSecurity::check('AddCalendar')) {
+        if (!$this->checkAccess('AddCalendar')) {
             return;
         }
 
-        if (!xarVar::fetch('page', 'str:1', $data['page'], 'week', xarVar::NOT_REQUIRED)) {
+        if (!$this->fetch('page', 'str:1', $data['page'], 'week', xarVar::NOT_REQUIRED)) {
             return;
         }
         xarSession::setVar('ddcontext.calendar', ['page' => $data['page'],
         ]);
         $data['object'] = DataObjectFactory::getObject(['name' => 'calendar_event']);
         $data['tplmodule'] = 'calendar';
-        $data['authid'] = xarSec::genAuthKey();
+        $data['authid'] = $this->genAuthKey();
         return $data;
     }
 }

@@ -194,6 +194,8 @@ class Calendar
 
     public $firstDay;
 
+    public $tableHelper;
+
     /**
      * Constructs the Calendar
      *

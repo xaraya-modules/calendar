@@ -41,9 +41,9 @@ class PrevMethod extends MethodClass
      */
     public function __invoke($args = [])
     {
-        xarVar::fetch('cal_sdow', 'int:0:7', $cal_sdow, 0);
+        $this->fetch('cal_sdow', 'int:0:7', $cal_sdow, 0);
         // what function are we in
-        xarVar::fetch('func', 'str::', $func);
+        $this->fetch('func', 'str::', $func);
 
         extract($args);
         unset($args);
@@ -79,6 +79,6 @@ class PrevMethod extends MethodClass
         }
 
         $new_date = gmdate('Ymd', gmmktime(0, 0, 0, $m, $d, $y));
-        return xarController::URL('calendar', 'user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
+        return $this->getUrl( 'user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
     }
 }

@@ -11,8 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
-
 use Xaraya\Modules\Calendar\UserGui;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarMod;
@@ -41,13 +41,16 @@ class SubmitMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        xarVar::fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
-        xarVar::fetch('cal_date', 'int::', $cal_date, 0);
+        $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
+        $this->fetch('cal_date', 'int::', $cal_date, 0);
 
-        $c = xarMod::apiFunc('calendar', 'user', 'factory', 'calendar');
+        /** @var UserApi $userapi */
+        $userapi = $this->getAPI();
+
+        $c = $userapi->factory('calendar');
         $c->setStartDayOfWeek($cal_sdow);
 
-        $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
+        $data = $userapi->getUserDateTimeInfo();
         $data['cal_sdow'] = & $c->getStartDayOfWeek();
         $data['shortDayNames'] = & $c->getShortDayNames($c->getStartDayOfWeek());
         $data['mediumDayNames'] = & $c->getMediumDayNames($c->getStartDayOfWeek());
@@ -55,8 +58,8 @@ class SubmitMethod extends MethodClass
         $data['calendar'] = & $c;
 
         // return the event data
-        xarVar::fetch('event_id', 'int::', $event_id, 0);
-        $e = xarMod::apiFunc('calendar', 'user', 'factory', 'event');
+        $this->fetch('event_id', 'int::', $event_id, 0);
+        $e = $userapi->factory('event');
         $e->buildEvent($event_id);
         // remember to pass in the existing array so it can be appended too
         $e->getEventDataForBL($data);

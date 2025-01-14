@@ -33,7 +33,8 @@ class DeleteCalendarMethod extends MethodClass
     /**
      * Delete a calendar from database
      * Usage : if (xarMod::apiFunc('calendar', 'admin', 'delete', $calendar)) {...}
-     * @param mixed $args ['calid'] ID of the calendar
+     * @param array<mixed> $args
+     * @var mixed $calid ID of the calendar
      * @return bool|null true on success, false on failure
      */
     public function __invoke(array $args = [])
@@ -43,7 +44,7 @@ class DeleteCalendarMethod extends MethodClass
 
         // Argument check
         if (!isset($calid)) {
-            $msg = xarML(
+            $msg = $this->translate(
                 'Invalid #(1) for #(2) function #(3)() in module #(4)',
                 'calendar ID',
                 'admin',
@@ -59,7 +60,7 @@ class DeleteCalendarMethod extends MethodClass
 
             $args['mask'] = 'DeleteCalendars';
             if (!xarMod::apiFunc('calendar','user','checksecurity',$args)) {
-                $msg = xarML('Not authorized to delete #(1) items',
+                $msg = $this->translate('Not authorized to delete #(1) items',
                             'Calendar');
                 throw new Exception($msg);
             }
