@@ -39,17 +39,5 @@ sys::import('modules.calendar.class.userapi');
  */
 class UserGui extends UserGuiClass
 {
-    /**
-     * User main GUI function
-     * @param array<string, mixed> $args
-     * @return array<mixed>
-     */
-    public function main(array $args = [])
-    {
-        $args['description'] ??= 'Description of calendar';
-
-        // Pass along the context for xarTpl::module() if needed
-        $args['context'] ??= $this->getContext();
-        return $args;
-    }
+    // ...
 }
