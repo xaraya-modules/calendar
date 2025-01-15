@@ -44,8 +44,10 @@ class SubmitMethod extends MethodClass
         $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
         $this->fetch('cal_date', 'int::', $cal_date, 0);
 
+        $usergui = $this->getParent();
+
         /** @var UserApi $userapi */
-        $userapi = $this->getAPI();
+        $userapi = $usergui->getAPI();
 
         $c = $userapi->factory('calendar');
         $c->setStartDayOfWeek($cal_sdow);
