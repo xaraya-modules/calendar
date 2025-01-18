@@ -39,11 +39,11 @@ class PublishMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         extract($args);
-        $this->fetch('calid', 'id', $calid, 0, xarVar::NOT_REQUIRED);
-        $this->fetch('calname', 'str:1:', $calname, '', xarVar::NOT_REQUIRED);
+        $this->var()->find('calid', $calid, 'id', 0);
+        $this->var()->find('calname', $calname, 'str:1:', '');
 
         // test
-        $this->setModVar('SupportShortURLs', 1);
+        $this->mod()->setVar('SupportShortURLs', 1);
 
         // TODO: security et al.
 
@@ -60,7 +60,7 @@ class PublishMethod extends MethodClass
                         header('WWW-Authenticate: Basic realm="'.$realm.'"');
                         //header('HTTP/1.0 401 Unauthorized');
                         header("Status: 401 Access Denied");
-                        echo $this->translate('You must enter a valid username and password to access this calendar');
+                        echo $this->ml('You must enter a valid username and password to access this calendar');
                         exit;
                      }
             */
@@ -106,20 +106,20 @@ class PublishMethod extends MethodClass
                                 */
                                 @fclose($fp);
                             } else {
-                                xarLog::message('failed opening standard input', xarLog::LEVEL_WARNING);
+                                $this->log()->warning('failed opening standard input');
                             }
 
                             if (!empty($data)) {
-                                //xarLog::message($data);
+                                //$this->log()->message($data);
                                 // write to file
                                 if ($fp = fopen($curfile, 'w+')) {
                                     fputs($fp, $data, strlen($data));
                                     @fclose($fp);
                                 } else {
-                                    xarLog::message('couldnt open file ' . $curfile, xarLog::LEVEL_WARNING);
+                                    $this->log()->warning('couldnt open file ' . $curfile);
                                 }
                             } else {
-                                xarLog::message('failed getting any data', xarLog::LEVEL_WARNING);
+                                $this->log()->warning('failed getting any data');
                             }
                         }
                         // we're done here

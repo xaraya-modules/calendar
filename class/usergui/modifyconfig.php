@@ -34,8 +34,8 @@ class ModifyconfigMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
-        $this->fetch('default_view', 'int:0:6', $default_view, xarModUserVars::get('calendar', 'default_view'));
+        $this->var()->get('cal_sdow', $cal_sdow, 'int:0:6', xarModUserVars::get('calendar', 'cal_sdow'));
+        $this->var()->get('default_view', $default_view, 'int:0:6', xarModUserVars::get('calendar', 'default_view'));
         return [
             'cal_sdow' => $cal_sdow,
             'default_view' => $default_view,

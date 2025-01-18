@@ -41,9 +41,9 @@ class PrevMethod extends MethodClass
      */
     public function __invoke($args = [])
     {
-        $this->fetch('cal_sdow', 'int:0:7', $cal_sdow, 0);
+        $this->var()->get('cal_sdow', $cal_sdow, 'int:0:7', 0);
         // what function are we in
-        $this->fetch('func', 'str::', $func);
+        $this->var()->get('func', $func, 'str::');
 
         extract($args);
         unset($args);
@@ -52,9 +52,9 @@ class PrevMethod extends MethodClass
             $cal_interval = 1;
         }
 
-        xarVar::validate('int::', $cal_date);
-        xarVar::validate('int:1:', $cal_interval);
-        xarVar::validate('str::', $cal_type);
+        $this->var()->validate('int::', $cal_date);
+        $this->var()->validate('int:1:', $cal_interval);
+        $this->var()->validate('str::', $cal_type);
 
         $y = substr($cal_date, 0, 4);
         $m = substr($cal_date, 4, 2);
@@ -79,6 +79,6 @@ class PrevMethod extends MethodClass
         }
 
         $new_date = gmdate('Ymd', gmmktime(0, 0, 0, $m, $d, $y));
-        return $this->getUrl( 'user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
+        return $this->mod()->getURL( 'user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
     }
 }

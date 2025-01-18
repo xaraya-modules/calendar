@@ -40,34 +40,34 @@ class DeleteMethod extends MethodClass
     {
         extract($args);
 
-        if (!$this->fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('objectid', $objectid)) {
             return;
         }
-        if (!$this->fetch('name', 'isset', $name, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('name', $name)) {
             return;
         }
-        if (!$this->fetch('itemid', 'id', $itemid)) {
+        if (!$this->var()->get('itemid', $itemid), 'id') {
             return;
         }
-        if (!$this->fetch('confirm', 'isset', $confirm, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('confirm', $confirm)) {
             return;
         }
-        if (!$this->fetch('noconfirm', 'isset', $noconfirm, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('noconfirm', $noconfirm)) {
             return;
         }
-        if (!$this->fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('join', $join)) {
             return;
         }
-        if (!$this->fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('table', $table)) {
             return;
         }
-        if (!$this->fetch('tplmodule', 'isset', $tplmodule, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('tplmodule', $tplmodule)) {
             return;
         }
-        if (!$this->fetch('template', 'isset', $template, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('template', $template)) {
             return;
         }
-        if (!$this->fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('return_url', $return_url)) {
             return;
         }
 
@@ -97,7 +97,7 @@ class DeleteMethod extends MethodClass
         $myobject->getItem();
 
         if (empty($confirm)) {
-            $data['authid'] = $this->genAuthKey();
+            $data['authid'] = $this->sec()->genAuthKey();
             $data['object'] = $myobject;
             $data['context'] ??= $this->getContext();
 
@@ -105,22 +105,22 @@ class DeleteMethod extends MethodClass
                 file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xd')) {
                 return xarTpl::module($data['tplmodule'], 'user', 'delete', $data, $data['template']);
             } else {
-                return xarTpl::module('calendar', 'user', 'delete', $data, $data['template']);
+                return $this->mod()->template('delete', $data, $data['template']);
             }
         }
 
         // If we get here it means that the user has confirmed the action
 
-        if (!$this->confirmAuthKey()) {
+        if (!$this->sec()->confirmAuthKey()) {
             return;
         }
 
         $itemid = $myobject->deleteItem();
         if (!empty($return_url)) {
-            $this->redirect($return_url);
+            $this->ctl()->redirect($return_url);
         } else {
-            $default = $this->getModVar('default_view');
-            $this->redirect($this->getUrl(
+            $default = $this->mod()->getVar('default_view');
+            $this->ctl()->redirect($this->mod()->getURL(
                 'user',
                 $default,
                 [

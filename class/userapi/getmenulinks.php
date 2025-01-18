@@ -44,29 +44,29 @@ class GetmenulinksMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        $this->fetch('cal_sdow', 'int::', $cal_sdow, xarModUserVars::get('calendar', 'cal_sdow'));
-        $this->fetch('cal_date', 'int::', $cal_date, xarLocale::formatDate('%Y%m%d'));
+        $this->var()->get('cal_sdow', $cal_sdow, 'int::', xarModUserVars::get('calendar', 'cal_sdow'));
+        $this->var()->get('cal_date', $cal_date, 'int::', xarLocale::formatDate('%Y%m%d'));
 
-        $menulinks[] = ['url'   => $this->getUrl( 'user', 'day', ['cal_date' => $cal_date]),
-            'title' => $this->translate('Day'),
-            'label' => $this->translate('Day'), ];
+        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'day', ['cal_date' => $cal_date]),
+            'title' => $this->ml('Day'),
+            'label' => $this->ml('Day'), ];
 
-        $menulinks[] = ['url'   => $this->getUrl( 'user', 'week', ['cal_date' => $cal_date]),
-            'title' => $this->translate('Week'),
-            'label' => $this->translate('Week'), ];
+        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'week', ['cal_date' => $cal_date]),
+            'title' => $this->ml('Week'),
+            'label' => $this->ml('Week'), ];
 
-        $menulinks[] = ['url'   => $this->getUrl( 'user', 'month', ['cal_date' => $cal_date]),
-            'title' => $this->translate('Month'),
-            'label' => $this->translate('Month'), ];
+        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'month', ['cal_date' => $cal_date]),
+            'title' => $this->ml('Month'),
+            'label' => $this->ml('Month'), ];
 
-        $menulinks[] = ['url'   => $this->getUrl( 'user', 'year', ['cal_date' => $cal_date]),
-            'title' => $this->translate('Year'),
-            'label' => $this->translate('Year'), ];
+        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'year', ['cal_date' => $cal_date]),
+            'title' => $this->ml('Year'),
+            'label' => $this->ml('Year'), ];
 
         if (xarUser::isLoggedIn()) {
-            $menulinks[] = ['url' => $this->getUrl('user', 'modifyconfig'),
-                'title' => $this->translate('Modify Config'),
-                'label' => $this->translate('Modify Config'), ];
+            $menulinks[] = ['url' => $this->mod()->getURL('user', 'modifyconfig'),
+                'title' => $this->ml('Modify Config'),
+                'label' => $this->ml('Modify Config'), ];
         }
 
         return $menulinks;

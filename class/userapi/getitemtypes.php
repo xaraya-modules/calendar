@@ -43,21 +43,21 @@ class GetitemtypesMethod extends MethodClass
     {
         $itemtypes = [];
 
-        $itemtypes[1] = ['label' => $this->translate('Event'),
-            'title' => $this->translate('View Event'),
-            'url'   => $this->getUrl('user', 'view'),
+        $itemtypes[1] = ['label' => $this->ml('Event'),
+            'title' => $this->ml('View Event'),
+            'url'   => $this->mod()->getURL('user', 'view'),
         ];
-        $itemtypes[2] = ['label' => $this->translate('ToDo'),
-            'title' => $this->translate('View ToDo'),
-            'url'   => $this->getUrl('user', 'view'),
+        $itemtypes[2] = ['label' => $this->ml('ToDo'),
+            'title' => $this->ml('View ToDo'),
+            'url'   => $this->mod()->getURL('user', 'view'),
         ];
-        $itemtypes[3] = ['label' => $this->translate('Alarm'),
-            'title' => $this->translate('View Alarm'),
-            'url'   => $this->getUrl('user', 'view'),
+        $itemtypes[3] = ['label' => $this->ml('Alarm'),
+            'title' => $this->ml('View Alarm'),
+            'url'   => $this->mod()->getURL('user', 'view'),
         ];
-        $itemtypes[4] = ['label' => $this->translate('FreeBusy'),
-            'title' => $this->translate('View FreeBusy'),
-            'url'   => $this->getUrl('user', 'view'),
+        $itemtypes[4] = ['label' => $this->ml('FreeBusy'),
+            'title' => $this->ml('View FreeBusy'),
+            'url'   => $this->mod()->getURL('user', 'view'),
         ];
         // @todo let's use DataObjectFactory::getModuleItemType here, but not until roles brings in dd automatically
         $extensionitemtypes = xarMod::apiFunc('dynamicdata', 'user', 'getmoduleitemtypes', ['moduleid' => 7, 'native' => false]);

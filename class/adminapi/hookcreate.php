@@ -69,7 +69,7 @@ class HookcreateMethod extends MethodClass
         $data['extrainfo']['itemtype'] = $data['itemtype'];
         $data['extrainfo']['item_id'] = $data['itemid'];
 
-        $data['extrainfo']['name'] ??= $this->translate('Unknown Event');
+        $data['extrainfo']['name'] ??= $this->ml('Unknown Event');
         $data['extrainfo']['start_time'] ??= time();
         $data['extrainfo']['duration'] ??= 60;
         $data['extrainfo']['end_time'] ??= $data['extrainfo']['start_time'] + $data['extrainfo']['duration'];

@@ -48,7 +48,7 @@ class GetMethod extends MethodClass
         extract($args);
         // Optional arguments
         if (!isset($calname) && (!isset($calid) || !is_numeric($calid))) {
-            $msg = $this->translate(
+            $msg = $this->ml(
                 'Invalid Parameter #(1) for #(2) function #(3)() in module #(4)',
                 'calid or calname',
                 'userapi',
@@ -59,7 +59,7 @@ class GetMethod extends MethodClass
         }
 
         // Security check
-        //    if (!$this->checkAccess('ViewCalendars')) return;
+        //    if (!$this->sec()->checkAccess('ViewCalendars')) return;
 
         $calendars = [];
         $dbconn = xarDB::getConn();

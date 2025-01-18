@@ -180,55 +180,55 @@ class Installer extends InstallerClass
 
         // Location of the PEAR Calendar Classes
         // Use the PHP Include path for now
-        $this->setModVar('pearcalendar_root', sys::code() . 'modules/calendar/pear/Calendar/');
+        $this->mod()->setVar('pearcalendar_root', sys::code() . 'modules/calendar/pear/Calendar/');
 
         // get list of calendar ics files
         $data = xarMod::apiFunc('calendar', 'admin', 'get_calendars');
-        $this->setModVar('default_cal', serialize($data['icsfiles']));
+        $this->mod()->setVar('default_cal', serialize($data['icsfiles']));
 
         // Other variables from phpIcalendar config.inc.php
-        $this->setModVar('minical_view', 'week');
-        //    $this->setModVar('cal_sdow'               , 0);   // 0=sunday $week_start_day in phpIcalendar
-        //    $this->setModVar('day_start'              , '0700');
-        //    $this->setModVar('day_end'                , '2300');
-        //    $this->setModVar('gridLength'             , 15);
-        $this->setModVar('num_years', 1);
-        $this->setModVar('month_event_lines', 1);
-        $this->setModVar('tomorrows_events_lines', 1);
-        $this->setModVar('allday_week_lines', 1);
-        $this->setModVar('week_events_lines', 1);
-        $this->setModVar('second_offset', 0);
-        $this->setModVar('bleed_time', 0);
-        $this->setModVar('display_custom_goto', 0);
-        $this->setModVar('display_ical_list', 1);
-        $this->setModVar('allow_webcals', 0);
-        $this->setModVar('this_months_events', 1);
-        $this->setModVar('use_color_cals', 1);
-        $this->setModVar('daysofweek_dayview', 0);
-        $this->setModVar('enable_rss', 1);
-        $this->setModVar('show_search', 1);
-        $this->setModVar('allow_preferences', 1);
-        $this->setModVar('printview_default', 0);
-        $this->setModVar('show_todos', 1);
-        $this->setModVar('show_completed', 0);
-        $this->setModVar('allow_login', 0);
+        $this->mod()->setVar('minical_view', 'week');
+        //    $this->mod()->setVar('cal_sdow'               , 0);   // 0=sunday $week_start_day in phpIcalendar
+        //    $this->mod()->setVar('day_start'              , '0700');
+        //    $this->mod()->setVar('day_end'                , '2300');
+        //    $this->mod()->setVar('gridLength'             , 15);
+        $this->mod()->setVar('num_years', 1);
+        $this->mod()->setVar('month_event_lines', 1);
+        $this->mod()->setVar('tomorrows_events_lines', 1);
+        $this->mod()->setVar('allday_week_lines', 1);
+        $this->mod()->setVar('week_events_lines', 1);
+        $this->mod()->setVar('second_offset', 0);
+        $this->mod()->setVar('bleed_time', 0);
+        $this->mod()->setVar('display_custom_goto', 0);
+        $this->mod()->setVar('display_ical_list', 1);
+        $this->mod()->setVar('allow_webcals', 0);
+        $this->mod()->setVar('this_months_events', 1);
+        $this->mod()->setVar('use_color_cals', 1);
+        $this->mod()->setVar('daysofweek_dayview', 0);
+        $this->mod()->setVar('enable_rss', 1);
+        $this->mod()->setVar('show_search', 1);
+        $this->mod()->setVar('allow_preferences', 1);
+        $this->mod()->setVar('printview_default', 0);
+        $this->mod()->setVar('show_todos', 1);
+        $this->mod()->setVar('show_completed', 0);
+        $this->mod()->setVar('allow_login', 0);
 
         // Regulate display in day view
-        $this->setModVar('windowwidth', 902);
-        $this->setModVar('minutesperunit', 15);
-        $this->setModVar('unitheight', 12);
+        $this->mod()->setVar('windowwidth', 902);
+        $this->mod()->setVar('minutesperunit', 15);
+        $this->mod()->setVar('unitheight', 12);
 
-        $this->setModVar('event_duration', 60 * 60);
-        $this->setModVar('cal_sdow', 0);
-        $this->setModVar('day_start', 25200);
-        $this->setModVar('day_end', 82800);
+        $this->mod()->setVar('event_duration', 60 * 60);
+        $this->mod()->setVar('cal_sdow', 0);
+        $this->mod()->setVar('day_start', 25200);
+        $this->mod()->setVar('day_end', 82800);
 
         //TODO::Register the Module Variables
         //
-        //$this->setModVar('allowUserCalendars',false);
-        //$this->setModVar('eventsOpenNewWindow',false);
-        //$this->setModVar('adminNotify',false);
-        //$this->setModVar('adminEmail','none@none.org');
+        //$this->mod()->setVar('allowUserCalendars',false);
+        //$this->mod()->setVar('eventsOpenNewWindow',false);
+        //$this->mod()->setVar('adminNotify',false);
+        //$this->mod()->setVar('adminEmail','none@none.org');
 
         # --------------------------------------------------------
         #  Register block types
@@ -241,7 +241,7 @@ class Installer extends InstallerClass
         //<xar:calendar-build object="$Month"/>
         //<xar:set name="Month">& $Year->fetch()</xar:set>
 
-        $this->setModVar('SupportShortURLs', true);
+        $this->mod()->setVar('SupportShortURLs', true);
 
         /*    xarTplRegisterTag(
                 'calendar', 'calendar-decorator', array(),

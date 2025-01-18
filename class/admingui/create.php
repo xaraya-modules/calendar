@@ -39,32 +39,32 @@ class CreateMethod extends MethodClass
     {
         extract($args);
 
-        if (!$this->fetch('objectid', 'isset', $objectid, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('objectid', $objectid)) {
             return;
         }
-        if (!$this->fetch('itemid', 'isset', $itemid, 0, xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('itemid', $itemid, 'isset', 0)) {
             return;
         }
-        if (!$this->fetch('preview', 'isset', $preview, 0, xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('preview', $preview, 'isset', 0)) {
             return;
         }
-        if (!$this->fetch('return_url', 'isset', $return_url, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('return_url', $return_url)) {
             return;
         }
-        if (!$this->fetch('join', 'isset', $join, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('join', $join)) {
             return;
         }
-        if (!$this->fetch('table', 'isset', $table, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('table', $table)) {
             return;
         }
-        if (!$this->fetch('template', 'isset', $template, null, xarVar::DONT_SET)) {
+        if (!$this->var()->check('template', $template)) {
             return;
         }
-        if (!$this->fetch('tplmodule', 'isset', $tplmodule, 'calendar', xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('tplmodule', $tplmodule, 'isset', 'calendar')) {
             return;
         }
 
-        if (!$this->confirmAuthKey()) {
+        if (!$this->sec()->confirmAuthKey()) {
             return;
         }
 
@@ -81,7 +81,7 @@ class CreateMethod extends MethodClass
 
             $data['object'] = & $myobject;
 
-            $data['authid'] = $this->genAuthKey();
+            $data['authid'] = $this->sec()->genAuthKey();
             $data['preview'] = $preview;
             if (!empty($return_url)) {
                 $data['return_url'] = $return_url;
@@ -123,9 +123,9 @@ class CreateMethod extends MethodClass
         xarModHooks::call('item', 'create', $itemid, $item);
 
         if (!empty($return_url)) {
-            $this->redirect($return_url);
+            $this->ctl()->redirect($return_url);
         } else {
-            $this->redirect(xarController::URL(
+            $this->ctl()->redirect(xarController::URL(
                 'dynamicdata',
                 'admin',
                 'view',

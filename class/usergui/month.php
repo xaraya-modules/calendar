@@ -38,13 +38,13 @@ class MonthMethod extends MethodClass
         $MonthEvents = new \Calendar_Month_Weekdays(
             $data['cal_year'],
             $data['cal_month'] + 1,
-            $this->getModVar('cal_sdow')
+            $this->mod()->getVar('cal_sdow')
         );
         $end_time = $MonthEvents->getTimestamp();
         $MonthEvents = new \Calendar_Month_Weekdays(
             $data['cal_year'],
             $data['cal_month'],
-            $this->getModVar('cal_sdow')
+            $this->mod()->getVar('cal_sdow')
         );
         $start_time = $MonthEvents->getTimestamp();
 

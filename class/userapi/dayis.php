@@ -41,12 +41,12 @@ class DayisMethod extends MethodClass
         extract($args);
         unset($args);
         // make sure we have a valid day value
-        if (!xarVar::validate('int:0:7', $day)) {
+        if (!$this->var()->validate('int:0:7', $day)) {
             return;
         }
         // TODO: Revisit this later and make a new validator for it
         // make sure we have a valid date
-        if (!xarVar::validate('int::', $date)) {
+        if (!$this->var()->validate('int::', $date)) {
             return;
         }
         $userapi = $this->getParent();

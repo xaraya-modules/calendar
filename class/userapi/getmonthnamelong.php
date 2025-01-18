@@ -47,7 +47,7 @@ class GetmonthnamelongMethod extends MethodClass
         }
 
         // make sure we have a valid month value
-        if (!xarVar::validate('int:1:12', $month)) {
+        if (!$this->var()->validate('int:1:12', $month)) {
             return;
         }
         $userapi = $this->getParent();

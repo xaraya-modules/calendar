@@ -48,9 +48,9 @@ class GetmonthstructureMethod extends MethodClass
         if (!isset($year)) {
             return;
         }
-        xarVar::validate('int:1:12', $month);
-        xarVar::validate('int::', $year);
-        $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
+        $this->var()->validate('int:1:12', $month);
+        $this->var()->validate('int::', $year);
+        $this->var()->get('cal_sdow', $cal_sdow, 'int:0:6', 0);
 
         $userapi = $this->getParent();
 

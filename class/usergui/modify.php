@@ -37,14 +37,14 @@ class ModifyMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        if (!$this->checkAccess('EditCalendar')) {
+        if (!$this->sec()->checkAccess('EditCalendar')) {
             return;
         }
 
-        if (!$this->fetch('itemid', 'int', $data['itemid'], 0, xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('itemid', $data['itemid'], 'int', 0)) {
             return;
         }
-        if (!$this->fetch('page', 'str:1', $data['page'], 'week', xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('page', $data['page'], 'str:1', 'week')) {
             return;
         }
         xarSession::setVar('ddcontext.calendar', ['page' => $data['page'],
@@ -52,7 +52,7 @@ class ModifyMethod extends MethodClass
         $data['object'] = DataObjectFactory::getObject(['name' => 'calendar_event']);
         $data['object']->getItem(['itemid' => $data['itemid']]);
         $data['tplmodule'] = 'calendar';
-        $data['authid'] = $this->genAuthKey();
+        $data['authid'] = $this->sec()->genAuthKey();
         return $data;
     }
 }

@@ -55,11 +55,11 @@ class UserApi extends UserApiClass
      */
     public function currentView(array $args = [], $context = null)
     {
-        $this->fetch('func', 'str::', $func, 'main', xarVar::NOT_REQUIRED);
+        $this->var()->find('func', $func, 'str::', 'main');
         $valid = ['day','week','month','year'];
         $func = strtolower($func);
         if (!in_array($func, $valid)) {
-            return $this->getModVar('default_view');
+            return $this->mod()->getVar('default_view');
         } else {
             return $func;
         }
@@ -71,7 +71,7 @@ class UserApi extends UserApiClass
         extract($args);
         unset($args);
 
-        return $this->getUrl(
+        return $this->mod()->getURL(
             'user',
             $cal_view,
             ['cal_date' => $cal_date]

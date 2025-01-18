@@ -41,8 +41,8 @@ class SubmitMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        $this->fetch('cal_sdow', 'int:0:6', $cal_sdow, 0);
-        $this->fetch('cal_date', 'int::', $cal_date, 0);
+        $this->var()->get('cal_sdow', $cal_sdow, 'int:0:6', 0);
+        $this->var()->get('cal_date', $cal_date, 'int::', 0);
 
         $usergui = $this->getParent();
 
@@ -60,7 +60,7 @@ class SubmitMethod extends MethodClass
         $data['calendar'] = & $c;
 
         // return the event data
-        $this->fetch('event_id', 'int::', $event_id, 0);
+        $this->var()->get('event_id', $event_id, 'int::', 0);
         $e = $userapi->factory('event');
         $e->buildEvent($event_id);
         // remember to pass in the existing array so it can be appended too

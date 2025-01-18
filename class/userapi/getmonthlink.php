@@ -47,7 +47,7 @@ class GetmonthlinkMethod extends MethodClass
         $month = substr($date, 4, 2);
         $day = substr($date, 6, 2);
 
-        $link = $this->getUrl( 'user', 'month', ['cal_date' => $date]);
+        $link = $this->mod()->getURL( 'user', 'month', ['cal_date' => $date]);
         return $link;
     }
 }

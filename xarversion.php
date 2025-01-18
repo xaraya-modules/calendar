@@ -15,7 +15,7 @@
 $modversion['name']           = 'calendar';
 $modversion['id']             = '7';
 $modversion['version']        = '2.1.0';
-$modversion['displayname']    = xarML('Calendar');
+$modversion['displayname']    = xarMLS::translate('Calendar');
 $modversion['description']    = 'Calendar System';
 $modversion['credits']        = 'credits.txt';
 $modversion['help']           = 'help.txt';

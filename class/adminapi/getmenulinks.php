@@ -42,24 +42,24 @@ class GetmenulinksMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         $menulinks = [];
-        if ($this->checkAccess('AdminCalendar', 0)) {
-            $menulinks[] = ['url'   => $this->getUrl('admin', 'view'),
-                'title' => $this->translate('Manage the Master Tables  of this module'),
-                'label' => $this->translate('Master Tables'), ];
-            $menulinks[] = ['url'   => $this->getUrl('admin', 'modifyconfig'),
-                'title' => $this->translate('Modify the configuration settings'),
-                'label' => $this->translate('Modify Config'), ];
+        if ($this->sec()->checkAccess('AdminCalendar', 0)) {
+            $menulinks[] = ['url'   => $this->mod()->getURL('admin', 'view'),
+                'title' => $this->ml('Manage the Master Tables  of this module'),
+                'label' => $this->ml('Master Tables'), ];
+            $menulinks[] = ['url'   => $this->mod()->getURL('admin', 'modifyconfig'),
+                'title' => $this->ml('Modify the configuration settings'),
+                'label' => $this->ml('Modify Config'), ];
 
             /*
                 $menulinks[] = Array(
-                    'url'=>$this->getUrl('admin', 'add_event'),
-                    'title'=>$this->translate('Add a new calendar event'),
-                    'label'=>$this->translate('Add event')
+                    'url'=>$this->mod()->getURL('admin', 'add_event'),
+                    'title'=>$this->ml('Add a new calendar event'),
+                    'label'=>$this->ml('Add event')
                     );
                 $menulinks[] = Array(
-                    'url'=>$this->getUrl('admin', 'view'),
-                    'title'=>$this->translate('View queued events'),
-                    'label'=>$this->translate('View Queue')
+                    'url'=>$this->mod()->getURL('admin', 'view'),
+                    'title'=>$this->ml('View queued events'),
+                    'label'=>$this->ml('View Queue')
                     );
                 */
         }

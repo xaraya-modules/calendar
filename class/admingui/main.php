@@ -45,20 +45,20 @@ class MainMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // Xaraya security
-        if (!$this->checkAccess('ManageCalendar')) {
+        if (!$this->sec()->checkAccess('ManageCalendar')) {
             return;
         }
 
         if (xarModVars::get('modules', 'disableoverview') == 0) {
             return [];
         } else {
-            $redirect = $this->getModVar('defaultbackpage');
+            $redirect = $this->mod()->getVar('defaultbackpage');
             if (!empty($redirect)) {
                 $truecurrenturl = xarServer::getCurrentURL([], false);
                 $urldata = xarMod::apiFunc('roles', 'user', 'parseuserhome', ['url' => $redirect,'truecurrenturl' => $truecurrenturl]);
-                $this->redirect($urldata['redirecturl']);
+                $this->ctl()->redirect($urldata['redirecturl']);
             } else {
-                $this->redirect($this->getUrl('admin', 'view'));
+                $this->ctl()->redirect($this->mod()->getURL('admin', 'view'));
             }
         }
         return true;

@@ -47,7 +47,7 @@ class GetconfighookMethod extends MethodClass
         $tabinfo = [
             'module'  => $module,
             'configarea'  => 'general',
-            'configtitle'  => $this->translate('Calendar'),
+            'configtitle'  => $this->ml('Calendar'),
             'configcontent' => '',
         ];
         $extrainfo['tabs'][] = $tabinfo;

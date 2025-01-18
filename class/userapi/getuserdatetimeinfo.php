@@ -44,7 +44,7 @@ class GetUserDateTimeInfoMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // dates come in as YYYYMMDD
-        $this->fetch('cal_date', 'str:4:8', $cal_date, xarLocale::formatDate('%Y%m%d'));
+        $this->var()->get('cal_date', $cal_date, 'str:4:8', xarLocale::formatDate('%Y%m%d'));
 
         $data = [];
         $data['cal_date'] = & $cal_date;

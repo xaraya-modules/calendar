@@ -54,7 +54,7 @@ class TestMethod extends MethodClass
         // @todo use johngrogg/ics-parser or sabre/vobject package
         $ical = $userapi->factory('ical_parser');
         $t->setMarker('Class Instantiated');
-        $this->fetch('file', 'str::', $file);
+        $this->var()->get('file', $file, 'str::');
         $t->setMarker('File Var Fetched');
         //$ical->setFile('code/modules/timezone/zoneinfo/America/Phoenix.ics');
         $ical->setFile($file);

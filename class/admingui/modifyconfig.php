@@ -51,14 +51,14 @@ class ModifyconfigMethod extends MethodClass
     {
         $data = xarMod::apiFunc('calendar', 'admin', 'menu');
         $data = array_merge($data, xarMod::apiFunc('calendar', 'admin', 'get_calendars'));
-        if (!$this->checkAccess('AdminCalendar')) {
+        if (!$this->sec()->checkAccess('AdminCalendar')) {
             return;
         }
 
-        if (!$this->fetch('phase', 'str:1:100', $phase, 'modify', xarVar::NOT_REQUIRED, xarVar::PREP_FOR_DISPLAY)) {
+        if (!$this->var()->find('phase', $phase, 'str:1:100', 'modify')) {
             return;
         }
-        if (!$this->fetch('tab', 'str:1:100', $data['tab'], 'general', xarVar::NOT_REQUIRED)) {
+        if (!$this->var()->find('tab', $data['tab'], 'str:1:100', 'general')) {
             return;
         }
 
@@ -80,52 +80,52 @@ class ModifyconfigMethod extends MethodClass
 
             case 'update':
                 // Confirm authorisation code
-                if (!$this->confirmAuthKey()) {
+                if (!$this->sec()->confirmAuthKey()) {
                     return;
                 }
-                if (!$this->fetch('windowwidth', 'int:1', $windowwidth, $this->getModVar('aliasname'), xarVar::NOT_REQUIRED)) {
+                if (!$this->var()->find('windowwidth', $windowwidth, 'int:1', $this->mod()->getVar('aliasname'))) {
                     return;
                 }
-                if (!$this->fetch('minutesperunit', 'int:1', $minutesperunit, $this->getModVar('minutesperunit'), xarVar::NOT_REQUIRED)) {
+                if (!$this->var()->find('minutesperunit', $minutesperunit, 'int:1', $this->mod()->getVar('minutesperunit'))) {
                     return;
                 }
-                if (!$this->fetch('unitheight', 'int:1', $unitheight, $this->getModVar('unitheight'), xarVar::NOT_REQUIRED)) {
+                if (!$this->var()->find('unitheight', $unitheight, 'int:1', $this->mod()->getVar('unitheight'))) {
                     return;
                 }
 
-                if (!$this->fetch('default_view', 'str:1', $default_view, $this->getModVar('default_view'), xarVar::NOT_REQUIRED)) {
+                if (!$this->var()->find('default_view', $default_view, 'str:1', $this->mod()->getVar('default_view'))) {
                     return;
                 }
-                if (!$this->fetch('cal_sdow', 'str:1', $cal_sdow, $this->getModVar('cal_sdow'), xarVar::NOT_REQUIRED)) {
+                if (!$this->var()->find('cal_sdow', $cal_sdow, 'str:1', $this->mod()->getVar('cal_sdow'))) {
                     return;
                 }
 
                 $isvalid = $data['module_settings']->checkInput();
                 if (!$isvalid) {
                     $data['context'] ??= $this->getContext();
-                    return xarTpl::module('calendar', 'admin', 'modifyconfig', $data);
+                    return $this->mod()->template('modifyconfig', $data);
                 } else {
                     $itemid = $data['module_settings']->updateItem();
                 }
 
                 sys::import('modules.dynamicdata.class.properties.master');
                 $timeproperty = DataPropertyMaster::getProperty(['type' => 'formattedtime']);
-                $day_start = $timeproperty->checkInput('day_start') ? $timeproperty->getValue() : $this->getModVar('day_start');
-                $day_end = $timeproperty->checkInput('day_end') ? $timeproperty->getValue() : $this->getModVar('day_end');
+                $day_start = $timeproperty->checkInput('day_start') ? $timeproperty->getValue() : $this->mod()->getVar('day_start');
+                $day_end = $timeproperty->checkInput('day_end') ? $timeproperty->getValue() : $this->mod()->getVar('day_end');
 
                 if ($data['tab'] == 'calendar_general') {
-                    $this->setModVar('items_per_page', $items_per_page);
-                    $this->setModVar('supportshorturls', $shorturls);
-                    $this->setModVar('useModuleAlias', $useModuleAlias);
-                    $this->setModVar('aliasname', $aliasname);
-                    $this->setModVar('windowwidth', $windowwidth);
-                    $this->setModVar('minutesperunit', $minutesperunit);
-                    $this->setModVar('unitheight', $unitheight);
+                    $this->mod()->setVar('items_per_page', $items_per_page);
+                    $this->mod()->setVar('supportshorturls', $shorturls);
+                    $this->mod()->setVar('useModuleAlias', $useModuleAlias);
+                    $this->mod()->setVar('aliasname', $aliasname);
+                    $this->mod()->setVar('windowwidth', $windowwidth);
+                    $this->mod()->setVar('minutesperunit', $minutesperunit);
+                    $this->mod()->setVar('unitheight', $unitheight);
 
-                    $this->setModVar('default_view', $default_view);
-                    $this->setModVar('cal_sdow', $cal_sdow);
-                    $this->setModVar('day_start', $day_start);
-                    $this->setModVar('day_end', $day_end);
+                    $this->mod()->setVar('default_view', $default_view);
+                    $this->mod()->setVar('cal_sdow', $cal_sdow);
+                    $this->mod()->setVar('day_start', $day_start);
+                    $this->mod()->setVar('day_end', $day_end);
                 }
                 $regid = xarMod::getRegID($tabmodule);
                 xarModItemVars::set('calendar', 'windowwidth', $windowwidth, $regid);
@@ -137,7 +137,7 @@ class ModifyconfigMethod extends MethodClass
                 xarModItemVars::set('calendar', 'day_start', $day_start, $regid);
                 xarModItemVars::set('calendar', 'day_end', $day_end, $regid);
 
-                $this->redirect($this->getUrl('admin', 'modifyconfig', ['tab' => $data['tab']]));
+                $this->ctl()->redirect($this->mod()->getURL('admin', 'modifyconfig', ['tab' => $data['tab']]));
                 return true;
                 break;
         }
@@ -148,48 +148,48 @@ class ModifyconfigMethod extends MethodClass
         // support easy navigation
 
         // Variables from phpIcalendar config.inc.php
-        $data['default_view'] = $this->getModVar('default_view');
-        $data['minical_view'] = $this->getModVar('minical_view');
-        $data['default_cal'] = unserialize($this->getModVar('default_cal'));
-        $data['cal_sdow']         = $this->getModVar('cal_sdow');
-        $data['week_start_day']         = $this->getModVar('week_start_day');
-        $data['day_start']              = $this->getModVar('day_start');
-        $data['day_end']                = $this->getModVar('day_end');
-        $data['gridLength']             = $this->getModVar('gridLength');
-        $data['num_years']              = $this->getModVar('num_years');
-        $data['month_event_lines']      = $this->getModVar('month_event_lines');
-        $data['tomorrows_events_lines'] = $this->getModVar('tomorrows_events_lines');
-        $data['allday_week_lines']      = $this->getModVar('allday_week_lines');
-        $data['week_events_lines']      = $this->getModVar('week_events_lines');
-        $data['second_offset']          = $this->getModVar('second_offset');
-        $data['bleed_time']             = $this->getModVar('bleed_time');
+        $data['default_view'] = $this->mod()->getVar('default_view');
+        $data['minical_view'] = $this->mod()->getVar('minical_view');
+        $data['default_cal'] = unserialize($this->mod()->getVar('default_cal'));
+        $data['cal_sdow']         = $this->mod()->getVar('cal_sdow');
+        $data['week_start_day']         = $this->mod()->getVar('week_start_day');
+        $data['day_start']              = $this->mod()->getVar('day_start');
+        $data['day_end']                = $this->mod()->getVar('day_end');
+        $data['gridLength']             = $this->mod()->getVar('gridLength');
+        $data['num_years']              = $this->mod()->getVar('num_years');
+        $data['month_event_lines']      = $this->mod()->getVar('month_event_lines');
+        $data['tomorrows_events_lines'] = $this->mod()->getVar('tomorrows_events_lines');
+        $data['allday_week_lines']      = $this->mod()->getVar('allday_week_lines');
+        $data['week_events_lines']      = $this->mod()->getVar('week_events_lines');
+        $data['second_offset']          = $this->mod()->getVar('second_offset');
+        $data['bleed_time']             = $this->mod()->getVar('bleed_time');
 
-        $data['display_custom_goto']    = $this->getModVar('display_custom_goto');
-        $data['display_custom_gotochecked'] = $this->getModVar('display_custom_goto') ? 'checked' : '';
-        $data['display_ical_list']      = $this->getModVar('display_ical_list');
-        $data['display_ical_listchecked'] = $this->getModVar('display_ical_list') ? 'checked' : '';
-        $data['allow_webcals']          = $this->getModVar('allow_webcals');
-        $data['allow_webcalschecked'] = $this->getModVar('allow_webcals') ? 'checked' : '';
-        $data['this_months_events']     = $this->getModVar('this_months_events');
-        $data['this_months_eventschecked'] = $this->getModVar('this_months_events') ? 'checked' : '';
-        $data['use_color_cals']         = $this->getModVar('use_color_cals');
-        $data['use_color_calschecked'] = $this->getModVar('use_color_cals') ? 'checked' : '';
-        $data['daysofweek_dayview']     = $this->getModVar('daysofweek_dayview');
-        $data['daysofweek_dayviewchecked'] = $this->getModVar('daysofweek_dayview') ? 'checked' : '';
-        $data['enable_rss']             = $this->getModVar('enable_rss');
-        $data['enable_rsschecked'] = $this->getModVar('enable_rss') ? 'checked' : '';
-        $data['show_search']            = $this->getModVar('show_search');
-        $data['show_searchchecked'] = $this->getModVar('show_search') ? 'checked' : '';
-        $data['allow_preferences']      = $this->getModVar('allow_preferences');
-        $data['allow_preferenceschecked'] = $this->getModVar('allow_preferences') ? 'checked' : '';
-        $data['printview_default']      = $this->getModVar('printview_default');
-        $data['printview_defaultchecked'] = $this->getModVar('printview_default') ? 'checked' : '';
-        $data['show_todos']             = $this->getModVar('show_todos');
-        $data['show_todoschecked'] = $this->getModVar('show_todos') ? 'checked' : '';
-        $data['show_completed']         = $this->getModVar('show_completed');
-        $data['show_completedchecked'] = $this->getModVar('show_completed') ? 'checked' : '';
-        $data['allow_login']            = $this->getModVar('allow_login');
-        $data['allow_loginchecked'] = $this->getModVar('allow_login') ? 'checked' : '';
+        $data['display_custom_goto']    = $this->mod()->getVar('display_custom_goto');
+        $data['display_custom_gotochecked'] = $this->mod()->getVar('display_custom_goto') ? 'checked' : '';
+        $data['display_ical_list']      = $this->mod()->getVar('display_ical_list');
+        $data['display_ical_listchecked'] = $this->mod()->getVar('display_ical_list') ? 'checked' : '';
+        $data['allow_webcals']          = $this->mod()->getVar('allow_webcals');
+        $data['allow_webcalschecked'] = $this->mod()->getVar('allow_webcals') ? 'checked' : '';
+        $data['this_months_events']     = $this->mod()->getVar('this_months_events');
+        $data['this_months_eventschecked'] = $this->mod()->getVar('this_months_events') ? 'checked' : '';
+        $data['use_color_cals']         = $this->mod()->getVar('use_color_cals');
+        $data['use_color_calschecked'] = $this->mod()->getVar('use_color_cals') ? 'checked' : '';
+        $data['daysofweek_dayview']     = $this->mod()->getVar('daysofweek_dayview');
+        $data['daysofweek_dayviewchecked'] = $this->mod()->getVar('daysofweek_dayview') ? 'checked' : '';
+        $data['enable_rss']             = $this->mod()->getVar('enable_rss');
+        $data['enable_rsschecked'] = $this->mod()->getVar('enable_rss') ? 'checked' : '';
+        $data['show_search']            = $this->mod()->getVar('show_search');
+        $data['show_searchchecked'] = $this->mod()->getVar('show_search') ? 'checked' : '';
+        $data['allow_preferences']      = $this->mod()->getVar('allow_preferences');
+        $data['allow_preferenceschecked'] = $this->mod()->getVar('allow_preferences') ? 'checked' : '';
+        $data['printview_default']      = $this->mod()->getVar('printview_default');
+        $data['printview_defaultchecked'] = $this->mod()->getVar('printview_default') ? 'checked' : '';
+        $data['show_todos']             = $this->mod()->getVar('show_todos');
+        $data['show_todoschecked'] = $this->mod()->getVar('show_todos') ? 'checked' : '';
+        $data['show_completed']         = $this->mod()->getVar('show_completed');
+        $data['show_completedchecked'] = $this->mod()->getVar('show_completed') ? 'checked' : '';
+        $data['allow_login']            = $this->mod()->getVar('allow_login');
+        $data['allow_loginchecked'] = $this->mod()->getVar('allow_login') ? 'checked' : '';
 
         /*
         //  list of options from config.inc.php not included
@@ -204,12 +204,12 @@ class ModifyconfigMethod extends MethodClass
         $save_parsed_cals       = 'yes';            // Recommended 'yes'. Saves a copy of the cal in /tmp after it's been parsed. Improves performence.
         */
 
-        $data['updatebutton'] = xarVar::prepForDisplay($this->translate('Update Configuration'));
+        $data['updatebutton'] = xarVar::prepForDisplay($this->ml('Update Configuration'));
         // Note : if you don't plan on providing encode/decode functions for
         // short URLs (see xaruserapi.php), you should remove these from your
         // admin-modifyconfig.xard template !
-        $data['shorturlslabel'] = $this->translate('Enable short URLs?');
-        $data['shorturlschecked'] = $this->getModVar('SupportShortURLs') ?
+        $data['shorturlslabel'] = $this->ml('Enable short URLs?');
+        $data['shorturlschecked'] = $this->mod()->getVar('SupportShortURLs') ?
         'checked' : '';
 
 
@@ -224,7 +224,7 @@ class ModifyconfigMethod extends MethodClass
                 $data['hooks'] = $hooks;
             }
         */
-        $data['authid'] = $this->genAuthKey();
+        $data['authid'] = $this->sec()->genAuthKey();
         return $data;
     }
 }
