@@ -52,7 +52,8 @@ class GetmonthstructureMethod extends MethodClass
         $this->var()->validate('int::', $year);
         $this->var()->get('cal_sdow', $cal_sdow, 'int:0:6', 0);
 
-        $userapi = $this->getParent();
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
 
         $c = $userapi->factory('calendar');
         $c->setStartDayOfWeek($cal_sdow);

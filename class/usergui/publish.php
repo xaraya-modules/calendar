@@ -61,7 +61,7 @@ class PublishMethod extends MethodClass
                         //header('HTTP/1.0 401 Unauthorized');
                         header("Status: 401 Access Denied");
                         echo $this->ml('You must enter a valid username and password to access this calendar');
-                        exit;
+                        $this->exit();
                      }
             */
             $calendars = xarMod::apiFunc(
@@ -123,7 +123,7 @@ class PublishMethod extends MethodClass
                             }
                         }
                         // we're done here
-                        exit;
+                        $this->exit();
                     }
                 }
             }

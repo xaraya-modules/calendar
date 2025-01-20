@@ -49,7 +49,8 @@ class DayisMethod extends MethodClass
         if (!$this->var()->validate('int::', $date)) {
             return;
         }
-        $userapi = $this->getParent();
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
 
         $c = $userapi->factory('calendar');
         return $c->dayIs($day, $date);

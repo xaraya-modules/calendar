@@ -41,10 +41,8 @@ class TestMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        $usergui = $this->getParent();
-
         /** @var UserApi $userapi */
-        $userapi = $usergui->getAPI();
+        $userapi = $this->userapi();
 
         // some timing for now to see how fast|slow the parser is
         // @todo no idea where this is now
