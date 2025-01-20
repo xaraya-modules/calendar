@@ -41,7 +41,7 @@ class DayMethod extends MethodClass
         $day_endts = $DayEvents->getTimestamp() + $this->mod()->getVar('day_end') + 3600;
 
         // get all the events. need to improve this query
-        $xartable = & xarDB::getTables();
+        $xartable = & $this->db()->getTables();
         $q = new Query('SELECT', $xartable['calendar_event']);
         //        $q->qecho();
         if (!$q->run()) {

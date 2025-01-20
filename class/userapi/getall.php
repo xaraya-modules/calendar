@@ -50,8 +50,8 @@ class GetallMethod extends MethodClass
         // Security check
         //    if (!$this->sec()->checkAccess('ViewCalendars')) return;
 
-        $dbconn = xarDB::getConn();
-        $xartable = & xarDB::getTables();
+        $dbconn = $this->db()->getConn();
+        $xartable = & $this->db()->getTables();
         $caltable = $xartable['calendars'];
         $cal_filestable = $xartable['calendars_files'];
         $filestable = $xartable['calfiles'];

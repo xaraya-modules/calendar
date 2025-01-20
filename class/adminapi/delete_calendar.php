@@ -71,8 +71,8 @@ class DeleteCalendarMethod extends MethodClass
         xarModHooks::call('item', 'delete', $calid, $args);
 
         // Get database setup
-        $dbconn = xarDB::getConn();
-        $xartable = & xarDB::getTables();
+        $dbconn = $this->db()->getConn();
+        $xartable = & $this->db()->getTables();
         $calendarstable = $xartable['calendars'];
         $cal_filestable = $xartable['calendars_files'];
         $calfiles = $xartable['calfiles'];

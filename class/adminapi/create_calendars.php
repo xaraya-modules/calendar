@@ -56,8 +56,8 @@ class CreateCalendarsMethod extends MethodClass
         }
 
         // Load up database details.
-        $dbconn = xarDB::getConn();
-        $xartable = & xarDB::getTables();
+        $dbconn = $this->db()->getConn();
+        $xartable = & $this->db()->getTables();
         $caltable = $xartable['calendars'];
 
         // Insert instance details.

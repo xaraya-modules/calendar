@@ -32,7 +32,7 @@ class GeteventsMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         extract($args);
-        $xartable = & xarDB::getTables();
+        $xartable = & $this->db()->getTables();
 
         $q = new Query('SELECT');
         $q->addtable($xartable['calendar_event']);

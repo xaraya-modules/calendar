@@ -46,7 +46,7 @@ class DeleteMethod extends MethodClass
         if (!$this->var()->check('name', $name)) {
             return;
         }
-        if (!$this->var()->get('itemid', $itemid), 'id') {
+        if (!$this->var()->get('itemid', $itemid, 'id')) {
             return;
         }
         if (!$this->var()->check('confirm', $confirm)) {
@@ -103,7 +103,7 @@ class DeleteMethod extends MethodClass
 
             if (file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/user-delete.xd') ||
                 file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xd')) {
-                return xarTpl::module($data['tplmodule'], 'user', 'delete', $data, $data['template']);
+                return $this->tpl()->module($data['tplmodule'], 'user', 'delete', $data, $data['template']);
             } else {
                 return $this->mod()->template('delete', $data, $data['template']);
             }

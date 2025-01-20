@@ -108,7 +108,7 @@ class UpdateMethod extends MethodClass
             $data['hooks'] = $hooks;
 
             $data['context'] ??= $this->getContext();
-            return xarTpl::module($tplmodule, 'user', 'modify', $data);
+            return $this->tpl()->module($tplmodule, 'user', 'modify', $data);
         }
 
         // Valid and not previewing, update the object

@@ -62,8 +62,8 @@ class GetMethod extends MethodClass
         //    if (!$this->sec()->checkAccess('ViewCalendars')) return;
 
         $calendars = [];
-        $dbconn = xarDB::getConn();
-        $xartable = & xarDB::getTables();
+        $dbconn = $this->db()->getConn();
+        $xartable = & $this->db()->getTables();
         $caltable = $xartable['calendars'];
         $cal_filestable = $xartable['calendars_files'];
         $filestable = $xartable['calfiles'];

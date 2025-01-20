@@ -105,7 +105,7 @@ class CreateMethod extends MethodClass
                 $template = $myobject->name;
             }
             $data['context'] ??= $this->getContext();
-            return xarTpl::module($tplmodule, 'user', 'new', $data, $template);
+            return $this->tpl()->module($tplmodule, 'user', 'new', $data, $template);
         }
 
         $itemid = $myobject->createItem();
