@@ -11,10 +11,11 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-function calendar_xartables()
+function calendar_xartables(?string $prefix = null)
 {
     $xartables = [];
-    $prefix = xarDB::getPrefix() . '_calendar';
+    $prefix ??= xarDB::getPrefix();
+    $prefix = $prefix . '_calendar';
 
     $xartables['calendar_calendar'] = $prefix . '_calendar';
     $xartables['calendar_event'] = $prefix . '_event';

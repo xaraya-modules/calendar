@@ -75,7 +75,7 @@ class Installer extends InstallerClass
         #
         sys::import('xaraya.structures.query');
         $q = new Query();
-        $prefix = xarDB::getPrefix();
+        $prefix = $this->db()->getPrefix();
 
         $query = "DROP TABLE IF EXISTS " . $prefix . "_calendar_calendar";
         if (!$q->run($query)) {
@@ -284,8 +284,8 @@ class Installer extends InstallerClass
             case '0.1.0':
                 // Start creating the tables
 
-                $dbconn = xarDB::getConn();
-                $xartable = & xarDB::getTables();
+                $dbconn = $this->db()->getConn();
+                $xartable = & $this->db()->getTables();
                 $calfilestable = $xartable['calendars_files'];
                 sys::import('xaraya.tableddl');
                 $fields = [
@@ -317,7 +317,7 @@ class Installer extends InstallerClass
                 }
 
                 $index = [
-                    'name'      => 'i_' . xarDB::getPrefix() . '_calendars_files_calendars_id',
+                    'name'      => 'i_' . $this->db()->getPrefix() . '_calendars_files_calendars_id',
                     'fields'    => ['xar_calendars_id'],
                     'unique'    => false,
                 ];
@@ -328,7 +328,7 @@ class Installer extends InstallerClass
                 }
 
                 $index = [
-                    'name'      => 'i_' . xarDB::getPrefix() . '_calendars_files_files_id',
+                    'name'      => 'i_' . $this->db()->getPrefix() . '_calendars_files_files_id',
                     'fields'    => ['xar_files_id'],
                     'unique'    => false,
                 ];

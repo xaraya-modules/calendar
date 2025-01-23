@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
 
-<!--
+<xar:comment><!--
 
 <xar:set name="navDayUrl">#xarController::URL('calendar','user','day',array('cal_date'=>$cal_date,'cal_sdow'=>$cal_sdow))#</xar:set>
 <xar:set name="navWeekUrl">#xarController::URL('calendar','user','week',array('cal_date'=>$cal_date,'cal_sdow'=>$cal_sdow))#</xar:set>
@@ -35,5 +35,5 @@
         <li><a href="#$navYearUrl#">Year</a></li>
     </xar:if>
 </ul>
--->
+--></xar:comment>
 </xar:template>

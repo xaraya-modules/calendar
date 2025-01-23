@@ -9,11 +9,11 @@
                 <xar:continue />
             </xar:if>
             <td>
-                <!-- TODO: This works within listings module but needs to be adjusted in the
+                <xar:comment><!-- TODO: This works within listings module but needs to be adjusted in the
                 DD for modify function to consider the user, or adjust for listings module instance to match.
                 Leaving as display only until this is addressed
                 <xar:if condition="xarUser::isLoggedIn() AND $field eq $keyfieldalias AND (xarSecurity::check('EditCalendar',0) OR $currentuserid eq $thisuserid)">
-                -->
+                --></xar:comment>
                 <xar:if condition="xarUser::isLoggedIn() AND $field eq $keyfieldalias AND xarSecurity::check('EditCalendar',0)">
                     <a href="#xarController::URL('calendar','user','modify',array('itemid' =>$loopitem[$primaryalias], 'name' => $objectname,'tplmodule' => $module))#">
                         <xar:data-output property="$properties[$column]" value="$value"/>
@@ -30,7 +30,7 @@
             </td>
         </xar:foreach>
 
-    <!-- To be reviewed - jo
+    <xar:comment><!-- To be reviewed - jo
         <xar:if condition="isset($properties) and count($properties) gt 0">
             <xar:set name="id">#$loop:item['id']#</xar:set>
             <xar:foreach in="$properties" key="$key">
@@ -43,7 +43,7 @@
                 </td>
             </xar:foreach>
         </xar:if>
-    -->
+    --></xar:comment>
         <xar:template file="listing_rowsuffix" module="$module" property="listing"/>
     </tr>
 </xar:template>

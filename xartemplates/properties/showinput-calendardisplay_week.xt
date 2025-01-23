@@ -56,13 +56,13 @@
                             <!-- Display the date for this day -->
                             <a href="#$DayURI->current('day')#">#$Day->thisDay()#</a>
                             <xar:set name="entries">$Day->getEntries()</xar:set>
-                            <!--
+                            <xar:comment><!--
                             <ul style="margin: 2px 2px 2px 2px">
                                 <xar:foreach in="$entries" value="$entry">
                                     <li>#$entry['name']#</li>
                                 </xar:foreach>
                             </ul>
-                            -->
+                            --></xar:comment>
                             <table style="border: none; width: 100%">
                                 <xar:foreach in="$entries" value="$entry">
                                     <tr>

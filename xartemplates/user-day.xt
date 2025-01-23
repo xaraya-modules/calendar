@@ -4,11 +4,11 @@
     <xar:template file="navheader"/>
     <xar:style scope="module" module="calendar" file="user-month"/>
     <xar:style scope="module" module="calendar" file="default"/>
-    <!--
+    <xar:comment><!--
         Define our navigation elements.
         TODO: Make a nice API Function for creating the valid URLS
         <xar:set name="prevYearURL">xarController::URL('calendar','user','day',array('cal_sdow'=>$cal_sdow,'cal_date'=>$prevYear))</xar:set>
-    -->
+    --></xar:comment>
     <xar:calendar-decorator object="$Day" decorator="Xaraya" name="DayURI"/>
 
     <xar:set name="prevYearURL">$DayURI->prev('year')</xar:set>
@@ -70,9 +70,9 @@
                         <xar:if condition="$Hour:isSelected()">
                             <xar:set name="entries">$Hour->getEntries()</xar:set>
                             <xar:foreach in="$entries" value="$entry">
-    <!--
+    <xar:comment><!--
     <xar:set name="foo">var_dump($entry)</xar:set>
-    -->
+    --></xar:comment>
                                 <xar:set name="width">$displaywidth/$entry['neighbors']</xar:set>
                                 <xar:set name="thisslot">$entry['place']</xar:set>
                                 <xar:set name="widthoffset">$thisslot*$width+2</xar:set>
