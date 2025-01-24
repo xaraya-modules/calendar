@@ -71,7 +71,7 @@ class DeleteMethod extends MethodClass
             return;
         }
 
-        $myobject = DataObjectFactory::getObject(['objectid' => $objectid,
+        $myobject = $this->data()->getObject(['objectid' => $objectid,
             'name'       => $name,
             'join'       => $join,
             'table'      => $table,
@@ -90,7 +90,7 @@ class DeleteMethod extends MethodClass
         }
 
         // recover any session var information and remove it from the var
-        $data = array_merge($data, xarMod::apiFunc('dynamicdata', 'user', 'getcontext', ['module' => $tplmodule]));
+        $data = array_merge($data, xarMod::apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]));
         //xarSession::setVar('ddcontext.' . $tplmodule, array('tplmodule' => $tplmodule));
         extract($data);
 

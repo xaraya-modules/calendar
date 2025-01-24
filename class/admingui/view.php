@@ -63,7 +63,7 @@ class ViewMethod extends MethodClass
         xarSession::setVar('ddcontext.' . $modulename, ['return_url' => xarServer::getCurrentURL()]);
 
         // Get the available dropdown options
-        $object = DataObjectFactory::getObjectList(['objectid' => 1]);
+        $object = $this->data()->getObjectList(['objectid' => 1]);
         $data['objectname'] = xarModVars::get($modulename, 'defaultmastertable');
         $items = $object->getItems();
         $options = [];

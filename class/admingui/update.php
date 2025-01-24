@@ -64,7 +64,7 @@ class UpdateMethod extends MethodClass
         if (!$this->sec()->confirmAuthKey()) {
             return;
         }
-        $myobject = DataObjectFactory::getObject(['objectid' => $objectid,
+        $myobject = $this->data()->getObject(['objectid' => $objectid,
             'join'     => $join,
             'table'    => $table,
             'itemid'   => $itemid, ]);
@@ -78,7 +78,7 @@ class UpdateMethod extends MethodClass
         $isvalid = $myobject->checkInput([], 0, 'dd');
 
         // recover any session var information
-        $data = xarMod::apiFunc('dynamicdata', 'user', 'getcontext', ['module' => $tplmodule]);
+        $data = xarMod::apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]);
         extract($data);
 
         if (!empty($preview) || !$isvalid) {
@@ -130,14 +130,14 @@ class UpdateMethod extends MethodClass
             $this->ctl()->redirect($return_url);
         } elseif ($myobject->objectid == 2) { // for dynamic properties, return to modifyprop
             $objectid = $myobject->properties['objectid']->value;
-            $this->ctl()->redirect(xarController::URL(
+            $this->ctl()->redirect($this->ctl()->getModuleURL(
                 'dynamicdata',
                 'admin',
                 'modifyprop',
                 ['itemid' => $objectid]
             ));
         } else {
-            $this->ctl()->redirect(xarController::URL(
+            $this->ctl()->redirect($this->ctl()->getModuleURL(
                 'dynamicdata',
                 'admin',
                 'view',

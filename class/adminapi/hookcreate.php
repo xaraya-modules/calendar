@@ -85,7 +85,7 @@ class HookcreateMethod extends MethodClass
         $data['extrainfo']['timestamp'] ??= time();
 
         $data['extrainfo']['itemid'] = 0;
-        $object = DataObjectFactory::getObject(['name' => 'calendar_event']);
+        $object = $this->data()->getObject(['name' => 'calendar_event']);
         $item = $object->createItem($data['extrainfo']);
 
         return $data['extrainfo'];

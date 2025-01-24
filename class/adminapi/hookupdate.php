@@ -84,7 +84,7 @@ class HookupdateMethod extends MethodClass
         $data['extrainfo']['state'] ??= 3;
         $data['extrainfo']['timestamp'] ??= time();
 
-        $object = DataObjectFactory::getObject(['name' => 'calendar_event']);
+        $object = $this->data()->getObject(['name' => 'calendar_event']);
         $item = $object->updateItem($data['extrainfo']);
 
         return $data['extrainfo'];

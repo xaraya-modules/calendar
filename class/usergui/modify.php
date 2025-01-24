@@ -47,9 +47,8 @@ class ModifyMethod extends MethodClass
         if (!$this->var()->find('page', $data['page'], 'str:1', 'week')) {
             return;
         }
-        xarSession::setVar('ddcontext.calendar', ['page' => $data['page'],
-        ]);
-        $data['object'] = DataObjectFactory::getObject(['name' => 'calendar_event']);
+        xarSession::setVar('ddcontext.calendar', ['page' => $data['page']]);
+        $data['object'] = $this->data()->getObject(['name' => 'calendar_event']);
         $data['object']->getItem(['itemid' => $data['itemid']]);
         $data['tplmodule'] = 'calendar';
         $data['authid'] = $this->sec()->genAuthKey();

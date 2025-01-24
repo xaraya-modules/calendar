@@ -68,12 +68,12 @@ class CreateMethod extends MethodClass
             return;
         }
 
-        $myobject = DataObjectFactory::getObject(['objectid' => $objectid,
+        $myobject = $this->data()->getObject(['objectid' => $objectid,
             'itemid'   => $itemid, ]);
         $isvalid = $myobject->checkInput();
 
         // recover any session var information
-        $data = xarMod::apiFunc('dynamicdata', 'user', 'getcontext', ['module' => $tplmodule]);
+        $data = xarMod::apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]);
         extract($data);
 
         if (!empty($preview) || !$isvalid) {
@@ -125,7 +125,7 @@ class CreateMethod extends MethodClass
         if (!empty($return_url)) {
             $this->ctl()->redirect($return_url);
         } else {
-            $this->ctl()->redirect(xarController::URL(
+            $this->ctl()->redirect($this->ctl()->getModuleURL(
                 'dynamicdata',
                 'admin',
                 'view',

@@ -109,7 +109,7 @@ class ModifyconfigMethod extends MethodClass
                 }
 
                 sys::import('modules.dynamicdata.class.properties.master');
-                $timeproperty = DataPropertyMaster::getProperty(['type' => 'formattedtime']);
+                $timeproperty = $this->prop()->getProperty(['type' => 'formattedtime']);
                 $day_start = $timeproperty->checkInput('day_start') ? $timeproperty->getValue() : $this->mod()->getVar('day_start');
                 $day_end = $timeproperty->checkInput('day_end') ? $timeproperty->getValue() : $this->mod()->getVar('day_end');
 

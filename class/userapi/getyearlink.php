@@ -35,7 +35,7 @@ class GetyearlinkMethod extends MethodClass
      * @author Roger Raymond
      *  @access public
      *  @param string $date YYYYMMDD date to provide link to
-     *  @return string a valid link based on xarController::URL()
+     *  @return string a valid link based on $this->ctl()->getModuleURL()
      *  @todo add necessary get vars to the resulting URL
      */
     public function __invoke($date = null)
