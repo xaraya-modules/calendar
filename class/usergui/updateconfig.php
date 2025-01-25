@@ -32,6 +32,7 @@ class UpdateconfigMethod extends MethodClass
 
     /**
      * Allows a user to modify their Calendar specific changes
+     * @see UserGui::updateconfig()
      */
     public function __invoke(array $args = [])
     {

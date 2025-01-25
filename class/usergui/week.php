@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Calendar\UserGui;
 
 
 use Xaraya\Modules\Calendar\UserGui;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSession;
@@ -28,11 +29,14 @@ sys::import('xaraya.modules.method');
  */
 class WeekMethod extends MethodClass
 {
-    /** functions imported by bermuda_cleanup */
+    /** functions imported by bermuda_cleanup * @see UserGui::week()
+     */
 
     public function __invoke(array $args = [])
     {
-        $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
+        $data = $userapi->getUserDateTimeInfo();
 
         $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
 

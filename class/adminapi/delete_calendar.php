@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Calendar\AdminApi;
 
 
 use Xaraya\Modules\Calendar\AdminApi;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarModHooks;
@@ -32,13 +33,18 @@ class DeleteCalendarMethod extends MethodClass
 
     /**
      * Delete a calendar from database
-     * Usage : if (xarMod::apiFunc('calendar', 'admin', 'delete', $calendar)) {...}
+     * Usage : if ($adminapi->delete($calendar)) {...}
      * @param array<mixed> $args
      * @var mixed $calid ID of the calendar
      * @return bool|null true on success, false on failure
+     * @see AdminApi::deleteCalendar()
      */
     public function __invoke(array $args = [])
     {
+        /** @var AdminApi $adminapi */
+        $adminapi = $this->adminapi();
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
         // Get arguments from argument array
         extract($args);
 
@@ -59,7 +65,7 @@ class DeleteCalendarMethod extends MethodClass
             if (!xarMod::apiLoad('calendar', 'user')) return;
 
             $args['mask'] = 'DeleteCalendars';
-            if (!xarMod::apiFunc('calendar','user','checksecurity',$args)) {
+            if (!$userapi->checksecurity($args)) {
                 $msg = $this->ml('Not authorized to delete #(1) items',
                             'Calendar');
                 throw new Exception($msg);

@@ -37,6 +37,7 @@ class GetyearlinkMethod extends MethodClass
      *  @param string $date YYYYMMDD date to provide link to
      *  @return string a valid link based on $this->ctl()->getModuleURL()
      *  @todo add necessary get vars to the resulting URL
+     * @see UserApi::getyearlink()
      */
     public function __invoke($date = null)
     {

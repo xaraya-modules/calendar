@@ -33,7 +33,8 @@ sys::import('xaraya.modules.method');
  */
 class CreateMethod extends MethodClass
 {
-    /** functions imported by bermuda_cleanup */
+    /** functions imported by bermuda_cleanup * @see AdminGui::create()
+     */
 
     public function __invoke(array $args = [])
     {

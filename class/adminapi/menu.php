@@ -29,6 +29,7 @@ class MenuMethod extends MethodClass
 
     /**
      * generate the common admin menu configuration
+     * @see AdminApi::menu()
      */
     public function __invoke(array $args = [])
     {

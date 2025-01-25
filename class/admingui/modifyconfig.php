@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Calendar\AdminGui;
 
 
 use Xaraya\Modules\Calendar\AdminGui;
+use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarSecurity;
@@ -46,11 +47,14 @@ class ModifyconfigMethod extends MethodClass
      * @copyright (C) copyright-placeholder
      * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
      * @author Marc Lutolf <mfl@netspan.ch>
+     * @see AdminGui::modifyconfig()
      */
     public function __invoke(array $args = [])
     {
-        $data = xarMod::apiFunc('calendar', 'admin', 'menu');
-        $data = array_merge($data, xarMod::apiFunc('calendar', 'admin', 'get_calendars'));
+        /** @var AdminApi $adminapi */
+        $adminapi = $this->adminapi();
+        $data = $adminapi->menu();
+        $data = array_merge($data, $adminapi->get_calendars());
         if (!$this->sec()->checkAccess('AdminCalendar')) {
             return;
         }

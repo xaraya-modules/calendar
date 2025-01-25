@@ -42,6 +42,7 @@ class ViewMethod extends MethodClass
      * @copyright (C) copyright-placeholder
      * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
      * @author Marc Lutolf <mfl@netspan.ch>
+     * @see AdminGui::view()
      */
     public function __invoke(array $args = [])
     {
@@ -60,7 +61,7 @@ class ViewMethod extends MethodClass
         }
 
         // Set a return url
-        xarSession::setVar('ddcontext.' . $modulename, ['return_url' => xarServer::getCurrentURL()]);
+        xarSession::setVar('ddcontext.' . $modulename, ['return_url' => $this->ctl()->getCurrentURL()]);
 
         // Get the available dropdown options
         $object = $this->data()->getObjectList(['objectid' => 1]);

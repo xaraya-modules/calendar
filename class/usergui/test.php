@@ -38,6 +38,7 @@ class TestMethod extends MethodClass
      * @copyright (C) copyright-placeholder
      * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
      * @author Marc Lutolf <mfl@netspan.ch>
+     * @see UserGui::test()
      */
     public function __invoke(array $args = [])
     {

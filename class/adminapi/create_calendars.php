@@ -34,6 +34,7 @@ class CreateCalendarsMethod extends MethodClass
     /**
      *
      * @return int|null (calendar id on success, false on failure)
+     * @see AdminApi::createCalendars()
      */
     public function __invoke(array $args = [])
     {

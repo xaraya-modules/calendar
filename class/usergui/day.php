@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Calendar\UserGui;
 
 
 use Xaraya\Modules\Calendar\UserGui;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use xarModVars;
@@ -29,11 +30,14 @@ sys::import('xaraya.modules.method');
  */
 class DayMethod extends MethodClass
 {
-    /** functions imported by bermuda_cleanup */
+    /** functions imported by bermuda_cleanup * @see UserGui::day()
+     */
 
     public function __invoke(array $args = [])
     {
-        $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
+        $data = $userapi->getUserDateTimeInfo();
         $DayEvents = new \Calendar_Day($data['cal_year'], $data['cal_month'], $data['cal_day']);
         $args = [
             'day' => &$DayEvents,

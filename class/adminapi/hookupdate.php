@@ -28,7 +28,8 @@ sys::import('xaraya.modules.method');
  */
 class HookupdateMethod extends MethodClass
 {
-    /** functions imported by bermuda_cleanup */
+    /** functions imported by bermuda_cleanup * @see AdminApi::hookupdate()
+     */
 
     public function __invoke(array $data = [])
     {

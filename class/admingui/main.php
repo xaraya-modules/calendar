@@ -41,6 +41,7 @@ class MainMethod extends MethodClass
      * @copyright (C) copyright-placeholder
      * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
      * @author Marc Lutolf <mfl@netspan.ch>
+     * @see AdminGui::main()
      */
     public function __invoke(array $args = [])
     {
@@ -54,7 +55,7 @@ class MainMethod extends MethodClass
         } else {
             $redirect = $this->mod()->getVar('defaultbackpage');
             if (!empty($redirect)) {
-                $truecurrenturl = xarServer::getCurrentURL([], false);
+                $truecurrenturl = $this->ctl()->getCurrentURL([], false);
                 $urldata = xarMod::apiFunc('roles', 'user', 'parseuserhome', ['url' => $redirect,'truecurrenturl' => $truecurrenturl]);
                 $this->ctl()->redirect($urldata['redirecturl']);
             } else {

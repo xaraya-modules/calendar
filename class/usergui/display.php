@@ -33,6 +33,7 @@ class DisplayMethod extends MethodClass
 
     /**
      * Display an item of the event object
+     * @see UserGui::display()
      */
     public function __invoke(array $args = [])
     {

@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Calendar\UserGui;
 
 
 use Xaraya\Modules\Calendar\UserGui;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarVar;
 use xarModVars;
@@ -35,10 +36,13 @@ class PublishMethod extends MethodClass
 
     /**
      * Publish a calendar
+     * @see UserGui::publish()
      */
     public function __invoke(array $args = [])
     {
         extract($args);
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
         $this->var()->find('calid', $calid, 'id', 0);
         $this->var()->find('calname', $calname, 'str:1:', '');
 
@@ -64,11 +68,7 @@ class PublishMethod extends MethodClass
                         $this->exit();
                      }
             */
-            $calendars = xarMod::apiFunc(
-                'calendar',
-                'user',
-                'get',
-                ['calid' => $calid,
+            $calendars = $userapi->get(['calid' => $calid,
                     'calname' => $calname, ]
             );
             if (!isset($calendars)) {
@@ -129,7 +129,7 @@ class PublishMethod extends MethodClass
             }
         }
         $data = [];
-        $data['calendars'] = xarMod::apiFunc('calendar', 'user', 'getall');
+        $data['calendars'] = $userapi->getall();
 
         return $data;
     }

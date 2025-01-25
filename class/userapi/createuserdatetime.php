@@ -35,6 +35,7 @@ class CreateUserDateTimeMethod extends MethodClass
      *  @param string $format valid date/time format using php's date() function
      *  @return string valid date/time
      *  @todo user timezone modifications
+     * @see UserApi::createUserDateTime()
      */
     public function __invoke($format = 'Ymd')
     {

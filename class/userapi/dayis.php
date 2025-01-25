@@ -34,7 +34,8 @@ class DayisMethod extends MethodClass
      * @version $Id: dayis.php,v 1.2 2003/06/24 21:23:06 roger Exp $
      *  @param int $day 0 - 6 [Sun - Sat]
      *  @param int $date valid date YYYYMMDD
-     *  @return bool true/false depending on day looking for and the date
+     *  @return bool|void true/false depending on day looking for and the date
+     * @see UserApi::dayis()
      */
     public function __invoke(array $args = [])
     {

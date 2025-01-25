@@ -33,7 +33,7 @@ class Calendar
         $this->startDayOfWeek = 0;
 
         // load the locale date
-        $localeData = & xarLocale::loadData();
+        $localeData = xarLocale::loadData();
         //echo '<pre>'; print_r($localeData); echo '</pre>';
         // long month names from locale.xml
         $this->monthNamesLong = [

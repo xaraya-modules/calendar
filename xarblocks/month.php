@@ -29,10 +29,10 @@ class Calendar_MonthBlock extends BasicBlock
 
     public function display(array $data = [])
     {
-        $data = parent::display($data);
+        $data = parent::display();
 
         if (!defined('CALENDAR_ROOT')) {
-            define('CALENDAR_ROOT', xarModVars::get('calendar', 'pearcalendar_root'));
+            define('CALENDAR_ROOT', $this->mod()->getVar('pearcalendar_root'));
         }
         include_once(CALENDAR_ROOT . 'Month/Weekdays.php');
         include_once(CALENDAR_ROOT . 'Decorator/Textual.php');

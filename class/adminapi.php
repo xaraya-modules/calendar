@@ -26,7 +26,7 @@ sys::import('xaraya.modules.adminapi');
  * @method mixed getmenulinks(array $args)
  * @method mixed hookcreate(array $args)
  * @method mixed hookupdate(array $args)
- * @method mixed menu(array $args)
+ * @method mixed menu(array $args = [])
  * @extends AdminApiClass<Module>
  */
 class AdminApi extends AdminApiClass

@@ -34,6 +34,7 @@ class ModifyMethod extends MethodClass
 
     /**
      * Modify an item of the event object
+     * @see UserGui::modify()
      */
     public function __invoke(array $args = [])
     {

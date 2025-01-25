@@ -34,6 +34,7 @@ class NewMethod extends MethodClass
 
     /**
      * Create a new item of the event object
+     * @see UserGui::new()
      */
     public function __invoke(array $args = [])
     {

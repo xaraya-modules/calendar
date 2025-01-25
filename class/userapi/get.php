@@ -42,6 +42,7 @@ class GetMethod extends MethodClass
      * @var mixed $calname name of calendar
      * @var mixed $calid id of calendar
      * @return array|null of calendar, or false on failure
+     * @see UserApi::get()
      */
     public function __invoke(array $args = [])
     {

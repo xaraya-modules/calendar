@@ -13,6 +13,7 @@ namespace Xaraya\Modules\Calendar\UserGui;
 
 
 use Xaraya\Modules\Calendar\UserGui;
+use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarMod;
 use sys;
@@ -26,11 +27,14 @@ sys::import('xaraya.modules.method');
  */
 class YearMethod extends MethodClass
 {
-    /** functions imported by bermuda_cleanup */
+    /** functions imported by bermuda_cleanup * @see UserGui::year()
+     */
 
     public function __invoke(array $args = [])
     {
-        $data = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
+        /** @var UserApi $userapi */
+        $userapi = $this->userapi();
+        $data = $userapi->getUserDateTimeInfo();
         $Year = new \Calendar_Year($data['cal_year']);
         $Year->build(); // TODO: find a better way to handle this
         $data['Year'] = & $Year;

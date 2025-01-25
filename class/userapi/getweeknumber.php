@@ -29,6 +29,7 @@ class GetWeekNumberMethod extends MethodClass
 
     /**
      * temp placeholder function to make year view work
+     * @see UserApi::getWeekNumber()
      */
     public function __invoke(array $args = [])
     {

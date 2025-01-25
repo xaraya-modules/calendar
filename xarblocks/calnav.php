@@ -40,17 +40,17 @@ class Calendar_CalnavBlock extends BasicBlock implements iBlock
         }
 
         if (!defined('CALENDAR_ROOT')) {
-            define('CALENDAR_ROOT', xarModVars::get('calendar', 'pearcalendar_root'));
+            define('CALENDAR_ROOT', $this->mod()->getVar('pearcalendar_root'));
         }
         include_once(CALENDAR_ROOT . 'Calendar.php');
 
 
-        $tplData['form_action'] = xarController::URL('calendar', 'user', 'changecalnav');
+        $tplData['form_action'] = $this->mod()->getURL('user', 'changecalnav');
         $tplData['blockid'] = $data['bid'];
 
         if (xarServer::getVar('REQUEST_METHOD') == 'GET') {
             // URL of this page
-            $tplData['return_url'] = xarServer::getCurrentURL();
+            $tplData['return_url'] = $this->ctl()->getCurrentURL();
         } else {
             // Base URL of the site
             $tplData['return_url'] = xarServer::getBaseURL();

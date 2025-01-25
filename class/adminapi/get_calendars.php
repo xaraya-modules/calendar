@@ -29,6 +29,7 @@ class GetCalendarsMethod extends MethodClass
 
     /**
      * generate the common admin menu configuration
+     * @see AdminApi::getCalendars()
      */
     public function __invoke(array $args = [])
     {

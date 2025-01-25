@@ -36,6 +36,7 @@ class GetallMethod extends MethodClass
      * @var mixed $numitems number of articles to get
      * @var mixed $startnum starting article number
      * @return array|null of calendars, or false on failure
+     * @see UserApi::getall()
      */
     public function __invoke(array $args = [])
     {

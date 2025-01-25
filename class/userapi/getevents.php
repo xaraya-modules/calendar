@@ -27,7 +27,8 @@ sys::import('xaraya.modules.method');
  */
 class GeteventsMethod extends MethodClass
 {
-    /** functions imported by bermuda_cleanup */
+    /** functions imported by bermuda_cleanup * @see UserApi::getevents()
+     */
 
     public function __invoke(array $args = [])
     {
