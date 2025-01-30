@@ -45,7 +45,7 @@ class NewMethod extends MethodClass
         if (!$this->var()->find('page', $data['page'], 'str:1', 'week')) {
             return;
         }
-        xarSession::setVar('ddcontext.calendar', ['page' => $data['page']]);
+        $this->session()->setVar('ddcontext.calendar', ['page' => $data['page']]);
         $data['object'] = $this->data()->getObject(['name' => 'calendar_event']);
         $data['tplmodule'] = 'calendar';
         $data['authid'] = $this->sec()->genAuthKey();

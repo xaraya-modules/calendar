@@ -39,7 +39,7 @@ class Calendar_MonthBlock extends BasicBlock
         sys::import("modules.calendar.class.Calendar.Decorator.Xaraya");
 
         // Build the month
-        $data['content'] = xarMod::apiFunc('calendar', 'user', 'getUserDateTimeInfo');
+        $data['content'] = $this->mod()->apiMethod('calendar', 'user', 'getUserDateTimeInfo');
         $data['content']['MonthCal'] = new \Calendar_Month_Weekdays(
             $data['content']['cal_year'],
             $data['content']['cal_month'],

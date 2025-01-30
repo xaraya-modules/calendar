@@ -76,7 +76,7 @@ class GetUserDateTimeInfoMethod extends MethodClass
 
         sys::import('xaraya.structures.datetime');
         $today = new \XarDateTime();
-        $usertz = xarModUserVars::get('roles', 'usertimezone', xarSession::getVar('role_id'));
+        $usertz = xarModUserVars::get('roles', 'usertimezone', $this->session()->getUserId());
         $useroffset = $today->getTZOffset($usertz);
         $data['now'] = getdate(time() + $useroffset);
         return $data;

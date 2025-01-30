@@ -66,7 +66,7 @@ class ModifyconfigMethod extends MethodClass
             return;
         }
 
-        $data['module_settings'] = xarMod::apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'calendar']);
+        $data['module_settings'] = $this->mod()->apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'calendar']);
         $data['module_settings']->setFieldList('items_per_page, use_module_alias, module_alias_name, enable_short_urls', 'use_module_icons, frontend_page, backend_page');
         $data['module_settings']->getItem();
 
@@ -131,7 +131,7 @@ class ModifyconfigMethod extends MethodClass
                     $this->mod()->setVar('day_start', $day_start);
                     $this->mod()->setVar('day_end', $day_end);
                 }
-                $regid = xarMod::getRegID($tabmodule);
+                $regid = $this->mod()->getRegID($tabmodule);
                 xarModItemVars::set('calendar', 'windowwidth', $windowwidth, $regid);
                 xarModItemVars::set('calendar', 'minutesperunit', $minutesperunit, $regid);
                 xarModItemVars::set('calendar', 'unitheight', $unitheight, $regid);

@@ -43,10 +43,10 @@ class HookcreateMethod extends MethodClass
             if (!empty($data['extrainfo']['module'])) {
                 $data['module'] = $data['extrainfo']['module'];
             } else {
-                $data['module'] = xarMod::getName();
+                $data['module'] = $this->mod()->getName();
             }
         }
-        $data['module_id'] = xarMod::getID(($data['module']));
+        $data['module_id'] = $this->mod()->getID(($data['module']));
         if (empty($data['module_id'])) {
             throw new IDNotFoundException("module id for " . $data['modname']);
         }
@@ -80,7 +80,7 @@ class HookcreateMethod extends MethodClass
         $data['extrainfo']['start_location'] ??= null;
         $data['extrainfo']['end_location'] ??= null;
         $data['extrainfo']['object_id'] ??= 0;
-        $data['extrainfo']['role_id'] ??= xarSession::getVar('role_id');
+        $data['extrainfo']['role_id'] ??= $this->session()->getUserId();
         $data['extrainfo']['return_link'] ??= '';
         $data['extrainfo']['state'] ??= 3;
         $data['extrainfo']['timestamp'] ??= time();

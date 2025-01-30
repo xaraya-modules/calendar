@@ -91,8 +91,8 @@ class DeleteMethod extends MethodClass
         }
 
         // recover any session var information and remove it from the var
-        $data = array_merge($data, xarMod::apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]));
-        //xarSession::setVar('ddcontext.' . $tplmodule, array('tplmodule' => $tplmodule));
+        $data = array_merge($data, $this->mod()->apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]));
+        //$this->session()->setVar('ddcontext.' . $tplmodule, array('tplmodule' => $tplmodule));
         extract($data);
 
         $myobject->getItem();

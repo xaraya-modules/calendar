@@ -49,11 +49,11 @@ class CreateCalendarsMethod extends MethodClass
         // TODO: should I move these two issets to the admin function
         // admin/create_calendars.php? --amoro
         if (!isset($mod_id)) {
-            $module = xarController::getRequest()->getModule();
-            $mod_id = xarMod::getRegID($module);
+            $module = $this->ctl()->getRequest()->getModule();
+            $mod_id = $this->mod()->getRegID($module);
         }
         if (!isset($role_id)) {
-            $role_id = xarSession::getVar('role_id');
+            $role_id = $this->session()->getUserId();
         }
 
         // Load up database details.

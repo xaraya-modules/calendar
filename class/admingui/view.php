@@ -61,7 +61,7 @@ class ViewMethod extends MethodClass
         }
 
         // Set a return url
-        xarSession::setVar('ddcontext.' . $modulename, ['return_url' => $this->ctl()->getCurrentURL()]);
+        $this->session()->setVar('ddcontext.' . $modulename, ['return_url' => $this->ctl()->getCurrentURL()]);
 
         // Get the available dropdown options
         $object = $this->data()->getObjectList(['objectid' => 1]);

@@ -62,7 +62,7 @@ class DeleteCalendarMethod extends MethodClass
 
         // TODO: Security check
         /*
-            if (!xarMod::apiLoad('calendar', 'user')) return;
+            if (!$this->mod()->apiLoad('calendar', 'user')) return;
 
             $args['mask'] = 'DeleteCalendars';
             if (!$userapi->checksecurity($args)) {

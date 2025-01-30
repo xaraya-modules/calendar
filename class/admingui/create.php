@@ -74,11 +74,11 @@ class CreateMethod extends MethodClass
         $isvalid = $myobject->checkInput();
 
         // recover any session var information
-        $data = xarMod::apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]);
+        $data = $this->mod()->apiFunc('dynamicdata', 'user', 'sessioncontext', ['module' => $tplmodule]);
         extract($data);
 
         if (!empty($preview) || !$isvalid) {
-            $data = array_merge($data, xarMod::apiFunc('dynamicdata', 'admin', 'menu'));
+            $data = array_merge($data, $this->mod()->apiFunc('dynamicdata', 'admin', 'menu'));
 
             $data['object'] = & $myobject;
 
@@ -89,8 +89,8 @@ class CreateMethod extends MethodClass
             }
 
             // Makes this hooks call explictly from DD
-            //$modinfo = xarMod::getInfo($myobject->moduleid);
-            $modinfo = xarMod::getInfo(182);
+            //$modinfo = $this->mod()->getInfo($myobject->moduleid);
+            $modinfo = $this->mod()->getInfo(182);
             $item = [];
             foreach (array_keys($myobject->properties) as $name) {
                 $item[$name] = $myobject->properties[$name]->value;
@@ -112,7 +112,7 @@ class CreateMethod extends MethodClass
         $itemid = $myobject->createItem();
 
         // If we are here then the create is valid: reset the session var
-        xarSession::setVar('ddcontext.' . $tplmodule, ['tplmodule' => $tplmodule]);
+        $this->session()->setVar('ddcontext.' . $tplmodule, ['tplmodule' => $tplmodule]);
 
         if (empty($itemid)) {
             return;
