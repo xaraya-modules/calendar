@@ -14,7 +14,6 @@
 /* Include files needed */
 sys::import('modules.dynamicdata.class.properties');
 sys::import('xaraya.structures.query');
-$this->mod()->apiLoad('calendar', 'user');
 
 class CalendarDisplayProperty extends DataProperty
 {
