@@ -15,7 +15,7 @@ use Xaraya\Modules\AdminGuiClass;
 use sys;
 
 sys::import('xaraya.modules.admingui');
-sys::import('modules.calendar.class.adminapi');
+sys::import('modules.calendar.adminapi');
 
 /**
  * Handle the calendar admin GUI

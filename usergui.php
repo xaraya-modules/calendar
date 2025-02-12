@@ -15,7 +15,7 @@ use Xaraya\Modules\UserGuiClass;
 use sys;
 
 sys::import('xaraya.modules.usergui');
-sys::import('modules.calendar.class.userapi');
+sys::import('modules.calendar.userapi');
 
 /**
  * Handle the calendar user GUI
