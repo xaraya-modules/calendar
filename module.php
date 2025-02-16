@@ -23,5 +23,8 @@ class Module extends ModuleClass
         parent::setClassTypes();
         // add other class types for calendar
         //$this->classtypes['utilapi'] = 'UtilApi';
+        if (!defined('CALENDAR_ROOT')) {
+            define('CALENDAR_ROOT', __DIR__ . '/pear/Calendar/');
+        }
     }
 }

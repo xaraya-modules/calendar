@@ -43,7 +43,7 @@ class Calendar_MonthBlock extends BasicBlock
         $data['content']['MonthCal'] = new \Calendar_Month_Weekdays(
             $data['content']['cal_year'],
             $data['content']['cal_month'],
-            CALENDAR_FIRST_DAY_OF_WEEK
+            $this->mod()->getVar('cal_sdow')
         );
         $data['content']['MonthCal']->build();
         $data['content']['targetmodule'] = $data['targetmodule'];

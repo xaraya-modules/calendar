@@ -105,7 +105,7 @@ class DayMethod extends MethodClass
         $DayDecorator = new \DayEvent_Decorator($DayEvents);
         $DayDecorator->build($events);
         $data['Day'] = & $DayDecorator;
-        $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
+        $data['cal_sdow'] = $this->mod()->getVar('cal_sdow');
         return $data;
     }
 }

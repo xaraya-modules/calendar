@@ -38,7 +38,7 @@ class WeekMethod extends MethodClass
         $userapi = $this->userapi();
         $data = $userapi->getUserDateTimeInfo();
 
-        $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
+        $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], $this->mod()->getVar('cal_sdow'));
 
         $start_time = $WeekEvents->thisWeek;
         $end_time = $WeekEvents->nextWeek;

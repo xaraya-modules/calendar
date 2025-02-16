@@ -79,16 +79,16 @@ class CalendarDisplayProperty extends DataProperty
         $data = $this->mod()->apiMethod('calendar', 'user', 'getUserDateTimeInfo');
         switch ($timeframe) {
             case 'week':
-                $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], CALENDAR_FIRST_DAY_OF_WEEK);
+                $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], $this->mod()->getVar('cal_sdow'));
                 $start_time = $WeekEvents->thisWeek;
                 $end_time = $WeekEvents->nextWeek;
 
                 $events = $this->getEvents($start_time, $end_time, $role_id);
 
-                $WeekDecorator = new WeekEvent_Decorator($WeekEvents);
+                $WeekDecorator = new \WeekEvent_Decorator($WeekEvents);
                 $WeekDecorator->build($events);
                 $data['Week'] = & $WeekDecorator;
-                $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
+                $data['cal_sdow'] = $this->mod()->getVar('cal_sdow');
                 break;
             case 'month':
                 $MonthEvents = new \Calendar_Month_Weekdays(
@@ -106,7 +106,7 @@ class CalendarDisplayProperty extends DataProperty
 
                 $events = $this->getEvents($start_time, $end_time, $role_id);
 
-                $MonthDecorator = new MonthEvent_Decorator($MonthEvents);
+                $MonthDecorator = new \MonthEvent_Decorator($MonthEvents);
                 $MonthDecorator->build($events);
                 $data['Month'] = & $MonthDecorator;
                 break;
@@ -118,10 +118,10 @@ class CalendarDisplayProperty extends DataProperty
 
                 $events = $this->getEvents($start_time, $end_time, $role_id);
 
-                $YearDecorator = new YearEvent_Decorator($Year);
+                $YearDecorator = new \YearEvent_Decorator($Year);
                 $YearDecorator->build($events);
                 $data['Year'] = & $YearDecorator->calendar;
-                $data['cal_sdow'] = CALENDAR_FIRST_DAY_OF_WEEK;
+                $data['cal_sdow'] = $this->mod()->getVar('cal_sdow');
                 break;
         }
         return $data;
