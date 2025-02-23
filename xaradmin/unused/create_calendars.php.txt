@@ -5,21 +5,11 @@ function calendar_admin_create_calendars(array $args = [], $context = null)
     // Get parameters
     // TODO HELPNEEDED here: how do I handle this (e.g. missing calname should return a
     // message
-    if (!xarVar::fetch('add_calendar', 'isset', $add_calendar)) {
-        return;
-    }
-    if (!xarVar::fetch('calname', 'str:1:', $calname)) {
-        return;
-    }
-    if (!xarVar::fetch('addtype', 'str:1:', $addtype)) {
-        return;
-    }
-    if (!xarVar::fetch('location', 'str:1:', $location, '', xarVar::NOT_REQUIRED)) {
-        return;
-    }
-    if (!xarVar::fetch('uri', 'str:1:', $uri, '', xarVar::NOT_REQUIRED)) {
-        return;
-    }
+    xarVar::fetch('add_calendar', 'isset', $add_calendar);
+    xarVar::fetch('calname', 'str:1:', $calname);
+    xarVar::fetch('addtype', 'str:1:', $addtype);
+    xarVar::fetch('location', 'str:1:', $location, '', xarVar::NOT_REQUIRED);
+    xarVar::fetch('uri', 'str:1:', $uri, '', xarVar::NOT_REQUIRED);
 
     // Confirm Auth Key
     if (!xarSec::confirmAuthKey()) {

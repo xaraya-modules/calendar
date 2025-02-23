@@ -4,12 +4,8 @@ function calendar_admin_add_calendars(array $args = [], $context = null)
 {
     // Security check
     //    if (!xarSecurity::check('AddCalendar',0,'Calendar')) return;
-    if (!xarVar::fetch('calid', 'int:0:', $calid, '0', xarVar::NOT_REQUIRED)) {
-        return;
-    }
-    if (!xarVar::fetch('calname', 'str', $calname, '', xarVar::NOT_REQUIRED)) {
-        return;
-    }
+    xarVar::fetch('calid', 'int:0:', $calid, '0', xarVar::NOT_REQUIRED);
+    xarVar::fetch('calname', 'str', $calname, '', xarVar::NOT_REQUIRED);
 
     $data = xarMod::apiFunc('calendar', 'admin', 'get_calendars');
 

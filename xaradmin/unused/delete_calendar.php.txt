@@ -6,12 +6,8 @@
 function calendar_admin_delete_calendar(array $args = [], $context = null)
 {
     // Get parameters
-    if (!xarVar::fetch('calid', 'id', $calid)) {
-        return;
-    }
-    if (!xarVar::fetch('confirm', 'checkbox', $confirm, false, xarVar::NOT_REQUIRED)) {
-        return;
-    }
+    xarVar::fetch('calid', 'id', $calid);
+    xarVar::fetch('confirm', 'checkbox', $confirm, false, xarVar::NOT_REQUIRED);
 
     // Get calendar information
     $calendar = xarMod::apiFunc(
