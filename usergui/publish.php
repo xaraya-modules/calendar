@@ -110,7 +110,7 @@ class PublishMethod extends MethodClass
                             }
 
                             if (!empty($data)) {
-                                //$this->log()->message($data);
+                                //$this->log()->debug($data);
                                 // write to file
                                 if ($fp = fopen($curfile, 'w+')) {
                                     fputs($fp, $data, strlen($data));

@@ -31,7 +31,7 @@ sys::import('xaraya.modules.userapi');
  * @method mixed factory(array $args)
  * @method mixed get(array $args)
  * @method mixed getUserDateTimeInfo(array $args = [])
- * @method mixed getall(array $args)
+ * @method mixed getall(array $args = [])
  * @method mixed getdaylink(array $args)
  * @method mixed getevents(array $args)
  * @method mixed getitemtypes(array $args)
