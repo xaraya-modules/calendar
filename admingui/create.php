@@ -40,30 +40,14 @@ class CreateMethod extends MethodClass
     {
         extract($args);
 
-        if (!$this->var()->check('objectid', $objectid)) {
-            return;
-        }
-        if (!$this->var()->find('itemid', $itemid, 'isset', 0)) {
-            return;
-        }
-        if (!$this->var()->find('preview', $preview, 'isset', 0)) {
-            return;
-        }
-        if (!$this->var()->check('return_url', $return_url)) {
-            return;
-        }
-        if (!$this->var()->check('join', $join)) {
-            return;
-        }
-        if (!$this->var()->check('table', $table)) {
-            return;
-        }
-        if (!$this->var()->check('template', $template)) {
-            return;
-        }
-        if (!$this->var()->find('tplmodule', $tplmodule, 'isset', 'calendar')) {
-            return;
-        }
+        $this->var()->check('objectid', $objectid);
+        $this->var()->find('itemid', $itemid, 'isset', 0);
+        $this->var()->find('preview', $preview, 'isset', 0);
+        $this->var()->check('return_url', $return_url);
+        $this->var()->check('join', $join);
+        $this->var()->check('table', $table);
+        $this->var()->check('template', $template);
+        $this->var()->find('tplmodule', $tplmodule, 'isset', 'calendar');
 
         if (!$this->sec()->confirmAuthKey()) {
             return;

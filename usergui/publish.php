@@ -60,7 +60,7 @@ class PublishMethod extends MethodClass
                         // does this user have access to this calendar ?
                         !xarSecurity::check('ViewCalendar',0,'All',$calname)) {
 
-                        $realm = xarModVars::get('themes','SiteName');
+                        $realm = $this->mod('themes')->getVar('SiteName');
                         header('WWW-Authenticate: Basic realm="'.$realm.'"');
                         //header('HTTP/1.0 401 Unauthorized');
                         header("Status: 401 Access Denied");

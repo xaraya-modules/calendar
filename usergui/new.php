@@ -42,9 +42,7 @@ class NewMethod extends MethodClass
             return;
         }
 
-        if (!$this->var()->find('page', $data['page'], 'str:1', 'week')) {
-            return;
-        }
+        $this->var()->find('page', $data['page'], 'str:1', 'week');
         $this->session()->setVar('ddcontext.calendar', ['page' => $data['page']]);
         $data['object'] = $this->data()->getObject(['name' => 'calendar_event']);
         $data['tplmodule'] = 'calendar';

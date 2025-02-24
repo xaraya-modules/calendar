@@ -53,11 +53,9 @@ class ViewMethod extends MethodClass
         $modulename = 'calendar';
 
         // Define which object will be shown
-        if (!$this->var()->check('objectname', $objectname, 'str', 'calendar_calendar')) {
-            return;
-        }
+        $this->var()->check('objectname', $objectname, 'str', 'calendar_calendar');
         if (!empty($objectname)) {
-            xarModVars::set($modulename, 'defaultmastertable', $objectname);
+            $this->mod($modulename)->setVar('defaultmastertable', $objectname);
         }
 
         // Set a return url
@@ -65,7 +63,7 @@ class ViewMethod extends MethodClass
 
         // Get the available dropdown options
         $object = $this->data()->getObjectList(['objectid' => 1]);
-        $data['objectname'] = xarModVars::get($modulename, 'defaultmastertable');
+        $data['objectname'] = $this->mod($modulename)->getVar('defaultmastertable');
         $items = $object->getItems();
         $options = [];
         foreach ($items as $item) {

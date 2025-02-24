@@ -41,12 +41,8 @@ class DisplayMethod extends MethodClass
             return;
         }
 
-        if (!$this->var()->find('itemid', $data['itemid'], 'int', 0)) {
-            return;
-        }
-        if (!$this->var()->find('page', $data['page'], 'str:1', 'week')) {
-            return;
-        }
+        $this->var()->find('itemid', $data['itemid'], 'int', 0);
+        $this->var()->find('page', $data['page'], 'str:1', 'week');
         $data['object'] = $this->data()->getObject(['name' => 'calendar_event']);
         $data['object']->getItem(['itemid' => $data['itemid']]);
         $data['tplmodule'] = 'calendar';

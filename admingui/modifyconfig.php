@@ -59,12 +59,8 @@ class ModifyconfigMethod extends MethodClass
             return;
         }
 
-        if (!$this->var()->find('phase', $phase, 'str:1:100', 'modify')) {
-            return;
-        }
-        if (!$this->var()->find('tab', $data['tab'], 'str:1:100', 'general')) {
-            return;
-        }
+        $this->var()->find('phase', $phase, 'str:1:100', 'modify');
+        $this->var()->find('tab', $data['tab'], 'str:1:100', 'general');
 
         $data['module_settings'] = $this->mod()->apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'calendar']);
         $data['module_settings']->setFieldList('items_per_page, use_module_alias, module_alias_name, enable_short_urls', 'use_module_icons, frontend_page, backend_page');
@@ -87,22 +83,12 @@ class ModifyconfigMethod extends MethodClass
                 if (!$this->sec()->confirmAuthKey()) {
                     return;
                 }
-                if (!$this->var()->find('windowwidth', $windowwidth, 'int:1', $this->mod()->getVar('aliasname'))) {
-                    return;
-                }
-                if (!$this->var()->find('minutesperunit', $minutesperunit, 'int:1', $this->mod()->getVar('minutesperunit'))) {
-                    return;
-                }
-                if (!$this->var()->find('unitheight', $unitheight, 'int:1', $this->mod()->getVar('unitheight'))) {
-                    return;
-                }
+                $this->var()->find('windowwidth', $windowwidth, 'int:1', $this->mod()->getVar('aliasname'));
+                $this->var()->find('minutesperunit', $minutesperunit, 'int:1', $this->mod()->getVar('minutesperunit'));
+                $this->var()->find('unitheight', $unitheight, 'int:1', $this->mod()->getVar('unitheight'));
 
-                if (!$this->var()->find('default_view', $default_view, 'str:1', $this->mod()->getVar('default_view'))) {
-                    return;
-                }
-                if (!$this->var()->find('cal_sdow', $cal_sdow, 'str:1', $this->mod()->getVar('cal_sdow'))) {
-                    return;
-                }
+                $this->var()->find('default_view', $default_view, 'str:1', $this->mod()->getVar('default_view'));
+                $this->var()->find('cal_sdow', $cal_sdow, 'str:1', $this->mod()->getVar('cal_sdow'));
 
                 $isvalid = $data['module_settings']->checkInput();
                 if (!$isvalid) {
