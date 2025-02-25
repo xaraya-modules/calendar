@@ -32,7 +32,7 @@ class CalendarDisplayProperty extends DataProperty
         // Set for runtime
         $this->tplmodule = 'calendar';
         $this->filepath   = 'modules/calendar/xarproperties';
-        $this->owner = xarUser::getVar('id');
+        $this->owner = $this->user()->getId();
     }
 
     public function showInput(array $data = [])

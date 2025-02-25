@@ -56,7 +56,7 @@ class WeekMethod extends MethodClass
         $d[] = $q->pqand($c);
         $q->qor($d);
 
-        $q->eq('role_id', $this->session()->getUserId());
+        $q->eq('role_id', $this->user()->getId());
         $data['conditions'] = $q;
 
         return $data;

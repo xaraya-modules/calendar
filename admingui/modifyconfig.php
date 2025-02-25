@@ -61,6 +61,7 @@ class ModifyconfigMethod extends MethodClass
 
         $this->var()->find('phase', $phase, 'str:1:100', 'modify');
         $this->var()->find('tab', $data['tab'], 'str:1:100', 'general');
+        $this->var()->find('tabmodule', $tabmodule, 'str:1:100', 'categories');
 
         $data['module_settings'] = $this->mod()->apiFunc('base', 'admin', 'getmodulesettings', ['module' => 'calendar']);
         $data['module_settings']->setFieldList('items_per_page, use_module_alias, module_alias_name, enable_short_urls', 'use_module_icons, frontend_page, backend_page');
@@ -104,10 +105,10 @@ class ModifyconfigMethod extends MethodClass
                 $day_end = $timeproperty->checkInput('day_end') ? $timeproperty->getValue() : $this->mod()->getVar('day_end');
 
                 if ($data['tab'] == 'calendar_general') {
-                    $this->mod()->setVar('items_per_page', $items_per_page);
-                    $this->mod()->setVar('supportshorturls', $shorturls);
-                    $this->mod()->setVar('useModuleAlias', $useModuleAlias);
-                    $this->mod()->setVar('aliasname', $aliasname);
+                    //$this->mod()->setVar('items_per_page', $items_per_page);
+                    //$this->mod()->setVar('supportshorturls', $shorturls);
+                    //$this->mod()->setVar('useModuleAlias', $useModuleAlias);
+                    //$this->mod()->setVar('aliasname', $aliasname);
                     $this->mod()->setVar('windowwidth', $windowwidth);
                     $this->mod()->setVar('minutesperunit', $minutesperunit);
                     $this->mod()->setVar('unitheight', $unitheight);
@@ -118,18 +119,17 @@ class ModifyconfigMethod extends MethodClass
                     $this->mod()->setVar('day_end', $day_end);
                 }
                 $regid = $this->mod()->getRegID($tabmodule);
-                xarModItemVars::set('calendar', 'windowwidth', $windowwidth, $regid);
-                xarModItemVars::set('calendar', 'minutesperunit', $minutesperunit, $regid);
-                xarModItemVars::set('calendar', 'unitheight', $unitheight, $regid);
+                $this->mod()->setItemVar('windowwidth', $windowwidth, $regid);
+                $this->mod()->setItemVar('minutesperunit', $minutesperunit, $regid);
+                $this->mod()->setItemVar('unitheight', $unitheight, $regid);
 
-                xarModItemVars::set('calendar', 'default_view', $default_view, $regid);
-                xarModItemVars::set('calendar', 'cal_sdow', $cal_sdow, $regid);
-                xarModItemVars::set('calendar', 'day_start', $day_start, $regid);
-                xarModItemVars::set('calendar', 'day_end', $day_end, $regid);
+                $this->mod()->setItemVar('default_view', $default_view, $regid);
+                $this->mod()->setItemVar('cal_sdow', $cal_sdow, $regid);
+                $this->mod()->setItemVar('day_start', $day_start, $regid);
+                $this->mod()->setItemVar('day_end', $day_end, $regid);
 
                 $this->ctl()->redirect($this->mod()->getURL('admin', 'modifyconfig', ['tab' => $data['tab']]));
                 return true;
-                break;
         }
 
         // Initialise the $data variable that will hold the data to be used in

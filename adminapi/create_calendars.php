@@ -53,7 +53,7 @@ class CreateCalendarsMethod extends MethodClass
             $mod_id = $this->mod()->getRegID($module);
         }
         if (!isset($role_id)) {
-            $role_id = $this->session()->getUserId();
+            $role_id = $this->user()->getId();
         }
 
         // Load up database details.

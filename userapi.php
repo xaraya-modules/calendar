@@ -84,7 +84,7 @@ class UserApi extends UserApiClass
         return $this->buildURL(
             [
                 'cal_view' => 'month',
-                'cal_date' => xarLocale::formatDate('%Y%m%d'),
+                'cal_date' => $this->mls()->formatDate('%Y%m%d'),
             ]
         );
     }
@@ -94,7 +94,7 @@ class UserApi extends UserApiClass
         return $this->buildURL(
             [
                 'cal_view' => 'week',
-                'cal_date' => xarLocale::formatDate('%Y%m%d'),
+                'cal_date' => $this->mls()->formatDate('%Y%m%d'),
             ]
         );
     }
@@ -104,7 +104,7 @@ class UserApi extends UserApiClass
         return $this->buildURL(
             [
                 'cal_view' => 'day',
-                'cal_date' => xarLocale::formatDate('%Y%m%d'),
+                'cal_date' => $this->mls()->formatDate('%Y%m%d'),
             ]
         );
     }
@@ -114,7 +114,7 @@ class UserApi extends UserApiClass
         return $this->buildURL(
             [
                 'cal_view' => 'year',
-                'cal_date' => xarLocale::formatDate('%Y%m'),
+                'cal_date' => $this->mls()->formatDate('%Y%m'),
             ]
         );
     }

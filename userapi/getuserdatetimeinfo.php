@@ -45,15 +45,15 @@ class GetUserDateTimeInfoMethod extends MethodClass
     public function __invoke(array $args = [])
     {
         // dates come in as YYYYMMDD
-        $this->var()->get('cal_date', $cal_date, 'str:4:8', xarLocale::formatDate('%Y%m%d'));
+        $this->var()->get('cal_date', $cal_date, 'str:4:8', $this->mls()->formatDate('%Y%m%d'));
 
         $data = [];
         $data['cal_date'] = & $cal_date;
 
         if (!preg_match('/([\d]{4,4})([\d]{2,2})?([\d]{2,2})?/', $cal_date, $match)) {
-            $year = xarLocale::formatDate('Y');
-            $month = xarLocale::formatDate('m');
-            $day = xarLocale::formatDate('d');
+            $year = $this->mls()->formatDate('Y');
+            $month = $this->mls()->formatDate('m');
+            $day = $this->mls()->formatDate('d');
         } else {
             $year = $match[1];
             if (isset($match[2])) {
@@ -76,7 +76,7 @@ class GetUserDateTimeInfoMethod extends MethodClass
 
         sys::import('xaraya.structures.datetime');
         $today = new \XarDateTime();
-        $usertz = xarModUserVars::get('roles', 'usertimezone', $this->session()->getUserId());
+        $usertz = $this->mod('roles')->getUserVar('usertimezone');
         $useroffset = $today->getTZOffset($usertz);
         $data['now'] = getdate(time() + $useroffset);
         return $data;

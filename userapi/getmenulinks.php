@@ -45,8 +45,8 @@ class GetmenulinksMethod extends MethodClass
      */
     public function __invoke(array $args = [])
     {
-        $this->var()->get('cal_sdow', $cal_sdow, 'int::', xarModUserVars::get('calendar', 'cal_sdow'));
-        $this->var()->get('cal_date', $cal_date, 'int::', xarLocale::formatDate('%Y%m%d'));
+        $this->var()->get('cal_sdow', $cal_sdow, 'int::', $this->mod()->getUserVar('cal_sdow'));
+        $this->var()->get('cal_date', $cal_date, 'int::', $this->mls()->formatDate('%Y%m%d'));
 
         $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'day', ['cal_date' => $cal_date]),
             'title' => $this->ml('Day'),
@@ -64,7 +64,7 @@ class GetmenulinksMethod extends MethodClass
             'title' => $this->ml('Year'),
             'label' => $this->ml('Year'), ];
 
-        if (xarUser::isLoggedIn()) {
+        if ($this->user()->isLoggedIn()) {
             $menulinks[] = ['url' => $this->mod()->getURL('user', 'modifyconfig'),
                 'title' => $this->ml('Modify Config'),
                 'label' => $this->ml('Modify Config'), ];

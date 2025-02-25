@@ -48,12 +48,12 @@ class Calendar_CalnavBlock extends BasicBlock implements iBlock
         $tplData['form_action'] = $this->mod()->getURL('user', 'changecalnav');
         $tplData['blockid'] = $data['bid'];
 
-        if (xarServer::getVar('REQUEST_METHOD') == 'GET') {
+        if ($this->ctl()->getRequestMethod() == 'GET') {
             // URL of this page
             $tplData['return_url'] = $this->ctl()->getCurrentURL();
         } else {
             // Base URL of the site
-            $tplData['return_url'] = xarServer::getBaseURL();
+            $tplData['return_url'] = $this->ctl()->getBaseURL();
         }
 
         $data['content'] = $tplData;

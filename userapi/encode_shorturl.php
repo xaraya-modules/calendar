@@ -61,13 +61,13 @@ class EncodeShorturlMethod extends MethodClass
             $day = substr($params['cal_date'], 6, 2);
         }
         if (empty($year)) {
-            $year  = xarLocale::formatDate('%Y');
+            $year  = $this->mls()->formatDate('%Y');
         }
         if (empty($month)) {
-            $month = xarLocale::formatDate('%m');
+            $month = $this->mls()->formatDate('%m');
         }
         if (empty($day)) {
-            $day   = xarLocale::formatDate('%d');
+            $day   = $this->mls()->formatDate('%d');
         }
 
 
