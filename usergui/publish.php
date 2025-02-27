@@ -58,7 +58,7 @@ class PublishMethod extends MethodClass
                         // is this a valid user/password ?
                         !xarUser::logIn($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) ||
                         // does this user have access to this calendar ?
-                        !xarSecurity::check('ViewCalendar',0,'All',$calname)) {
+                        !$this->sec()->check('ViewCalendar',0,'All',$calname)) {
 
                         $realm = $this->mod('themes')->getVar('SiteName');
                         header('WWW-Authenticate: Basic realm="'.$realm.'"');

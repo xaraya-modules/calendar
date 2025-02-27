@@ -66,7 +66,7 @@ class DeleteMethod extends MethodClass
         $data = $myobject->toArray();
 
         // Security check
-        if (!xarSecurity::check('DeleteDynamicDataItem', 1, 'Item', $data['moduleid'] . ":" . $data['itemtype'] . ":" . $data['itemid'])) {
+        if (!$this->sec()->check('DeleteDynamicDataItem', 1, 'Item', $data['moduleid'] . ":" . $data['itemtype'] . ":" . $data['itemid'])) {
             return;
         }
 
