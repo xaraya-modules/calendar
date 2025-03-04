@@ -94,7 +94,7 @@ class GetMethod extends MethodClass
             return;
         }
 
-        for (; !$result->EOF; $result->MoveNext()) {
+        while ($result->next()) {
             [$cid,
                 $cname,
                 $cpath] = $result->fields;

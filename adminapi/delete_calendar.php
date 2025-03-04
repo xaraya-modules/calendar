@@ -91,7 +91,7 @@ class DeleteCalendarMethod extends MethodClass
             return;
         }
 
-        for (; !$result->EOF; $result->MoveNext()) {
+        while ($result->next()) {
             // there should be only one result
             [$file_id] = $result -> fields;
         }
