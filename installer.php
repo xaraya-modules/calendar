@@ -14,16 +14,13 @@
 namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\InstallerClass;
-use xarDB;
 use xarMasks;
 use xarPrivileges;
-use xarModVars;
 use xarMod;
 use xarModHooks;
 use xarTableDDL;
 use Query;
 use sys;
-use Exception;
 
 sys::import('xaraya.modules.installer');
 

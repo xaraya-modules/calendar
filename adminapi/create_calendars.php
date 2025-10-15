@@ -14,10 +14,6 @@ namespace Xaraya\Modules\Calendar\AdminApi;
 
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarController;
-use xarMod;
-use xarSession;
-use xarDB;
 use sys;
 use Exception;
 

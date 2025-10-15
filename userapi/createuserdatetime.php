@@ -15,7 +15,6 @@ namespace Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 

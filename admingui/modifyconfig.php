@@ -15,18 +15,8 @@ namespace Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarMod;
-use xarSecurity;
-use xarVar;
-use xarSec;
-use xarModVars;
-use xarTpl;
-use xarModItemVars;
-use xarController;
 use xarModHooks;
-use DataPropertyMaster;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 

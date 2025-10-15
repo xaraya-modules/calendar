@@ -14,17 +14,7 @@ namespace Xaraya\Modules\Calendar\UserGui;
 
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
-use xarVar;
-use xarSecurity;
-use xarMod;
-use xarSession;
-use xarSec;
-use xarTpl;
-use xarController;
-use xarModVars;
-use DataObjectFactory;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 

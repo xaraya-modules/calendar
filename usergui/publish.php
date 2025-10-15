@@ -15,14 +15,8 @@ namespace Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use xarVar;
-use xarModVars;
 use xarUser;
-use xarSecurity;
-use xarMod;
-use xarLog;
 use sys;
-use BadParameterException;
 
 sys::import('xaraya.modules.method');
 

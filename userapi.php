@@ -12,11 +12,7 @@
 namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\UserApiClass;
-use xarLocale;
 use xarMod;
-use xarModVars;
-use xarVar;
-use xarController;
 use sys;
 
 sys::import('xaraya.modules.userapi');

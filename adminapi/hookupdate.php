@@ -14,9 +14,6 @@ namespace Xaraya\Modules\Calendar\AdminApi;
 
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarMod;
-use xarSession;
-use DataObjectFactory;
 use sys;
 use IDNotFoundException;
 
