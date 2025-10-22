@@ -2,8 +2,6 @@
 
 namespace Xaraya\Modules\Calendar;
 
-use xarDB;
-
 class Tables
 {
     /**
@@ -17,10 +15,9 @@ class Tables
      * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
      * @author Marc Lutolf <mfl@netspan.ch>
      */
-    public function __invoke(?string $prefix = null)
+    public function __invoke(string $prefix = 'xar')
     {
         $xartables = [];
-        $prefix ??= xarDB::getPrefix();
         $prefix = $prefix . '_calendar';
 
         $xartables['calendar_calendar'] = $prefix . '_calendar';
