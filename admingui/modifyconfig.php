@@ -184,7 +184,7 @@ class ModifyconfigMethod extends MethodClass
         $save_parsed_cals       = 'yes';            // Recommended 'yes'. Saves a copy of the cal in /tmp after it's been parsed. Improves performence.
         */
 
-        $data['updatebutton'] = $this->var()->prep($this->ml('Update Configuration'));
+        $data['updatebutton'] = \xarVarPrep::forDisplay($this->ml('Update Configuration'));
         // Note : if you don't plan on providing encode/decode functions for
         // short URLs (see xaruserapi.php), you should remove these from your
         // admin-modifyconfig.xard template !
