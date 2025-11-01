@@ -101,14 +101,14 @@ class EncodeShorturlMethod extends MethodClass
                 case 'edit':
                     $path = "/$module/edit/";
                     if(isset($params['cal_eid']) && !empty($params['cal_eid'])) {
-                        $path .= \xarVarPrep::forDisplay($params['cal_eid']).'.html/';
+                        $path .= $this->prep()->text($params['cal_eid']).'.html/';
                     }
                     break;
 
                 case 'publish':
                     $path = "/$module/publish/";
                     if(isset($params['calname']) && !empty($params['calname'])) {
-                        $path .= \xarVarPrep::forDisplay($params['calname']).'.ics';
+                        $path .= $this->prep()->text($params['calname']).'.ics';
                     }
                     break;
                 */

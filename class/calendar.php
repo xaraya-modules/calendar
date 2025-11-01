@@ -215,7 +215,7 @@ class Calendar
     public function setStartDayOfWeek($d)
     {
         // validate the input
-        if (!xarVar::validate('int:0:6', $d)) {
+        if (!xarVarPrep::validate('int:0:6', $d)) {
             // we'll just leave it as is then
             return true;
         }

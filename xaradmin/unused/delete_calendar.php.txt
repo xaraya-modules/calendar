@@ -20,7 +20,7 @@ function calendar_admin_delete_calendar(array $args = [], $context = null)
         $msg = xarML(
             'Unable to find #(1) item #(2)',
             'Calendar',
-            xarVarPrep::forDisplay($calid)
+            xarVarPrep::text($calid)
         );
         throw new Exception($msg);
     }
@@ -33,7 +33,7 @@ function calendar_admin_delete_calendar(array $args = [], $context = null)
     /* TODO: security
         if (!xarMod::apiFunc('calendar','user','checksecurity',$input)) {
             $msg = xarML('You have no permission to delete item #(1)',
-                         xarVarPrep::forDisplay($calid));
+                         xarVarPrep::text($calid));
             throw new Exception($msg);
         }
     */
