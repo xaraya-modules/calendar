@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
-
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar user modifyconfig function

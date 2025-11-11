@@ -11,13 +11,9 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
-
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use IDNotFoundException;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi hookupdate function

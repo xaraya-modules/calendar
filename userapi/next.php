@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi next function
@@ -77,6 +73,6 @@ class NextMethod extends MethodClass
         }
 
         $new_date = gmdate('Ymd', gmmktime(0, 0, 0, $m, $d, $y));
-        return $this->mod()->getURL( 'user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
+        return $this->mod()->getURL('user', strtolower($func), ['cal_date' => $new_date,'cal_sdow' => $cal_sdow]);
     }
 }

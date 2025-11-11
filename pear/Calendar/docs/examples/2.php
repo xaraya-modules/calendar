@@ -39,7 +39,7 @@ $selectedDays = [
     new Calendar_Day($_GET['y'], $_GET['m'], $_GET['d']),
     new Calendar_Day($_GET['y'], 12, 25),
     new Calendar_Day(date('Y'), date('m'), date('d')),
-    ];
+];
 
 // Instruct month to build Week objects
 $Month->build();
@@ -113,10 +113,10 @@ while ($Week = $Month->fetch()) {
     $Week->build($selectedDays);
     while ($Day = $Week->fetch()) {
         // Build a link string for each day
-        $link = $_SERVER['PHP_SELF'] .
-                    '?y=' . $Day->thisYear() .
-                    '&m=' . $Day->thisMonth() .
-                    '&d=' . $Day->thisDay();
+        $link = $_SERVER['PHP_SELF']
+                    . '?y=' . $Day->thisYear()
+                    . '&m=' . $Day->thisMonth()
+                    . '&d=' . $Day->thisDay();
 
         // Check to see if day is selected
         if ($Day->isSelected()) {

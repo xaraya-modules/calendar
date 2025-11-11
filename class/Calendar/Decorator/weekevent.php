@@ -96,9 +96,9 @@ class WeekEvent_Decorator extends Calendar_Decorator
             $stamp2 = $this->cE->dateToStamp($this->year, $this->month, $day + 1);
             foreach ($events as $event) {
                 $end_time = $event['start_time'] + $event['duration'];
-                if (($stamp1 >= $event['start_time'] && $stamp1 < $end_time) ||
-                    ($stamp2 >= $event['start_time'] && $stamp2 < $end_time) ||
-                    ($stamp1 <= $event['start_time'] && $stamp2 > $end_time)
+                if (($stamp1 >= $event['start_time'] && $stamp1 < $end_time)
+                    || ($stamp2 >= $event['start_time'] && $stamp2 < $end_time)
+                    || ($stamp1 <= $event['start_time'] && $stamp2 > $end_time)
                 ) {
                     $this->children[$i]->addEntry1($event);
                     $this->children[$i]->setSelected();

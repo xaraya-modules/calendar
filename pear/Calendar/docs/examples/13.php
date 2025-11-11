@@ -1,4 +1,5 @@
 <?php
+
 /**
 * Description: same as 1.php, but using the PEAR::Date engine
 * Notice the use of the CALENDAR_ENGINE constant, which
@@ -82,8 +83,8 @@ $start = getmicrotime();
 $c->build();
 while ($e = $c->fetch()) {
     $class = strtolower(get_class($e));
-    $link = "&y=" . $e->thisYear() . "&m=" . $e->thisMonth() . "&d=" . $e->thisDay() .
-        "&h=" . $e->thisHour() . "&i=" . $e->thisMinute() . "&s=" . $e->thisSecond();
+    $link = "&y=" . $e->thisYear() . "&m=" . $e->thisMonth() . "&d=" . $e->thisDay()
+        . "&h=" . $e->thisHour() . "&i=" . $e->thisMinute() . "&s=" . $e->thisSecond();
     $method = 'this' . str_replace('calendar_', '', $class);
     echo("<a href=\"" . $_SERVER['PHP_SELF'] . "?view=" . $class . $link . "\">" . $e->{$method}() . "</a> : ");
     if (($i % 10) == 0) {
@@ -100,8 +101,8 @@ echo('<p>This second iteration is faster, the data structures
 $start = getmicrotime();
 while ($e = $c->fetch()) {
     $class = strtolower(get_class($e));
-    $link = "&y=" . $e->thisYear() . "&m=" . $e->thisMonth() . "&d=" . $e->thisDay() .
-        "&h=" . $e->thisHour() . "&i=" . $e->thisMinute() . "&s=" . $e->thisSecond();
+    $link = "&y=" . $e->thisYear() . "&m=" . $e->thisMonth() . "&d=" . $e->thisDay()
+        . "&h=" . $e->thisHour() . "&i=" . $e->thisMinute() . "&s=" . $e->thisSecond();
     $method = 'this' . str_replace('calendar_', '', $class);
     echo("<a href=\"" . $_SERVER['PHP_SELF'] . "?view=" . $class . $link . "\">" . $e->{$method}() . "</a> : ");
     if (($i % 10) == 0) {

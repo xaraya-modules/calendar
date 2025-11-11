@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\AdminGui;
 
-
 use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar admin main function

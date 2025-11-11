@@ -79,7 +79,7 @@ td {
 $selectedDays = [
     new Calendar_Day($_GET['y'], $_GET['m'], $_GET['d']),
     new Calendar_Day($_GET['y'], 12, 25),
-    ];
+];
 
 // Build the days in the month
 $Month->build($selectedDays);
@@ -101,10 +101,10 @@ $Month->build($selectedDays);
 <?php
 while ($Day = $Month->fetch()) {
     // Build a link string for each day
-    $link = $_SERVER['PHP_SELF'] .
-                '?y=' . $Day->thisYear() .
-                '&m=' . $Day->thisMonth() .
-                '&d=' . $Day->thisDay();
+    $link = $_SERVER['PHP_SELF']
+                . '?y=' . $Day->thisYear()
+                . '&m=' . $Day->thisMonth()
+                . '&d=' . $Day->thisDay();
 
     // isFirst() to find start of week
     if ($Day->isFirst()) {

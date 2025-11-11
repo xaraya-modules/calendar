@@ -47,7 +47,7 @@ $result = [
     ['eventtime' => mktime(9, 0, 0, 10, 24, 2003),'entry' => 'Meeting with sales team'],
     ['eventtime' => mktime(11, 0, 0, 10, 24, 2003),'entry' => 'Conference call with Widget Inc.'],
     ['eventtime' => mktime(15, 0, 0, 10, 24, 2003),'entry' => 'Presentation to board of directors'],
-    ];
+];
 
 // An array to place selected hours in
 $selection = [];

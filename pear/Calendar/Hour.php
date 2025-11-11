@@ -104,8 +104,8 @@ class Calendar_Hour extends Calendar
             $this->hour
         );
         for ($i = 0; $i < $mIH; $i++) {
-            $this->children[$i] =
-                new Calendar_Minute(
+            $this->children[$i]
+                = new Calendar_Minute(
                     $this->year,
                     $this->month,
                     $this->day,

@@ -11,15 +11,11 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
-
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarModHooks;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi delete_calendar function

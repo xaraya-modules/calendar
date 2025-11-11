@@ -11,14 +11,11 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
-
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use xarUser;
 use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar user publish function
@@ -62,7 +59,8 @@ class PublishMethod extends MethodClass
                         $this->exit();
                      }
             */
-            $calendars = $userapi->get(['calid' => $calid,
+            $calendars = $userapi->get(
+                ['calid' => $calid,
                     'calname' => $calname, ]
             );
             if (!isset($calendars)) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
 * Description: a SOAP Calendar Server
 */
@@ -17,20 +18,20 @@ class Calendar_Server
 
     public function __construct()
     {
-        $this->__dispatch_map['getMonth'] =
-            ['in'  => ['year' => 'int', 'month' => 'int'],
-                  'out' => ['month' => '{urn:PEAR_SOAP_Calendar}Month'],
-                  ];
-        $this->__typedef['Month'] = [
-                'monthname' => 'string',
-                'days' => '{urn:PEAR_SOAP_Calendar}MonthDays',
+        $this->__dispatch_map['getMonth']
+            = ['in'  => ['year' => 'int', 'month' => 'int'],
+                'out' => ['month' => '{urn:PEAR_SOAP_Calendar}Month'],
             ];
+        $this->__typedef['Month'] = [
+            'monthname' => 'string',
+            'days' => '{urn:PEAR_SOAP_Calendar}MonthDays',
+        ];
         $this->__typedef['MonthDays'] = [['{urn:PEAR_SOAP_Calendar}Day']];
         $this->__typedef['Day'] = [
-                'isFirst' => 'int',
-                'isLast'  => 'int',
-                'isEmpty' => 'int',
-                'day'     => 'int', ];
+            'isFirst' => 'int',
+            'isLast'  => 'int',
+            'isEmpty' => 'int',
+            'day'     => 'int', ];
     }
 
     public function __dispatch($methodname)
@@ -59,7 +60,7 @@ class Calendar_Server
                     'isLast'  => (int) $Day->isLast(),
                     'isEmpty' => (int) $Day->isEmpty(),
                     'day'     => (int) $Day->thisDay(),
-                    ];
+                ];
                 $days[] = $day;
             }
             return ['monthname' => $monthname, 'days' => $days];
@@ -77,8 +78,8 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 } else {
     require_once 'SOAP' . DIRECTORY_SEPARATOR . 'Disco.php';
     $disco = new SOAP_DISCO_Server($server, "PEAR_SOAP_Calendar");
-    if (isset($_SERVER['QUERY_STRING']) &&
-        strcasecmp($_SERVER['QUERY_STRING'], 'wsdl') == 0) {
+    if (isset($_SERVER['QUERY_STRING'])
+        && strcasecmp($_SERVER['QUERY_STRING'], 'wsdl') == 0) {
         header("Content-type: text/xml");
         echo $disco->getWSDL();
     } else {

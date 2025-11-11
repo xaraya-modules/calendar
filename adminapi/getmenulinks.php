@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
-
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi getmenulinks function

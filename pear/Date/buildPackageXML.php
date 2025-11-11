@@ -102,8 +102,8 @@ if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 
 
     // Some errors occurs.
     if (PEAR::isError($e)) {
-        throw new Exception('Unable to write package file. Got message: ' .
-                            $e->getMessage());
+        throw new Exception('Unable to write package file. Got message: '
+                            . $e->getMessage());
     }
 } else {
     $pkg->debugPackageFile();

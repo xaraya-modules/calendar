@@ -178,10 +178,10 @@ class Date_Human
          * Return an associative array of the values
          */
         return ["hdom" => $humanDayOfMonth,
-                     "hdow" => $humanDayOfWeek,
-                     "hwom" => $humanWeekOfMonth,
-                     "hwoy" => $humanWeekOfYear,
-                     "hmoy" => $humanMonthOfYear, ];
+            "hdow" => $humanDayOfWeek,
+            "hwom" => $humanWeekOfMonth,
+            "hwoy" => $humanWeekOfYear,
+            "hmoy" => $humanMonthOfYear, ];
     }
 
     // }}}

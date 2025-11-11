@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
-
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
 use Query;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar user month function

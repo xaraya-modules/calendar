@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi getWeekLink function
@@ -46,7 +42,7 @@ class GetWeekLinkMethod extends MethodClass
         $month = substr($date, 4, 2);
         $day = substr($date, 6, 2);
 
-        $link = $this->mod()->getURL( 'user', 'week', ['cal_date' => $date]);
+        $link = $this->mod()->getURL('user', 'week', ['cal_date' => $date]);
         return $link;
     }
 }

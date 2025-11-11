@@ -153,7 +153,7 @@ class TestOfWeek_firstday_0 extends TestOfCalendar
             'hour' => 0,
             'minute' => 0,
             'second' => 0,
-            ];
+        ];
         $this->assertEqual($testArray, $this->cal->prevWeek('array'));
     }
     public function testThisWeekArray()
@@ -165,7 +165,7 @@ class TestOfWeek_firstday_0 extends TestOfCalendar
             'hour' => 0,
             'minute' => 0,
             'second' => 0,
-            ];
+        ];
         $this->assertEqual($testArray, $this->cal->thisWeek('array'));
     }
     public function testNextWeekArray()
@@ -177,7 +177,7 @@ class TestOfWeek_firstday_0 extends TestOfCalendar
             'hour' => 0,
             'minute' => 0,
             'second' => 0,
-            ];
+        ];
         $this->assertEqual($testArray, $this->cal->nextWeek('array'));
     }
     public function testPrevWeekObject()

@@ -22,8 +22,6 @@ use xarTableDDL;
 use Query;
 use sys;
 
-sys::import('xaraya.modules.installer');
-
 /**
  * Handle module installer functions
  *
@@ -70,7 +68,6 @@ class Installer extends InstallerClass
         #
         # Set up tables
         #
-        sys::import('xaraya.structures.query');
         $q = new Query();
         $prefix = $this->db()->getPrefix();
 
@@ -284,7 +281,6 @@ class Installer extends InstallerClass
                 $dbconn = $this->db()->getConn();
                 $xartable = & $this->db()->getTables();
                 $calfilestable = $xartable['calendars_files'];
-                sys::import('xaraya.tableddl');
                 $fields = [
                     'xar_calendars_id' => ['type' => 'integer', 'unsigned' => true, 'null' => false, 'primary_key' => true],
                     'xar_files_id' => ['type' => 'integer', 'unsigned' => true, 'null' => false, 'primary_key' => true],
@@ -299,7 +295,6 @@ class Installer extends InstallerClass
                 }
 
                 $filestable = $xartable['calfiles'];
-                sys::import('xaraya.tableddl');
                 $fields = [
                     'xar_id' => ['type' => 'integer', 'unsigned' => true, 'null' => false, 'increment' => true, 'primary_key' => true],
                     'xar_path' => ['type' => 'varchar', 'size' => '255', 'null' => true],

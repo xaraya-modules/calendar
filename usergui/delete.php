@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserGui;
 
-
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar user delete function
@@ -72,8 +68,8 @@ class DeleteMethod extends MethodClass
             $data['object'] = $myobject;
             $data['context'] ??= $this->getContext();
 
-            if (file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/user-delete.xd') ||
-                file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xd')) {
+            if (file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/user-delete.xd')
+                || file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xd')) {
                 return $this->tpl()->module($data['tplmodule'], 'user', 'delete', $data, $data['template']);
             } else {
                 return $this->mod()->template('delete', $data, $data['template']);

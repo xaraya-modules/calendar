@@ -468,24 +468,24 @@ class Date_Span
                     switch (count($time)) {
                         case 0:
                             return $this->setFromArray([0,
-                                                             0,
-                                                             0,
-                                                             0, ]);
+                                0,
+                                0,
+                                0, ]);
                         case 1:
                             return $this->setFromArray([0,
-                                                             $time[0],
-                                                             0,
-                                                             0, ]);
+                                $time[0],
+                                0,
+                                0, ]);
                         case 2:
                             return $this->setFromArray([0,
-                                                             $time[0],
-                                                             $time[1],
-                                                             0, ]);
+                                $time[0],
+                                $time[1],
+                                0, ]);
                         case 3:
                             return $this->setFromArray([0,
-                                                             $time[0],
-                                                             $time[1],
-                                                             $time[2], ]);
+                                $time[0],
+                                $time[1],
+                                $time[2], ]);
                         default:
                             return $this->setFromArray($time);
                     }
@@ -625,9 +625,9 @@ class Date_Span
         $mins  = $tdate2->getMinute() - $tdate1->getMinute();
         $secs  = $tdate2->getSecond() - $tdate1->getSecond();
 
-        $this->setFromSeconds($days * 86400 +
-                              $hours * 3600 +
-                              $mins * 60 + $secs);
+        $this->setFromSeconds($days * 86400
+                              + $hours * 3600
+                              + $mins * 60 + $secs);
         return true;
     }
 
@@ -754,14 +754,14 @@ class Date_Span
                         break;
                     case 'i':
                     case 'I':
-                        $hour    = $this->hour + 1 > 12 ?
-                                   $this->hour - 12 :
-                                   $this->hour;
-                        $output .= $hour == 0 ?
-                                   12 :
-                                   ($nextchar == "i" ?
-                                    $hour :
-                                    sprintf('%02d', $hour));
+                        $hour    = $this->hour + 1 > 12
+                                   ? $this->hour - 12
+                                   : $this->hour;
+                        $output .= $hour == 0
+                                   ? 12
+                                   : ($nextchar == "i"
+                                    ? $hour
+                                    : sprintf('%02d', $hour));
                         break;
                     case 'm':
                         $output .= $this->minute;
@@ -779,9 +779,9 @@ class Date_Span
                         $output .= $this->hour >= 12 ? 'PM' : 'AM';
                         break;
                     case 'r':
-                        $hour    = $this->hour + 1 > 12 ?
-                                   $this->hour - 12 :
-                                   $this->hour;
+                        $hour    = $this->hour + 1 > 12
+                                   ? $this->hour - 12
+                                   : $this->hour;
                         $output .= sprintf(
                             '%02d:%02d:%02d %s',
                             $hour == 0 ? 12 : $hour,
@@ -841,8 +841,8 @@ class Date_Span
      */
     public function toSeconds()
     {
-        return $this->day * 86400 + $this->hour * 3600 +
-            $this->minute * 60 + $this->second;
+        return $this->day * 86400 + $this->hour * 3600
+            + $this->minute * 60 + $this->second;
     }
 
 
@@ -859,8 +859,8 @@ class Date_Span
      */
     public function toMinutes()
     {
-        return $this->day * 1440 + $this->hour * 60 + $this->minute +
-            $this->second / 60;
+        return $this->day * 1440 + $this->hour * 60 + $this->minute
+            + $this->second / 60;
     }
 
 
@@ -877,8 +877,8 @@ class Date_Span
      */
     public function toHours()
     {
-        return $this->day * 24 + $this->hour + $this->minute / 60 +
-            $this->second / 3600;
+        return $this->day * 24 + $this->hour + $this->minute / 60
+            + $this->second / 3600;
     }
 
 
@@ -895,8 +895,8 @@ class Date_Span
      */
     public function toDays()
     {
-        return $this->day + $this->hour / 24 + $this->minute / 1440 +
-            $this->second / 86400;
+        return $this->day + $this->hour / 24 + $this->minute / 1440
+            + $this->second / 86400;
     }
 
 
@@ -914,8 +914,8 @@ class Date_Span
      */
     public function add($time)
     {
-        return $this->setFromSeconds($this->toSeconds() +
-                                     $time->toSeconds());
+        return $this->setFromSeconds($this->toSeconds()
+                                     + $time->toSeconds());
     }
 
 

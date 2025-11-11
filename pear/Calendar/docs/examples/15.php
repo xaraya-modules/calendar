@@ -49,16 +49,16 @@ while ($Day = $Week->fetch()) {
 $days = $Week->fetchAll();
 
 $prevWeek = $Week->prevWeek('array');
-$prevWeekLink = $_SERVER['PHP_SELF'] .
-                    '?y=' . $prevWeek['year'] .
-                    '&m=' . $prevWeek['month'] .
-                    '&d=' . $prevWeek['day'];
+$prevWeekLink = $_SERVER['PHP_SELF']
+                    . '?y=' . $prevWeek['year']
+                    . '&m=' . $prevWeek['month']
+                    . '&d=' . $prevWeek['day'];
 
 $nextWeek = $Week->nextWeek('array');
-$nextWeekLink = $_SERVER['PHP_SELF'] .
-                    '?y=' . $nextWeek['year'] .
-                    '&m=' . $nextWeek['month'] .
-                    '&d=' . $nextWeek['day'];
+$nextWeekLink = $_SERVER['PHP_SELF']
+                    . '?y=' . $nextWeek['year']
+                    . '&m=' . $nextWeek['month']
+                    . '&d=' . $nextWeek['day'];
 ?>
 <p><a href="<?php echo $prevWeekLink; ?>"><<</a> | <a href="<?php echo $nextWeekLink; ?>">>></a></p>
 </body>

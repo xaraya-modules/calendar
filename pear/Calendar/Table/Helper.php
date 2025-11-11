@@ -186,16 +186,15 @@ class Calendar_Table_Helper
         }
         $this->numWeeks = ceil(
             ($daysInMonth + $this->emptyBefore)
-                /
-            $this->cE->getDaysInWeek(
+            / $this->cE->getDaysInWeek(
                 $this->calendar->thisYear(),
                 $this->calendar->thisMonth(),
                 $this->calendar->thisDay()
             )
         );
         for ($i = 1; $i < $this->numWeeks; $i++) {
-            $this->daysOfMonth =
-                array_merge($this->daysOfMonth, $this->daysOfWeek);
+            $this->daysOfMonth
+                = array_merge($this->daysOfMonth, $this->daysOfWeek);
         }
     }
 

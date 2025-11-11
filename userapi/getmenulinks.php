@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi getmenulinks function
@@ -42,19 +38,19 @@ class GetmenulinksMethod extends MethodClass
         $this->var()->get('cal_sdow', $cal_sdow, 'int::', $this->mod()->getUserVar('cal_sdow'));
         $this->var()->get('cal_date', $cal_date, 'int::', $this->mls()->formatDate('%Y%m%d'));
 
-        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'day', ['cal_date' => $cal_date]),
+        $menulinks[] = ['url'   => $this->mod()->getURL('user', 'day', ['cal_date' => $cal_date]),
             'title' => $this->ml('Day'),
             'label' => $this->ml('Day'), ];
 
-        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'week', ['cal_date' => $cal_date]),
+        $menulinks[] = ['url'   => $this->mod()->getURL('user', 'week', ['cal_date' => $cal_date]),
             'title' => $this->ml('Week'),
             'label' => $this->ml('Week'), ];
 
-        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'month', ['cal_date' => $cal_date]),
+        $menulinks[] = ['url'   => $this->mod()->getURL('user', 'month', ['cal_date' => $cal_date]),
             'title' => $this->ml('Month'),
             'label' => $this->ml('Month'), ];
 
-        $menulinks[] = ['url'   => $this->mod()->getURL( 'user', 'year', ['cal_date' => $cal_date]),
+        $menulinks[] = ['url'   => $this->mod()->getURL('user', 'year', ['cal_date' => $cal_date]),
             'title' => $this->ml('Year'),
             'label' => $this->ml('Year'), ];
 

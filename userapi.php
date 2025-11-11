@@ -13,9 +13,6 @@ namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\UserApiClass;
 use xarMod;
-use sys;
-
-sys::import('xaraya.modules.userapi');
 
 /**
  * Handle the calendar user API
@@ -148,7 +145,6 @@ class UserApi extends UserApiClass
         switch (strtolower($class)) {
             case 'calendar':
                 if (!isset($calobject)) {
-                    sys::import("modules.$modInfo[osdirectory].class.calendar");
                     $calobject = new \Xaraya\Modules\Calendar\Calendar();
                 }
                 return $calobject;
@@ -157,7 +153,6 @@ class UserApi extends UserApiClass
                 // @todo use johngrogg/ics-parser or sabre/vobject package
                 if (!isset($icalobject)) {
                     // @todo no idea where this is now
-                    sys::import("modules.$modInfo[osdirectory].class.ical_parser");
                     $icalobject = new \Xaraya\Modules\Calendar\iCal_Parser();
                 }
                 return $icalobject;
@@ -165,21 +160,20 @@ class UserApi extends UserApiClass
             case 'event':
                 if (!isset($eventobject)) {
                     // @todo needs a Calendar argument
-                    sys::import("modules.$modInfo[osdirectory].class.event");
                     $eventobject = new \Xaraya\Modules\Calendar\Event();
                 }
                 return $eventobject;
 
-            /*
-            case 'import':
-                break;
+                /*
+                case 'import':
+                    break;
 
-            case 'export':
-                break;
+                case 'export':
+                    break;
 
-            case 'alarm':
-                break;
-            */
+                case 'alarm':
+                    break;
+                */
             default:
                 return;
         }

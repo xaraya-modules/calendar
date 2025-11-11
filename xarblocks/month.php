@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Calendar Module
  *
@@ -11,7 +12,6 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-sys::import('xaraya.structures.containers.blocks.basicblock');
 
 class Calendar_MonthBlock extends BasicBlock
 {
@@ -36,7 +36,6 @@ class Calendar_MonthBlock extends BasicBlock
         }
         include_once(CALENDAR_ROOT . 'Month/Weekdays.php');
         include_once(CALENDAR_ROOT . 'Decorator/Textual.php');
-        sys::import("modules.calendar.class.Calendar.Decorator.Xaraya");
 
         // Build the month
         $data['content'] = $this->mod()->apiMethod('calendar', 'user', 'getUserDateTimeInfo');

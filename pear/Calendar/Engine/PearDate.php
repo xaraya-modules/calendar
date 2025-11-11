@@ -397,8 +397,8 @@ class Calendar_Engine_PearDate /* implements Calendar_Engine_Interface */
             $weeks = 0;
         }
         $daysInTheFirstWeek %= $this->getDaysInWeek();
-        return (int) (ceil(($this->getDaysInMonth($y, $m) - $daysInTheFirstWeek) /
-                           $this->getDaysInWeek()) + $weeks);
+        return (int) (ceil(($this->getDaysInMonth($y, $m) - $daysInTheFirstWeek)
+                           / $this->getDaysInWeek()) + $weeks);
     }
 
     /**

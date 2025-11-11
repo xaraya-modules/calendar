@@ -12,10 +12,6 @@
 namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\UserGuiClass;
-use sys;
-
-sys::import('xaraya.modules.usergui');
-sys::import('modules.calendar.userapi');
 
 /**
  * Handle the calendar user GUI

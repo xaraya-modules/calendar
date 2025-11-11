@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Calendar Module
  *
@@ -14,7 +15,6 @@
 //sys::import('xaraya.structures.descriptor');
 //sys::import('modules.calendar.class.calnav');
 
-sys::import('xaraya.structures.containers.blocks.basicblock');
 
 class Calendar_CalnavBlock extends BasicBlock implements iBlock
 {

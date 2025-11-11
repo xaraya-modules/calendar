@@ -7,7 +7,6 @@
  *
  */
 
-sys::import('modules.calendar.pear.Calendar.Decorator');
 
 class Calendar_Decorator_Xaraya extends Calendar_Decorator
 {

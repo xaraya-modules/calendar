@@ -46,8 +46,8 @@ if (isset($_GET['viewday'])) {
 <anchor>
 Back to Month View
 <go href="<?php
-echo("?y=" . $Day->thisYear() . "&amp;m=" .
-    $Day->thisMonth() . "&amp;d=" . $Day->thisDay() . "&amp;mime=wml"); ?>"/>
+echo("?y=" . $Day->thisYear() . "&amp;m="
+    . $Day->thisMonth() . "&amp;d=" . $Day->thisDay() . "&amp;mime=wml"); ?>"/>
 </anchor>
 </p>
 <table>
@@ -76,13 +76,13 @@ $Month->build($selection);
         if ($Day->isEmpty()) {
             echo("<td></td>\n");
         } elseif ($Day->isSelected()) {
-            echo("<td><anchor><strong><u>" . $Day->thisDay() . "</u></strong>\n<go href=\"" . $_SERVER['PHP_SELF'] . "?viewday=true&amp;y=" .
-            $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay() .
-            "&amp;mime=wml\" />\n</anchor></td>\n");
+            echo("<td><anchor><strong><u>" . $Day->thisDay() . "</u></strong>\n<go href=\"" . $_SERVER['PHP_SELF'] . "?viewday=true&amp;y="
+            . $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay()
+            . "&amp;mime=wml\" />\n</anchor></td>\n");
         } else {
-            echo("<td><anchor>" . $Day->thisDay() . "\n<go href=\"?viewday=true&amp;y=" .
-            $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay() .
-            "&amp;mime=wml\" /></anchor></td>\n");
+            echo("<td><anchor>" . $Day->thisDay() . "\n<go href=\"?viewday=true&amp;y="
+            . $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay()
+            . "&amp;mime=wml\" /></anchor></td>\n");
         }
         if ($Day->isLast()) {
             echo("</tr>\n");
@@ -93,8 +93,8 @@ $Month->build($selection);
 <anchor>
 &lt;&lt;
 <go href="<?php
-echo("?y=" . $Month->thisYear() . "&amp;m=" .
-    $Month->prevMonth() . "&amp;d=" . $Month->thisDay() . "&amp;mime=wml"); ?>"/>
+echo("?y=" . $Month->thisYear() . "&amp;m="
+    . $Month->prevMonth() . "&amp;d=" . $Month->thisDay() . "&amp;mime=wml"); ?>"/>
 </anchor>
 </td>
 <td></td><td></td><td></td><td></td><td></td>
@@ -102,8 +102,8 @@ echo("?y=" . $Month->thisYear() . "&amp;m=" .
 <anchor>
 &gt;&gt;
 <go href="<?php
-echo("?y=" . $Month->thisYear() . "&amp;m=" .
-    $Month->nextMonth() . "&amp;d=" . $Month->thisDay() . "&amp;mime=wml"); ?>"/>
+echo("?y=" . $Month->thisYear() . "&amp;m="
+    . $Month->nextMonth() . "&amp;d=" . $Month->thisDay() . "&amp;mime=wml"); ?>"/>
 </anchor>
 </td>
 </tr>
@@ -135,8 +135,8 @@ if (isset($_GET['viewday'])) {
 <p>
 <anchor>
 <a href="<?php
-echo("?y=" . $Day->thisYear() . "&amp;m=" .
-    $Day->thisMonth() . "&amp;d=" . $Day->thisDay()); ?>">Back to Month View</a>
+echo("?y=" . $Day->thisYear() . "&amp;m="
+    . $Day->thisMonth() . "&amp;d=" . $Day->thisDay()); ?>">Back to Month View</a>
 </p>
 <table>
 <?php
@@ -164,13 +164,13 @@ $Month->build($selection);
         if ($Day->isEmpty()) {
             echo("<td></td>\n");
         } elseif ($Day->isSelected()) {
-            echo("<td><a href=\"" . $_SERVER['PHP_SELF'] . "?viewday=true&amp;y=" .
-            $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay() .
-            "&amp;wml\"><strong><u>" . $Day->thisDay() . "</u></strong></a></td>\n");
+            echo("<td><a href=\"" . $_SERVER['PHP_SELF'] . "?viewday=true&amp;y="
+            . $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay()
+            . "&amp;wml\"><strong><u>" . $Day->thisDay() . "</u></strong></a></td>\n");
         } else {
-            echo("<td><a href=\"" . $_SERVER['PHP_SELF'] . "?viewday=true&amp;y=" .
-            $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay() .
-            "\">" . $Day->thisDay() . "</a></td>\n");
+            echo("<td><a href=\"" . $_SERVER['PHP_SELF'] . "?viewday=true&amp;y="
+            . $Day->thisYear() . "&amp;m=" . $Day->thisMonth() . "&amp;d=" . $Day->thisDay()
+            . "\">" . $Day->thisDay() . "</a></td>\n");
         }
         if ($Day->isLast()) {
             echo("</tr>\n");
@@ -179,15 +179,15 @@ $Month->build($selection);
 <tr>
 <td>
 <a href="<?php
-echo("?y=" . $Month->thisYear() . "&amp;m=" .
-    $Month->prevMonth() . "&amp;d=" . $Month->thisDay()); ?>">
+echo("?y=" . $Month->thisYear() . "&amp;m="
+    . $Month->prevMonth() . "&amp;d=" . $Month->thisDay()); ?>">
 &lt;&lt;</a>
 </td>
 <td></td><td></td><td></td><td></td><td></td>
 <td>
 <a href="<?php
-echo("?y=" . $Month->thisYear() . "&amp;m=" .
-    $Month->nextMonth() . "&amp;d=" . $Month->thisDay()); ?>">&gt;&gt;</a>
+echo("?y=" . $Month->thisYear() . "&amp;m="
+    . $Month->nextMonth() . "&amp;d=" . $Month->thisDay()); ?>">&gt;&gt;</a>
 </td>
 </tr>
 </table>

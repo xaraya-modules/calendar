@@ -11,12 +11,8 @@
 
 namespace Xaraya\Modules\Calendar\UserApi;
 
-
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar userapi getUserDateTimeInfo function
@@ -69,7 +65,6 @@ class GetUserDateTimeInfoMethod extends MethodClass
         $data['cal_year']   = (int) $year;
         //$data['selected_timestamp'] = gmmktime(0,0,0,$month,$day,$year);
 
-        sys::import('xaraya.structures.datetime');
         $today = new \XarDateTime();
         $usertz = $this->mod('roles')->getUserVar('usertimezone');
         $useroffset = $today->getTZOffset($usertz);

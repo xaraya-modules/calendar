@@ -120,8 +120,8 @@ class Calendar_Day extends Calendar
 
         $hID = $this->cE->getHoursInDay($this->year, $this->month, $this->day);
         for ($i = 0; $i < $hID; $i++) {
-            $this->children[$i] =
-                new Calendar_Hour($this->year, $this->month, $this->day, $i);
+            $this->children[$i]
+                = new Calendar_Hour($this->year, $this->month, $this->day, $i);
         }
         if (count($sDates) > 0) {
             $this->setSelection($sDates);

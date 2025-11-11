@@ -35,8 +35,8 @@ if (!isset($_GET['s'])) {
 
 $Unit = new Calendar_Second($_GET['y'], $_GET['m'], $_GET['d'], $_GET['h'], $_GET['i'], $_GET['s']);
 
-echo '<p><b>Result:</b> ' . $Unit->thisYear() . '-' . $Unit->thisMonth() . '-' . $Unit->thisDay() .
-        ' ' . $Unit->thisHour() . ':' . $Unit->thisMinute() . ':' . $Unit->thisSecond();
+echo '<p><b>Result:</b> ' . $Unit->thisYear() . '-' . $Unit->thisMonth() . '-' . $Unit->thisDay()
+        . ' ' . $Unit->thisHour() . ':' . $Unit->thisMinute() . ':' . $Unit->thisSecond();
 if ($Unit->isValid()) {
     echo ' is valid!</p>';
 } else {

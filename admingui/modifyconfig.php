@@ -11,14 +11,10 @@
 
 namespace Xaraya\Modules\Calendar\AdminGui;
 
-
 use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
 use xarModHooks;
-use sys;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar admin modifyconfig function
@@ -62,7 +58,6 @@ class ModifyconfigMethod extends MethodClass
             default:
                 switch ($data['tab']) {
                     case 'calendar_general':
-                        sys::import('modules.calendar.pear.Calendar.Util.Textual');
                         $data['weekdays'] = \Calendar_Util_Textual::weekdayNames();
                         break;
                 }
@@ -89,7 +84,6 @@ class ModifyconfigMethod extends MethodClass
                     $itemid = $data['module_settings']->updateItem();
                 }
 
-                sys::import('modules.dynamicdata.class.properties.master');
                 $timeproperty = $this->prop()->getProperty(['type' => 'formattedtime']);
                 $day_start = $timeproperty->checkInput('day_start') ? $timeproperty->getValue() : $this->mod()->getVar('day_start');
                 $day_end = $timeproperty->checkInput('day_end') ? $timeproperty->getValue() : $this->mod()->getVar('day_end');
@@ -189,8 +183,8 @@ class ModifyconfigMethod extends MethodClass
         // short URLs (see xaruserapi.php), you should remove these from your
         // admin-modifyconfig.xard template !
         $data['shorturlslabel'] = $this->ml('Enable short URLs?');
-        $data['shorturlschecked'] = $this->mod()->getVar('SupportShortURLs') ?
-        'checked' : '';
+        $data['shorturlschecked'] = $this->mod()->getVar('SupportShortURLs')
+        ? 'checked' : '';
 
 
         /*    //TODO: should I include this stuff? --amoro

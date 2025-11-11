@@ -11,13 +11,9 @@
 
 namespace Xaraya\Modules\Calendar\AdminApi;
 
-
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use sys;
 use Exception;
-
-sys::import('xaraya.modules.method');
 
 /**
  * calendar adminapi create_calendars function

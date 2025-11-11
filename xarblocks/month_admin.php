@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Calendar Module
  *
@@ -11,7 +12,6 @@
  * @author Marc Lutolf <mfl@netspan.ch>
  */
 
-sys::import('modules.calendar.xarblocks.month');
 
 class Calendar_MonthBlockAdmin extends Calendar_MonthBlock
 {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Calendar Module
  *
@@ -12,8 +13,6 @@
  */
 
 /* Include files needed */
-sys::import('modules.dynamicdata.class.properties');
-sys::import('xaraya.structures.query');
 
 class CalendarDisplayProperty extends DataProperty
 {
@@ -55,23 +54,15 @@ class CalendarDisplayProperty extends DataProperty
         switch ($timeframe) {
             case 'week':
                 include_once(CALENDAR_ROOT . 'Week.php');
-                sys::import("modules.calendar.class.Calendar.Decorator.event");
-                sys::import("modules.calendar.class.Calendar.Decorator.weekevent");
                 break;
             case 'month':
                 include_once(CALENDAR_ROOT . 'Month/Weekdays.php');
                 include_once(CALENDAR_ROOT . 'Day.php');
-                sys::import("modules.calendar.class.Calendar.Decorator.event");
-                sys::import("modules.calendar.class.Calendar.Decorator.monthevent");
                 break;
             case 'year':
                 include_once(CALENDAR_ROOT . 'Year.php');
-                sys::import("modules.calendar.class.Calendar.Decorator.event");
-                sys::import("modules.calendar.class.Calendar.Decorator.monthevent");
-                sys::import("modules.calendar.class.Calendar.Decorator.yearevent");
                 break;
         }
-        sys::import("modules.calendar.class.Calendar.Decorator.Xaraya");
     }
 
     public function setup($timeframe, $role_id)

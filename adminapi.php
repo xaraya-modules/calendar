@@ -12,9 +12,6 @@
 namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\AdminApiClass;
-use sys;
-
-sys::import('xaraya.modules.adminapi');
 
 /**
  * Handle the calendar admin API

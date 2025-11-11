@@ -12,7 +12,6 @@ namespace Xaraya\Modules\Calendar;
 
 use xarLocale;
 use xarMod;
-use xarVar;
 
 class Calendar
 {

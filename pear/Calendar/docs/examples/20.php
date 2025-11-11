@@ -89,9 +89,9 @@ class MonthPayload_Decorator extends Calendar_Decorator
             $stamp1 = $this->cE->dateToStamp($this->year, $this->month, $i);
             $stamp2 = $this->cE->dateToStamp($this->year, $this->month, $i + 1);
             foreach ($events as $event) {
-                if (($stamp1 >= $event['start'] && $stamp1 < $event['end']) ||
-                    ($stamp2 >= $event['start'] && $stamp2 < $event['end']) ||
-                    ($stamp1 <= $event['start'] && $stamp2 > $event['end'])
+                if (($stamp1 >= $event['start'] && $stamp1 < $event['end'])
+                    || ($stamp2 >= $event['start'] && $stamp2 < $event['end'])
+                    || ($stamp1 <= $event['start'] && $stamp2 > $event['end'])
                 ) {
                     $this->children[$i]->addEntry($event);
                     $this->children[$i]->setSelected();
