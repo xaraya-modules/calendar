@@ -38,7 +38,7 @@ class Calendar_MonthBlock extends BasicBlock
         include_once(CALENDAR_ROOT . 'Decorator/Textual.php');
 
         // Build the month
-        $data['content'] = $this->mod()->apiMethod('calendar', 'user', 'getUserDateTimeInfo');
+        $data['content'] = $this->mod()->apiMethod('calendar', 'userapi', 'getUserDateTimeInfo');
         $data['content']['MonthCal'] = new \Calendar_Month_Weekdays(
             $data['content']['cal_year'],
             $data['content']['cal_month'],

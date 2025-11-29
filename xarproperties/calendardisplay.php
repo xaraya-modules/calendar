@@ -67,7 +67,7 @@ class CalendarDisplayProperty extends DataProperty
 
     public function setup($timeframe, $role_id)
     {
-        $data = $this->mod()->apiMethod('calendar', 'user', 'getUserDateTimeInfo');
+        $data = $this->mod()->apiMethod('calendar', 'userapi', 'getUserDateTimeInfo');
         switch ($timeframe) {
             case 'week':
                 $WeekEvents = new \Calendar_Week($data['cal_year'], $data['cal_month'], $data['cal_day'], $this->mod()->getVar('cal_sdow'));
