@@ -20,8 +20,8 @@
 // $Id$
 //
 
-require_once 'Date.php';
-require_once 'Date/Span.php';
+require_once dirname(__DIR__) . '/Date.php';
+require_once dirname(__DIR__) . '/Date/Span.php';
 //require_once 'PHPUnit/Autoload.php';
 
 /**
@@ -34,12 +34,12 @@ class Date_SpanTest extends \PHPUnit\Framework\TestCase
 {
     public $time;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->time = new Date_Span(97531);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->time);
     }

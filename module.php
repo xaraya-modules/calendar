@@ -14,7 +14,7 @@ namespace Xaraya\Modules\Calendar;
 use Xaraya\Modules\ModuleClass;
 
 /**
- * Get calendar module classes via xarMod::getModule()
+ * Get calendar module classes via xar::mod()->getModule()
  */
 class Module extends ModuleClass
 {

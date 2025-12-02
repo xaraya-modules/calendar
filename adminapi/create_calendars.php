@@ -41,7 +41,7 @@ class CreateCalendarsMethod extends MethodClass
         // TODO: should I move these two issets to the admin function
         // admin/create_calendars.php? --amoro
         if (!isset($mod_id)) {
-            $module = $this->ctl()->getRequest()->getModule();
+            $module = $this->req()->getModule();
             $mod_id = $this->mod()->getRegID($module);
         }
         if (!isset($role_id)) {

@@ -12,7 +12,6 @@
 namespace Xaraya\Modules\Calendar;
 
 use Xaraya\Modules\UserApiClass;
-use xarMod;
 
 /**
  * Handle the calendar user API
@@ -128,7 +127,7 @@ class UserApi extends UserApiClass
         static $modinfo;
 
         if (!isset($modinfo)) {
-            $modInfo = xarMod::getInfo(xarMod::getRegID('calendar'));
+            $modInfo = $this->mod()->getInfo($this->mod()->getRegID('calendar'));
         }
         if (is_array($class)) {
             if (!empty($args['class'])) {

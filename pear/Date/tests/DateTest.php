@@ -20,7 +20,7 @@
 // $Id$
 //
 
-require_once 'Date.php';
+require_once dirname(__DIR__) . '/Date.php';
 //require_once 'PHPUnit/Autoload.php';
 
 class myDate extends Date
@@ -41,12 +41,12 @@ class Date_Test extends \PHPUnit\Framework\TestCase
 {
     public $time;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->time = new Date("2003-10-04 14:03:24Z");
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->time);
     }

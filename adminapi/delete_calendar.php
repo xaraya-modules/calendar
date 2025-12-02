@@ -14,7 +14,6 @@ namespace Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use xarModHooks;
 use Exception;
 
 /**
@@ -68,7 +67,7 @@ class DeleteCalendarMethod extends MethodClass
         // Call delete hooks for categories, hitcount etc.
         $args['module'] = 'calendar';
         $args['itemid'] = $calid;
-        xarModHooks::call('item', 'delete', $calid, $args);
+        $this->mod()->callHooks('item', 'delete', $calid, $args);
 
         // Get database setup
         $dbconn = $this->db()->getConn();

@@ -38,8 +38,8 @@
 
     <table width="100%" border="0" cellspacing="1" cellpadding="8">
     {# <!--
-        // Start form - note the use of xarController::URL() to create the recipient URL of
-        // this form.  All URLs should be generated through xarController::URL() to ensure
+        // Start form - note the use of xar_moduleurl() to create the recipient URL of
+        // this form.  All URLs should be generated through xar_moduleurl() to ensure
         // compatibility with future versions of Xaraya
     --> #}
     <form method="post" action="{{ xar_moduleurl('calendar', 'admin', 'updateconfig') }}">
@@ -57,7 +57,7 @@
         <tr>
           <td><label for="default_cal">Default calendar ics file(s)</label>
               (NOTE: put your ics files in var/calendar)
-              <br /><b>NOTE TO DEVS: default filenames are stored in array xarModVars::get('calendar', 'default_cal'); the directory is
+              <br /><b>NOTE TO DEVS: default filenames are stored in array xar::mod('calendar')->getVar('default_cal'); the directory is
               sys::varpath() . '/calendar'</b>
           </td>
           <td>

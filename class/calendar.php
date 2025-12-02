@@ -10,11 +10,12 @@
 
 namespace Xaraya\Modules\Calendar;
 
-use xarLocale;
-use xarMod;
+use Xaraya\Services\WithServicesClass;
 
 class Calendar
 {
+    use WithServicesClass;
+
     public $startDayOfWeek;
     public $monthNamesLong = [];
     public $monthNamesShort = [];
@@ -31,8 +32,9 @@ class Calendar
         // TODO::Make this an Admin/User Setting
         $this->startDayOfWeek = 0;
 
+        $xar = $this->getServicesClass();
         // load the locale date
-        $localeData = xarLocale::loadData();
+        $localeData = $xar->mls()->loadLocale();
         //echo '<pre>'; print_r($localeData); echo '</pre>';
         // long month names from locale.xml
         $this->monthNamesLong = [
@@ -116,7 +118,8 @@ class Calendar
     public function &getCalendarWeek($d = null)
     {
         if (!isset($d)) {
-            $d = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Ymd');
+            $xar = $this->getServicesClass();
+            $d = $xar->mod()->apiFunc('calendar', 'user', 'createUserDateTime', 'Ymd');
         }
         $year = substr($d, 0, 4);
         $month = substr($d, 4, 2);
@@ -141,7 +144,8 @@ class Calendar
     public function &getCalendarMonth($d = null)
     {
         if (!isset($d)) {
-            $d = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Ym');
+            $xar = $this->getServicesClass();
+            $d = $xar->mod()->apiFunc('calendar', 'user', 'createUserDateTime', 'Ym');
         }
         $year  = substr($d, 0, 4);
         $month = substr($d, 4, 2);
@@ -195,7 +199,8 @@ class Calendar
     public function &getCalendarYear($y = null)
     {
         if (!isset($y)) {
-            $y = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Y');
+            $xar = $this->getServicesClass();
+            $y = $xar->mod()->apiFunc('calendar', 'user', 'createUserDateTime', 'Y');
         }
 
         $year_array = [];
@@ -213,8 +218,9 @@ class Calendar
      */
     public function setStartDayOfWeek($d)
     {
+        $xar = $this->getServicesClass();
         // validate the input
-        if (!xarVarPrep::validate('int:0:6', $d)) {
+        if (!$xar->prep()->validate('int:0:6', $d)) {
             // we'll just leave it as is then
             return true;
         }
@@ -238,7 +244,8 @@ class Calendar
     public function dayIs($dow = 0, $date = null)
     {
         if (!isset($date)) {
-            $date = xarMod::apiFunc('calendar', 'user', 'createUserDateTime', 'Ymd');
+            $xar = $this->getServicesClass();
+            $date = $xar->mod()->apiFunc('calendar', 'user', 'createUserDateTime', 'Ymd');
         }
         $year = substr($date, 0, 4);
         $month = substr($date, 4, 2);

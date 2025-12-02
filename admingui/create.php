@@ -13,7 +13,6 @@ namespace Xaraya\Modules\Calendar\AdminGui;
 
 use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\MethodClass;
-use xarModHooks;
 
 /**
  * calendar admin create function
@@ -71,7 +70,7 @@ class CreateMethod extends MethodClass
             $item['itemtype'] = $myobject->itemtype;
             $item['itemid'] = $myobject->itemid;
             $hooks = [];
-            $hooks = xarModHooks::call('item', 'new', $myobject->itemid, $item, $modinfo['name']);
+            $hooks = $this->mod()->callHooks('item', 'new', $myobject->itemid, $item, $modinfo['name']);
             $data['hooks'] = $hooks;
 
             if (!isset($template)) {
@@ -93,7 +92,7 @@ class CreateMethod extends MethodClass
         $item = $myobject->getFieldValues();
         $item['module'] = 'calendar';
         $item['itemtype'] = 1;
-        xarModHooks::call('item', 'create', $itemid, $item);
+        $this->mod()->callHooks('item', 'create', $itemid, $item);
 
         if (!empty($return_url)) {
             $this->ctl()->redirect($return_url);

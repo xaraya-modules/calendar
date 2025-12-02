@@ -35,7 +35,7 @@ class Event extends Calendar_Decorator
 
     public function __construct(Calendar $calendar)
     {   // set the author
-        //$this->author = xarUser::getVar('id');
+        //$this->author = xar::user()->getVar('id');
         Calendar_Decorator::__construct($calendar);
     }
 

@@ -16,7 +16,6 @@ namespace Xaraya\Modules\Calendar;
 use Xaraya\Modules\InstallerClass;
 use xarMasks;
 use xarPrivileges;
-use xarMod;
 use xarModHooks;
 use xarTableDDL;
 use Query;
@@ -177,7 +176,7 @@ class Installer extends InstallerClass
         $this->mod()->setVar('pearcalendar_root', sys::code() . 'modules/calendar/pear/Calendar/');
 
         // get list of calendar ics files
-        $data = xarMod::apiFunc('calendar', 'admin', 'get_calendars');
+        $data = $this->mod()->apiFunc('calendar', 'admin', 'get_calendars');
         $this->mod()->setVar('default_cal', serialize($data['icsfiles']));
 
         // Other variables from phpIcalendar config.inc.php
@@ -227,8 +226,8 @@ class Installer extends InstallerClass
         # --------------------------------------------------------
         #  Register block types
         #
-        xarMod::apiFunc('blocks', 'admin', 'register_block_type', ['modName' => 'calendar','blockType' => 'calnav']);
-        xarMod::apiFunc('blocks', 'admin', 'register_block_type', ['modName' => 'calendar','blockType' => 'month']);
+        $this->mod()->apiFunc('blocks', 'admin', 'register_block_type', ['modName' => 'calendar','blockType' => 'calnav']);
+        $this->mod()->apiFunc('blocks', 'admin', 'register_block_type', ['modName' => 'calendar','blockType' => 'month']);
 
         //TODO::Register our blocklayout tags to allow using Objects in the templates
         //<xar:calendar-decorator object="$Month" decorator="Xaraya" name="$MonthURI"/>
@@ -262,7 +261,7 @@ class Installer extends InstallerClass
             'calendar_event',
         ];
 
-        if (!xarMod::apiFunc('modules', 'admin', 'standardinstall', ['module' => $module, 'objects' => $objects])) {
+        if (!$this->mod()->apiFunc('modules', 'admin', 'standardinstall', ['module' => $module, 'objects' => $objects])) {
             return;
         }
 
@@ -344,10 +343,10 @@ class Installer extends InstallerClass
         #
         # Remove block types
         #
-        if (!xarMod::apiFunc('blocks', 'admin', 'unregister_block_type', ['modName'  => 'calendar', 'blockType' => 'month'])) {
+        if (!$this->mod()->apiFunc('blocks', 'admin', 'unregister_block_type', ['modName'  => 'calendar', 'blockType' => 'month'])) {
             return;
         }
 
-        return xarMod::apiFunc('modules', 'admin', 'standarddeinstall', ['module' => 'calendar']);
+        return $this->mod()->apiFunc('modules', 'admin', 'standarddeinstall', ['module' => 'calendar']);
     }
 }

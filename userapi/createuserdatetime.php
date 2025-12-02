@@ -37,7 +37,7 @@ class CreateUserDateTimeMethod extends MethodClass
         return gmdate($format);
 
         /*
-        if(xarUserLoggedIn()) {
+        if(xar::user()->isLoggedIn()) {
             // $tzoffest = user's timezone offset
         } else {
             // $tzoffset = site's timezone offset

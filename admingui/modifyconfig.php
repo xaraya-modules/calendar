@@ -14,7 +14,6 @@ namespace Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\Calendar\AdminApi;
 use Xaraya\Modules\MethodClass;
-use xarModHooks;
 
 /**
  * calendar admin modifyconfig function
@@ -188,7 +187,7 @@ class ModifyconfigMethod extends MethodClass
 
 
         /*    //TODO: should I include this stuff? --amoro
-            $hooks = xarModHooks::call('module', 'modifyconfig', 'calendar',
+            $hooks = $this->mod()->callHooks('module', 'modifyconfig', 'calendar',
                 array('module' => 'calendar'));
             if (empty($hooks)) {
                 $data['hooks'] = '';

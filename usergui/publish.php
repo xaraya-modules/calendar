@@ -14,7 +14,6 @@ namespace Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\Calendar\UserGui;
 use Xaraya\Modules\Calendar\UserApi;
 use Xaraya\Modules\MethodClass;
-use xarUser;
 use sys;
 
 /**
@@ -47,7 +46,7 @@ class PublishMethod extends MethodClass
                 // cfr. notes at http://www.php.net/features.http-auth for IIS or CGI support
                     if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW']) ||
                         // is this a valid user/password ?
-                        !xarUser::logIn($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) ||
+                        !$this->user()->logIn($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) ||
                         // does this user have access to this calendar ?
                         !$this->sec()->check('ViewCalendar',0,'All',$calname)) {
 

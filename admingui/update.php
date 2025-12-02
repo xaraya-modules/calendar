@@ -13,7 +13,6 @@ namespace Xaraya\Modules\Calendar\AdminGui;
 
 use Xaraya\Modules\Calendar\AdminGui;
 use Xaraya\Modules\MethodClass;
-use xarModHooks;
 
 /**
  * calendar admin update function
@@ -79,7 +78,7 @@ class UpdateMethod extends MethodClass
             $item['itemtype'] = $myobject->itemtype;
             $item['itemid'] = $myobject->itemid;
             $hooks = [];
-            $hooks = xarModHooks::call('item', 'modify', $myobject->itemid, $item, $modinfo['name']);
+            $hooks = $this->mod()->callHooks('item', 'modify', $myobject->itemid, $item, $modinfo['name']);
             $data['hooks'] = $hooks;
 
             $data['context'] ??= $this->getContext();
@@ -99,7 +98,7 @@ class UpdateMethod extends MethodClass
         $item = $myobject->getFieldValues();
         $item['module'] = 'calendar';
         $item['itemtype'] = 1;
-        xarModHooks::call('item', 'update', $itemid, $item);
+        $this->mod()->callHooks('item', 'update', $itemid, $item);
 
         if (!empty($return_url)) {
             $this->ctl()->redirect($return_url);
