@@ -4,7 +4,7 @@
     <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
     <div class="xar-mod-head">
         <span class="xar-mod-title">
-            <xar:if condition="xarModVars::get('calendar','useModuleAlias')">
+            <xar:if condition="$xar->mod('calendar')->getVar('useModuleAlias')">
                 <xar:var scope="module" module="calendar" name="aliasname"/>
             <xar:else />
                 Create Event
@@ -36,7 +36,7 @@
                 <xar:data-input property="$properties['return_link']" hidden="hidden"/>
                 <xar:data-input property="$properties['state']" hidden="hidden"/>
                 <xar:data-input property="$properties['timestamp']" hidden="hidden"/>
-                <input type="hidden" name="return_url" id="return_url_standard" value="#xarController::URL('calendar','user',$page,array('page' => $page))#"/>
+                <input type="hidden" name="return_url" id="return_url_standard" value="#$xar->ctl()->URL('calendar','user',$page,array('page' => $page))#"/>
                 <xar:var name="var">Create Event</xar:var>
                 <input type="submit" value="#$var#" class="xar-margin-thickleft"/>
             </div>

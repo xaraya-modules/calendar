@@ -8,7 +8,7 @@
             Modify Configuration            
         </h2>
 
-        <form method="post" action="#xarServer::getCurrentURL()#" enctype="application/x-www-form-urlencoded">
+        <form method="post" action="#$xar->ctl()->getCurrentURL()#" enctype="application/x-www-form-urlencoded">
             <xar:if condition="$tab eq 'general'">
                 <fieldset>
                     <legend>
@@ -40,8 +40,8 @@
 
     <table width="100%" border="0" cellspacing="1" cellpadding="8">
     <!--
-        // Start form - note the use of xarController::URL() to create the recipient URL of
-        // this form.  All URLs should be generated through xarController::URL() to ensure
+        // Start form - note the use of $xar->ctl()->URL() to create the recipient URL of
+        // this form.  All URLs should be generated through $xar->ctl()->URL() to ensure
         // compatibility with future versions of Xaraya
     -->
     <form method="post" action="&xar-modurl-calendar-admin-updateconfig;">
@@ -59,7 +59,7 @@
         <tr>
           <td><label for="default_cal">Default calendar ics file(s)</label>
               (NOTE: put your ics files in var/calendar)
-              <br /><b>NOTE TO DEVS: default filenames are stored in array xarModVars::get('calendar', 'default_cal'); the directory is
+              <br /><b>NOTE TO DEVS: default filenames are stored in array $xar->mod('calendar')->getVar('default_cal'); the directory is
               sys::varpath() . '/calendar'</b>
           </td>
           <td>
@@ -84,21 +84,21 @@
             <td>
     <div class="xar-row">
         <div class="xar-col">
-            <label for="cal_sdow" title="#xarML('Where do the mini-calendars go when clicked?')#">
+            <label for="cal_sdow" title="#$xar->ml('Where do the mini-calendars go when clicked?')#">
                 Minical view       
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'cal_sdow')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('cal_sdow')</xar:set>
             <xar:set name="options">
                 array(
-                    array('id' => 0, 'name' => xarML('Sunday')),
-                    array('id' => 1, 'name' => xarML('Monday')),
-                    array('id' => 2, 'name' => xarML('Tuesday')),
-                    array('id' => 3, 'name' => xarML('Wednesday')),
-                    array('id' => 4, 'name' => xarML('Thursday')),
-                    array('id' => 5, 'name' => xarML('Friday')),
-                    array('id' => 6, 'name' => xarML('Saturday')),
+                    array('id' => 0, 'name' => $xar->ml('Sunday')),
+                    array('id' => 1, 'name' => $xar->ml('Monday')),
+                    array('id' => 2, 'name' => $xar->ml('Tuesday')),
+                    array('id' => 3, 'name' => $xar->ml('Wednesday')),
+                    array('id' => 4, 'name' => $xar->ml('Thursday')),
+                    array('id' => 5, 'name' => $xar->ml('Friday')),
+                    array('id' => 6, 'name' => $xar->ml('Saturday')),
                 )
             </xar:set>
             <xar:data-input type="dropdown" name="minical_view" id="minical_view" options="$options" value="$value"/>

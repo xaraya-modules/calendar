@@ -2,7 +2,7 @@
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
     <div class="xar-row">
         <div class="xar-col">
-            <label class="xar-form-label help" title="#xarML('Choose a module for the target URL')#" for="targetmodule#$blockid#"> 
+            <label class="xar-form-label help" title="#$xar->ml('Choose a module for the target URL')#" for="targetmodule#$blockid#"> 
                 Module
             </label> 
         </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="xar-row">
         <div class="xar-col">
-            <label for="targettype#$blockid#" class="help xar-form-label" title="#xarML('Enter the type for the target URL')#">
+            <label for="targettype#$blockid#" class="help xar-form-label" title="#$xar->ml('Enter the type for the target URL')#">
                 Type       
            :</label> 
         </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="xar-row">
         <div class="xar-col">
-            <label for="targetfunc#$blockid#" class="help xar-form-label" title="#xarML('Enter the function for the target URL')#">
+            <label for="targetfunc#$blockid#" class="help xar-form-label" title="#$xar->ml('Enter the function for the target URL')#">
                 Function       
            :</label> 
         </div>

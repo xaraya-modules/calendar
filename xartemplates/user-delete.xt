@@ -4,7 +4,7 @@
     <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
     <div class="xar-mod-head">
         <span class="xar-mod-title">
-            <xar:if condition="xarModVars::get('calendar','useModuleAlias')">
+            <xar:if condition="$xar->mod('calendar')->getVar('useModuleAlias')">
                 <xar:var scope="module" module="calendar" name="aliasname"/>
             <xar:else />
                 Delete Event
@@ -33,8 +33,8 @@
                 <input type="hidden" name="itemid" id="itemid" value="#$object:itemid#"/>
                 <input type="hidden" name="tplmodule" id="tplmodule" value="#$tplmodule#"/>
 
-                <input type="submit" name="confirm" id="confirm" value="#xarML('Delete')#" class="xar-margin-thickright"/>
-                <input type="submit" name="noconfirm" id="noconfirm" value="#xarML('Cancel')#" class="xar-margin-thickleft"/>
+                <input type="submit" name="confirm" id="confirm" value="#$xar->ml('Delete')#" class="xar-margin-thickright"/>
+                <input type="submit" name="noconfirm" id="noconfirm" value="#$xar->ml('Cancel')#" class="xar-margin-thickleft"/>
             </div>
         </form>
     </div>

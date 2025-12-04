@@ -3,24 +3,24 @@
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="windowwidth" title="#xarML('Width of the window the calendar displays in')#">
+            <label for="windowwidth" title="#$xar->ml('Width of the window the calendar displays in')#">
                 Calendar Window Width
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'windowwidth')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('windowwidth')</xar:set>
             <input type="text" name="windowwidth" id="windowwidth" value="#$value#"/>&#160;px
         </div>
     </div>
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="minutesperunit" title="#xarML('The unit the grid in day view represents')#">
+            <label for="minutesperunit" title="#$xar->ml('The unit the grid in day view represents')#">
                 Grid Unit            
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'minutesperunit')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('minutesperunit')</xar:set>
             <xar:set name="options">
                 array(
                     array('id' => 5, 'name' => 5),
@@ -36,33 +36,33 @@
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="unitheight" title="#xarML('Height in pixels on the screen of the grid unit')#">            
+            <label for="unitheight" title="#$xar->ml('Height in pixels on the screen of the grid unit')#">            
                 Unit height            
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'unitheight')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('unitheight')</xar:set>
             <input type="text" name="unitheight" id="unitheight" value="#$value#"/>&#160;px
         </div>
     </div>
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="cal_sdow" title="#xarML('The first day of the week shown on the views')#">
+            <label for="cal_sdow" title="#$xar->ml('The first day of the week shown on the views')#">
                 Week starts            
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'cal_sdow')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('cal_sdow')</xar:set>
             <xar:set name="options">
                 array(
-                    array('id' => 0, 'name' => xarML('Sunday')),
-                    array('id' => 1, 'name' => xarML('Monday')),
-                    array('id' => 2, 'name' => xarML('Tuesday')),
-                    array('id' => 3, 'name' => xarML('Wednesday')),
-                    array('id' => 4, 'name' => xarML('Thursday')),
-                    array('id' => 5, 'name' => xarML('Friday')),
-                    array('id' => 6, 'name' => xarML('Saturday')),
+                    array('id' => 0, 'name' => $xar->ml('Sunday')),
+                    array('id' => 1, 'name' => $xar->ml('Monday')),
+                    array('id' => 2, 'name' => $xar->ml('Tuesday')),
+                    array('id' => 3, 'name' => $xar->ml('Wednesday')),
+                    array('id' => 4, 'name' => $xar->ml('Thursday')),
+                    array('id' => 5, 'name' => $xar->ml('Friday')),
+                    array('id' => 6, 'name' => $xar->ml('Saturday')),
                 )
             </xar:set>
             <xar:data-input type="dropdown" name="cal_sdow" id="cal_sdow" options="$options" value="$value"/>
@@ -71,7 +71,7 @@
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="default_view" title="#xarML('The calendar default view')#">
+            <label for="default_view" title="#$xar->ml('The calendar default view')#">
                 Default view            
             </label>
         </div>
@@ -84,38 +84,38 @@
                                     array('id' => 'customview', 'name' => 'Customized'),
                                     )
             </xar:set>
-            <xar:set name="value">xarModVars::get('calendar', 'default_view')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('default_view')</xar:set>
             <xar:data-input type="dropdown" name="default_view" id="default_view" options="$options" value="$value"/>
         </div>
     </div>
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="day_start" title="#xarML('The time when the day begins on the calendar displays')#">
+            <label for="day_start" title="#$xar->ml('The time when the day begins on the calendar displays')#">
                 Morning starts at:            
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'day_start')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('day_start')</xar:set>
             <xar:data-input type="time" name="day_start" id="day_start" value="$value" dropdown="true" seconds="false" minutes="false"/>&#160;: 00
         </div>
     </div>
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="day_end" title="#xarML('The time when the day ends on the calendar displays')#">
+            <label for="day_end" title="#$xar->ml('The time when the day ends on the calendar displays')#">
                 Evening ends at:
             </label>
         </div>
         <div class="xar-col">
-            <xar:set name="value">xarModVars::get('calendar', 'day_end')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('day_end')</xar:set>
             <xar:data-input type="time" name="day_end" id="day_end" value="$value" dropdown="true" seconds="false" minutes="false"/>&#160;: 00
         </div>
     </div>
 
     <div class="xar-row">
         <div class="xar-col">
-            <label for="twentyfourhourformat" title="#xarML('The format for displaying hours and minutes')#">            
+            <label for="twentyfourhourformat" title="#$xar->ml('The format for displaying hours and minutes')#">            
                 Time Display Format            
             </label>
         </div>
@@ -125,7 +125,7 @@
                                     array('id' => true, 'name' => '24 hour'),
                                     )
             </xar:set>
-            <xar:set name="value">xarModVars::get('calendar', 'twentyfourhourformat')</xar:set>
+            <xar:set name="value">$xar->mod('calendar')->getVar('twentyfourhourformat')</xar:set>
             <xar:data-input type="radio" name="twentyfourhourformat" id="twentyfourhourformat" value="$value" options="$options"/>
         </div>
     </div>
