@@ -10,11 +10,11 @@
 
 namespace Xaraya\Modules\Calendar;
 
-use Xaraya\Services\WithServicesClass;
+use Xaraya\Services\WithServicesTrait;
 
 class Calendar
 {
-    use WithServicesClass;
+    use WithServicesTrait;
 
     public $startDayOfWeek;
     public $monthNamesLong = [];
