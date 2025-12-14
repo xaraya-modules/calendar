@@ -76,7 +76,6 @@ class CreateMethod extends MethodClass
             if (!isset($template)) {
                 $template = $myobject->name;
             }
-            $data['context'] ??= $this->getContext();
             return $this->tpl()->module($tplmodule, 'user', 'new', $data, $template);
         }
 

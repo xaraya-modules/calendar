@@ -66,13 +66,12 @@ class DeleteMethod extends MethodClass
         if (empty($confirm)) {
             $data['authid'] = $this->sec()->genAuthKey();
             $data['object'] = $myobject;
-            $data['context'] ??= $this->getContext();
 
-            if (file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/user-delete.xd')
-                || file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xd')) {
+            if (file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/user-delete.xt')
+                || file_exists('code/modules/' . $data['tplmodule'] . '/xartemplates/admin-delete-' . $data['template'] . '.xt')) {
                 return $this->tpl()->module($data['tplmodule'], 'user', 'delete', $data, $data['template']);
             } else {
-                return $this->mod()->template('delete', $data, $data['template']);
+                return $this->render('delete', $data, $data['template']);
             }
         }
 

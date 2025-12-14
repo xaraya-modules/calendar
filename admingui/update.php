@@ -81,7 +81,6 @@ class UpdateMethod extends MethodClass
             $hooks = $this->mod()->callHooks('item', 'modify', $myobject->itemid, $item, $modinfo['name']);
             $data['hooks'] = $hooks;
 
-            $data['context'] ??= $this->getContext();
             return $this->tpl()->module($tplmodule, 'user', 'modify', $data);
         }
 
