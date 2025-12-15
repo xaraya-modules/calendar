@@ -45,7 +45,7 @@ class EncodeShorturlMethod extends MethodClass
         // default path is empty -> no short URL
         $path = '';
         $extra = '';
-        // we can't rely on $this->mod()->getName() here (yet) !
+        // we can't rely on $this->req()->getModule() here (yet) !
         $module = 'calendar';
         if (isset($params['cal_date']) && !empty($params['cal_date'])) {
             $year = substr($params['cal_date'], 0, 4);

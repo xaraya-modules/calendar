@@ -36,7 +36,7 @@ class HookcreateMethod extends MethodClass
             if (!empty($data['extrainfo']['module'])) {
                 $data['module'] = $data['extrainfo']['module'];
             } else {
-                $data['module'] = $this->mod()->getName();
+                $data['module'] = $this->req()->getModule();
             }
         }
         $data['module_id'] = $this->mod()->getID(($data['module']));
